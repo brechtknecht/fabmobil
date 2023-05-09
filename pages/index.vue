@@ -47,7 +47,7 @@ const { data: photographyData } = await useKql({
 <template>
   <div>
     <AppIntro />
-
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
     <ul class="home-grid">
       <li v-for="(album, index) in photographyData?.result ?? []" :key="index">
         <NuxtLink :to="`/${album.id}`">

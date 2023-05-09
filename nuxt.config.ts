@@ -2,6 +2,14 @@ import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', 'nuxt-kql'],
+  css: ['@/assets/css/main.css'],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 
   runtimeConfig: {
     public: {
