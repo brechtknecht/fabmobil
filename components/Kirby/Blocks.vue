@@ -6,6 +6,7 @@ import {
   LazyKirbyBlockList,
   LazyKirbyBlockQuote,
   LazyKirbyBlockText,
+  LazyKirbyBlockVideo,
 } from '#components'
 import type { KirbyBlock } from '#nuxt-kql'
 
@@ -22,6 +23,7 @@ const blockComponents: Partial<Record<string, Component>> = {
   list: LazyKirbyBlockList,
   quote: LazyKirbyBlockQuote,
   text: LazyKirbyBlockText,
+  video: LazyKirbyBlockVideo,
 }
 </script>
 
