@@ -4,7 +4,7 @@ import '~/assets/css/medium-zoom.css'
 </script>
 
 <template>
-  <Html lang="en">
+  <Html lang="de">
     <Head>
       <Link rel="icon" href="/favicon.ico" type="image/x-icon" />
     </Head>
