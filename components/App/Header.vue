@@ -10,7 +10,7 @@ const listedChildren = computed(() =>
 <template>
   <header class="header">
     <NuxtLink class="logo" to="/">
-      {{ site.title }}
+      <img src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
 
     <nav class="menu">
@@ -25,7 +25,7 @@ const listedChildren = computed(() =>
         {{ item.title }}
       </NuxtLink>
 
-      <AppSocial />
+      <!-- <AppSocial /> -->
     </nav>
   </header>
 </template>

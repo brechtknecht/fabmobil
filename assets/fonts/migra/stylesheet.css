@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Extralight.eot');
+    src: url('Migra-Extralight.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Extralight.woff2') format('woff2'),
+        url('Migra-Extralight.woff') format('woff'),
+        url('Migra-Extralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Bold.eot');
+    src: url('Migra-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Bold.woff2') format('woff2'),
+        url('Migra-Bold.woff') format('woff'),
+        url('Migra-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Black.eot');
+    src: url('Migra-Black.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Black.woff2') format('woff2'),
+        url('Migra-Black.woff') format('woff'),
+        url('Migra-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Semibold.eot');
+    src: url('Migra-Semibold.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Semibold.woff2') format('woff2'),
+        url('Migra-Semibold.woff') format('woff'),
+        url('Migra-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Light.eot');
+    src: url('Migra-Light.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Light.woff2') format('woff2'),
+        url('Migra-Light.woff') format('woff'),
+        url('Migra-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Extrabold.eot');
+    src: url('Migra-Extrabold.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Extrabold.woff2') format('woff2'),
+        url('Migra-Extrabold.woff') format('woff'),
+        url('Migra-Extrabold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Medium.eot');
+    src: url('Migra-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Medium.woff2') format('woff2'),
+        url('Migra-Medium.woff') format('woff'),
+        url('Migra-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Migra';
+    src: url('Migra-Regular.eot');
+    src: url('Migra-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Migra-Regular.woff2') format('woff2'),
+        url('Migra-Regular.woff') format('woff'),
+        url('Migra-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

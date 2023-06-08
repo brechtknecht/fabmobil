@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,102 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+@font-face {
+  font-family: 'Migra-Black';
+  src: url('~/assets/fonts/migra/Migra-Black.eot');
+  src: url('~/assets/fonts/migra/Migra-Black.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Black.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Black.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Bold';
+  src: url('~/assets/fonts/migra/Migra-Bold.eot');
+  src: url('~/assets/fonts/migra/Migra-Bold.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Bold.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Bold.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Extrabold';
+  src: url('~/assets/fonts/migra/Migra-Extrabold.eot');
+  src: url('~/assets/fonts/migra/Migra-Extrabold.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Extrabold.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Extrabold.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Extrabold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Extralight';
+  src: url('~/assets/fonts/migra/Migra-Extralight.eot');
+  src: url('~/assets/fonts/migra/Migra-Extralight.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Extralight.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Extralight.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Extralight.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Light';
+  src: url('~/assets/fonts/migra/Migra-Light.eot');
+  src: url('~/assets/fonts/migra/Migra-Light.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Light.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Light.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Medium';
+  src: url('~/assets/fonts/migra/Migra-Medium.eot');
+  src: url('~/assets/fonts/migra/Migra-Medium.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Medium.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Medium.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Regular';
+  src: url('~/assets/fonts/migra/Migra-Regular.eot');
+  src: url('~/assets/fonts/migra/Migra-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Regular.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Regular.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Migra-Semibold';
+  src: url('~/assets/fonts/migra/Migra-Semibold.eot');
+  src: url('~/assets/fonts/migra/Migra-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('~/assets/fonts/migra/Migra-Semibold.woff2') format('woff2'),
+    url('~/assets/fonts/migra/Migra-Semibold.woff') format('woff'),
+    url('~/assets/fonts/migra/Migra-Semibold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 :root {
@@ -43,7 +141,6 @@ img {
 }
 body {
   padding: var(--padding);
-  max-width: 70rem;
   margin: 0 auto;
 }
 li {
