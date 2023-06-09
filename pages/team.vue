@@ -7,7 +7,7 @@
       <div v-for="(member, index) in team" :key="index" class="team-member">
         <img
           v-if="member.image?.url"
-          :src="member.image[0]?.url"
+          :src="member.image.url"
           :alt="member.name"
         />
         <p class="font-body text-body font-bold">{{ member.name }}</p>
@@ -29,7 +29,22 @@ const { data } = await useKql({
   select: {
     title: true,
     description: true,
-    team: 'page.team.toObject',
+    team: {
+      query: 'page.children',
+      select: {
+        name: true,
+        description: true,
+        email: true,
+        phone: true,
+        contact: true,
+        image: {
+          query: 'page.image',
+          select: {
+            url: true,
+          },
+        },
+      },
+    },
   },
 })
 
