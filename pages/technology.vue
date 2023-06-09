@@ -1,3 +1,23 @@
+<template>
+  <div>
+    <h1 class="font-headline text-large-title font-bold">{{ page.title }}</h1>
+
+    <div class="tech-grid">
+      <div
+        v-for="(tech, index) in technologyData?.result.technologies"
+        :key="index"
+      >
+        <img
+          :src="tech.image.url"
+          :srcset="tech.image.srcset"
+          :alt="tech.name"
+        />
+        <h2 class="font-headline text-title-1">{{ tech.name }}</h2>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 const { data } = await useKql({
   query: 'page("technology")',
@@ -31,26 +51,6 @@ const { data: technologyData } = await useKql({
   },
 })
 </script>
-
-<template>
-  <div>
-    <h1 class="font-headline text-large-title font-bold">{{ page.title }}</h1>
-
-    <div class="tech-grid">
-      <div
-        v-for="(tech, index) in technologyData?.result.technologies"
-        :key="index"
-      >
-        <img
-          :src="tech.image.url"
-          :srcset="tech.image.srcset"
-          :alt="tech.name"
-        />
-        <h2 class="font-headline text-title-1">{{ tech.name }}</h2>
-      </div>
-    </div>
-  </div>
-</template>
 
 <style scoped>
 .test {
