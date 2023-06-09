@@ -1,58 +1,58 @@
-<template>
-  <div v-if="data">
-    <h1 class="font-headline text-large-title font-bold">{{ title }}</h1>
-    <p class="font-body text-body">{{ description }}</p>
+<script setup lang="ts">
+const { data } = await useKql({
+  query: 'page("technology")',
+  select: {
+    title: true,
+  },
+})
 
-    <div class="team-members">
+// Set the current page data for the global page context
+const page = data.value?.result
+setPage(page)
+
+const { data: technologyData } = await useKql({
+  query: 'page("technology")',
+  select: {
+    name: true,
+    category: true,
+    technologies: {
+      query: 'page.technologies.toStructure',
+      select: {
+        name: true,
+        image: {
+          query: 'structureItem.image.toFile',
+          select: {
+            url: true,
+            srcset: 'file.srcset([300, 800, 1024])',
+          },
+        },
+      },
+    },
+  },
+})
+</script>
+
+<template>
+  <div>
+    <h1 class="font-headline text-large-title font-bold">{{ page.title }}</h1>
+
+    <div class="tech-grid">
       <div
-        v-for="(technology, index) in technologies"
+        v-for="(tech, index) in technologyData?.result.technologies"
         :key="index"
-        class="team-member"
       >
-        <p class="font-body text-body font-bold">{{ technology.name }}</p>
-        <p class="font-body text-body">{{ technology.category }}</p>
-        <p class="font-body text-body">
-          Link: <a :href="technology.link">{{ technology.link }}</a>
-        </p>
+        <img
+          :src="tech.image.url"
+          :srcset="tech.image.srcset"
+          :alt="tech.name"
+        />
+        <h2 class="font-headline text-title-1">{{ tech.name }}</h2>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-const { data } = await useKql({
-  query: `page("/technology")`,
-  select: {
-    title: true,
-    description: true,
-    technologies: {
-      query: 'page.technologies.toStructure',
-      select: {
-        name: true,
-        category: true,
-        link: true,
-      },
-    },
-  },
-})
-
-// @ts-ignore
-const { title, description, technologies } = data.value.result
-</script>
-
 <style scoped>
-.team-members {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.team-member {
-  flex: 0 1 calc(25% - 2rem);
-}
-
-.team-member img {
-  width: 100%;
-  height: auto;
+.test {
 }
 </style>
