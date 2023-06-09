@@ -8,7 +8,9 @@ const listedChildren = computed(() =>
 </script>
 
 <template>
-  <header class="header bg-accent fixed top-0 w-full z-50">
+  <header
+    class="header bg-accent fixed top-0 w-full z-50 m-0 h-20 flex items-center"
+  >
     <NuxtLink class="logo" to="/">
       <img src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
@@ -35,13 +37,14 @@ const listedChildren = computed(() =>
     </nav>
   </header>
   <!-- Spacer to prevent content jump when header becomes fixed -->
-  <div class="h-20 md:h-24"></div>
+  <div class="h-16 md:h-20"></div>
   <!-- Remaining content of the page goes here -->
 </template>
 
 <style scoped>
 .header {
   position: fixed;
+  margin: 0;
   width: 100vw;
   padding: 0.5rem 1.5rem;
 }
