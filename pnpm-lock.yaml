@@ -14,10 +14,14 @@ specifiers:
   nuxt-kql: ^0.26.3
   postcss: ^8.4.23
   prettier: ^2.8.7
+  scrolly-video: ^0.0.15
   simple-git-hooks: ^2.8.1
   tailwindcss: ^3.3.2
   typescript: ^5.0.3
   vue-tsc: ^1.2.0
+
+dependencies:
+  scrolly-video: 0.0.15
 
 devDependencies:
   '@nuxt/eslint-config': 0.1.1_eslint@8.37.0
@@ -3727,6 +3731,10 @@ packages:
       ufo: 1.1.1
     dev: true
 
+  /mp4box/0.4.9:
+    resolution: {integrity: sha512-APZb4ZaCBBXdyxA9nXF5lVb/xc2OPRWbnxwlHOn7tXxiBVchpLUl+nZMF52MLLv0oESnZBSy5qnDj9sRE9LCoQ==}
+    dev: false
+
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -4880,6 +4888,13 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
+  /scrolly-video/0.0.15:
+    resolution: {integrity: sha512-PyV4gcWvJcsd3dqpoLfZ6uKtCi0DxZfrP4LySpi88VgiZiVvHZdxsifAfrLNN0Qb+JmwBi4B5n1aQOMEs1Q8lg==}
+    dependencies:
+      mp4box: 0.4.9
+      ua-parser-js: 1.0.35
+    dev: false
+
   /scule/1.0.0:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
     dev: true
@@ -5379,6 +5394,10 @@ packages:
     engines: {node: '>=12.20'}
     hasBin: true
     dev: true
+
+  /ua-parser-js/1.0.35:
+    resolution: {integrity: sha512-fKnGuqmTBnIE+/KXSzCn4db8RTigUzw1AN0DmdU6hJovUTbYJKyqj+8Mt1c4VfRDnOVJnENmfYkIPZ946UrSAA==}
+    dev: false
 
   /ufo/1.1.1:
     resolution: {integrity: sha512-MvlCc4GHrmZdAllBc0iUDowff36Q9Ndw/UzqmEKyrfSzokTd9ZCy1i+IIk5hrYKkjoYVQyNbrw7/F8XJ2rEwTg==}

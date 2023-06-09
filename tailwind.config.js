@@ -9,6 +9,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#F2F2F2',
+        secondary: '#1A1A1A',
+        accent: '#00FF00',
+        tertiary: '#FF6700',
+      },
       fontFamily: {
         headline: [
           'Migra-Regular',
@@ -24,18 +30,19 @@ module.exports = {
         body: ['Roboto', 'sans-serif'],
       },
       fontSize: {
-        'large-title': '2.625rem', // 42px
-        'title-1': '2.125rem', // 34px
-        'title-2': '1.75rem', // 28px
-        'title-3': '1.5rem', // 24px
-        headline: '1.25rem', // 20px
-        body: '1rem', // 16px
-        callout: '.9375rem', // 15px
-        subhead: '.875rem', // 14px
-        footnote: '.8125rem', // 13px
-        'caption-1': '.75rem', // 12px
-        'caption-2': '.6875rem', // 11px
+        'large-title': '3.15rem', // 50.4px
+        'title-1': '2.55rem', // 40.8px
+        'title-2': '2.1rem', // 33.6px
+        'title-3': '1.8rem', // 28.8px
+        headline: '1.5rem', // 24px
+        body: '1.2rem', // 19.2px
+        callout: '1.125rem', // 18px
+        subhead: '1.05rem', // 16.8px
+        footnote: '0.975rem', // 15.6px
+        'caption-1': '0.9rem', // 14.4px
+        'caption-2': '0.825rem', // 13.2px
       },
+
       fontWeight: {
         thin: 100,
         extralight: 200,

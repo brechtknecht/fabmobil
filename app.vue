@@ -20,3 +20,7 @@ import '~/assets/css/medium-zoom.css'
     </Body>
   </Html>
 </template>
+<style>
+.main {
+}
+</style>

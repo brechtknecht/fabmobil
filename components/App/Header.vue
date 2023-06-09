@@ -8,7 +8,7 @@ const listedChildren = computed(() =>
 </script>
 
 <template>
-  <header class="header">
+  <header class="header bg-accent fixed top-0 w-full z-50">
     <NuxtLink class="logo" to="/">
       <img src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
@@ -18,19 +18,34 @@ const listedChildren = computed(() =>
         v-for="item in listedChildren"
         :key="item.id"
         :to="`/${item.id}`"
+        class="font-paragraph uppercase font-medium font-xl"
         :aria-current="
           route.path.startsWith(`/${item.id}`) ? 'page' : undefined
         "
       >
         {{ item.title }}
       </NuxtLink>
-
       <!-- <AppSocial /> -->
     </nav>
+
+    <nav class="menu">
+      <NuxtLink :to="`#`" class="font-paragraph uppercase font-medium font-xl">
+        Spenden
+      </NuxtLink>
+    </nav>
   </header>
+  <!-- Spacer to prevent content jump when header becomes fixed -->
+  <div class="h-20 md:h-24"></div>
+  <!-- Remaining content of the page goes here -->
 </template>
 
 <style scoped>
+.header {
+  position: fixed;
+  width: 100vw;
+  padding: 0.5rem 1.5rem;
+}
+
 .menu {
   display: flex;
 }

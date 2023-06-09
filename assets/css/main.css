@@ -140,7 +140,6 @@ img {
   width: 100%;
 }
 body {
-  padding: var(--padding);
   margin: 0 auto;
 }
 li {

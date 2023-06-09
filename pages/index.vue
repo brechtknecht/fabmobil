@@ -54,6 +54,10 @@ const { data: photographyData } = await useKql({
     <p class="font-body text-callout">Callout text goes here.</p>
     <!--...and so on...-->
 
+    <ModulesMapTeaser />
+    <ModulesBusAnimation />
+    <ModulesLokallaboreTeaser />
+
     <AppIntro />
     <ul class="home-grid">
       <li v-for="(album, index) in photographyData?.result ?? []" :key="index">
