@@ -16,13 +16,13 @@ function span(width: `${string}/${string}`, columns = 12) {
   <div>
     <section
       v-for="layout in layouts"
-      :id="layout.id"
-      :key="layout.id"
+      :id="layout.content.id"
+      :key="layout.content.id"
       class="grid margin-xl"
-      :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}`"
+      :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}; background-image: url('${layout.image?.url}'); background-size: cover;`"
     >
       <div
-        v-for="(column, index) in layout.columns"
+        v-for="(column, index) in layout.content.columns"
         :key="index"
         class="column"
         :style="`--columns: ${span(column.width)}`"

@@ -6,10 +6,12 @@ const { data } = await useKql({
     title: true,
     intendedTemplate: true,
     // description: true,
-    layouts: 'page.layout.toLayouts',
-    layoutsTest: {
+    layoutsOld: 'page.layout.toLayouts',
+    layouts: {
       query: 'page.layout.toLayouts',
       select: {
+        content: 'layout',
+        attrs: 'layout.attrs',
         image: {
           query: 'layout.attrs.image.toFile',
         },

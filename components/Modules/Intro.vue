@@ -2,13 +2,13 @@
   <div
     class="flex flex-col bg-purple tertiary items-center justify-center h-fit"
   >
-    <fiv class="flex flex-row h-[20vh]">
+    <div class="flex flex-row h-[20vh]">
       <h1
         class="font-headline text-large-title text-secondary w-full text-center"
       >
         Das Fabmobil ist eine mobile Digitalwerkstatt für Sachsen
       </h1>
-    </fiv>
+    </div>
     <div class="flex flex-row h-[20vh]">
       <p class="font-paragraph text-secondary w-full text-center">
         Der mit Digitaltechnik und Maschinen ausgestattete Doppeldeckerbus

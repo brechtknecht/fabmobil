@@ -5,7 +5,16 @@ const { data } = await useKql({
     id: true,
     title: true,
     intendedTemplate: true,
-    layout: true, // fetch this field only if it exists in all module blueprints
+    layout: {
+      query: 'page.layout.toLayouts',
+      select: {
+        content: 'layout',
+        attrs: 'layout.attrs',
+        image: {
+          query: 'layout.attrs.image.toFile',
+        },
+      },
+    },
   },
 })
 
