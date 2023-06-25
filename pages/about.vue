@@ -7,6 +7,14 @@ const { data } = await useKql({
     intendedTemplate: true,
     // description: true,
     layouts: 'page.layout.toLayouts',
+    layoutsTest: {
+      query: 'page.layout.toLayouts',
+      select: {
+        image: {
+          query: 'layout.attrs.image.toFile',
+        },
+      },
+    },
     address: 'page.address.kirbytext',
     email: true,
     phone: true,
@@ -17,6 +25,8 @@ const { data } = await useKql({
     },
   },
 })
+
+console.log(data)
 
 // Set the current page data for the global page context
 const page = data.value?.result
