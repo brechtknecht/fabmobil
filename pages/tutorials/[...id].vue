@@ -9,7 +9,16 @@ const { data } = await useKql({
     // description: true,
     subheading: true,
     tags: 'page.tags.split(",")',
-    layouts: 'page.layout.toLayouts',
+    layouts: {
+      query: 'page.layout.toLayouts',
+      select: {
+        content: 'layout',
+        attrs: 'layout.attrs',
+        image: {
+          query: 'layout.attrs.image.toFile',
+        },
+      },
+    },
     published: 'page.date.toDate("c")',
     cover: {
       query: 'page.cover.toFile ?? page.images.first',

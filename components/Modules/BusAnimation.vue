@@ -16,7 +16,7 @@ const Component = defineComponent({
         <ScrollyVideo
           class="relative p-20"
           src="/assets/video/bussl_neu.mp4"
-          transition-speed="0.005"
+          transition-speed="0.0001"
           :cover="false"
         />
       </div>
@@ -26,7 +26,7 @@ const Component = defineComponent({
 
 <style lang="scss">
 .scrolly-video-container {
-  height: 300vh;
+  height: 600vh;
   background: black;
 
   canvas,
