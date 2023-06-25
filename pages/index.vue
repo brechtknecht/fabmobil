@@ -1,51 +1,36 @@
-<script setup lang="ts">
+<script setup>
 const { data } = await useKql({
-  query: 'page("home")',
+  query: 'page("home/modules").children',
   select: {
     id: true,
     title: true,
     intendedTemplate: true,
-    // description: true,
-    headline: true,
-    subheadline: true,
+    layout: true, // fetch this field only if it exists in all module blueprints
   },
 })
+
+console.log(data)
 
 // Set the current page data for the global page context
 const page = data.value?.result
 setPage(page)
-
-const { data: photographyData } = await useKql({
-  query: 'page("photography").children.listed',
-  select: {
-    id: true,
-    title: true,
-    cover: {
-      query: 'page.content.cover.toFile',
-      select: {
-        resized: {
-          query: 'file.resize(1024, 1024)',
-          select: ['url'],
-        },
-        alt: true,
-      },
-    },
-    image: {
-      query: 'page.images.first',
-      select: {
-        resized: {
-          query: 'file.resize(1024, 1024)',
-          select: ['url'],
-        },
-        alt: true,
-      },
-    },
-  },
-})
 </script>
 
 <template>
   <div>
+    {{ data }}
+    <div class="w-full h-[60vh]">
+      <iframe
+        id="vimeo"
+        class="w-full"
+        title="vimeo-player"
+        src="https://player.vimeo.com/video/746553056?autoplay=1&loop=1&muted=1"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </div>
     <h1 class="font-headline text-large-title font-bold">Large Title</h1>
     <h2 class="font-headline text-title-1">Title 1</h2>
     <h3 class="font-headline text-title-2">Title 2</h3>
@@ -54,30 +39,10 @@ const { data: photographyData } = await useKql({
     <p class="font-body text-callout">Callout text goes here.</p>
     <!--...and so on...-->
 
-    <ModulesMapTeaser />
+    <ModulesIntro />
     <ModulesBusAnimation />
+    <ModulesMapTeaser />
     <ModulesLokallaboreTeaser />
-
-    <AppIntro />
-    <ul class="home-grid">
-      <li v-for="(album, index) in photographyData?.result ?? []" :key="index">
-        <NuxtLink :to="`/${album.id}`">
-          <figure>
-            <img
-              :src="
-                album?.cover?.resized?.url ?? album?.images?.[0]?.resized?.url
-              "
-              :alt="album?.cover?.alt ?? album?.images?.[0]?.alt"
-            />
-            <figcaption>
-              <span>
-                <span class="example-name">{{ album.title }}</span>
-              </span>
-            </figcaption>
-          </figure>
-        </NuxtLink>
-      </li>
-    </ul>
   </div>
 </template>
 

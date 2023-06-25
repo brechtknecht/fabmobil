@@ -7,8 +7,8 @@
     <h1 class="font-headline text-large-title text-primary w-full text-center">
       Ein Netzwerk aus Digitalwerkstätten für Jugendliche im ländlichen Raum
     </h1>
-    <div class="flex justify-center items-center space-x-4">
-      <BaseButton label="Erfahre Mehr!" />
+    <div class="flex justify-center items-center space-x-4 absolute">
+      <BaseButton class="bg-white text-black" label="Erfahre Mehr!" />
     </div>
     <img
       src="/assets/img/frontpage/lokallabore-image.png"

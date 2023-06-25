@@ -28,17 +28,12 @@
             >
               <div class="flex flex-row">
                 <div class="left-side w-1/2">
+                  <img :src="tech.image.url" :alt="tech.name" class="w-72" />
+                </div>
+                <div class="right-side w-1/2 h-auto flex flex-col">
                   <h2 class="font-headline text-primary text-large-title">
                     {{ tech.name }}
                   </h2>
-                  <img
-                    :src="tech.image.url"
-                    :srcset="tech.image.srcset"
-                    :alt="tech.name"
-                    class="w-72"
-                  />
-                </div>
-                <div class="right-side w-1/2">
                   <KirbyBlocks
                     :blocks="tech.description ?? []"
                     class="note text text-primary"

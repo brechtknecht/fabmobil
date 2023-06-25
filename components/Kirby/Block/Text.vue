@@ -7,5 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <div v-html="block.content.text" />
+  <div
+    class="font-body text-body leading-relaxed"
+    v-html="block.content.text"
+  />
 </template>

@@ -9,6 +9,26 @@ defineProps<{
 
 <template>
   <component :is="block.content.level" :id="slugify(block.content.text)">
-    <span v-html="block.content.text" />
+    <!-- H1 -->
+    <span
+      v-if="block.content.level == 'h1'"
+      class="font-headline text-large-title font-bold leading-normal"
+      v-html="block.content.text"
+    />
+    <!-- H2 -->
+    <span
+      v-else-if="block.content.level == 'h2'"
+      class="font-headline text-title-1 leading-normal"
+      v-html="block.content.text"
+    />
+    <!-- H3 -->
+    <span
+      v-else-if="block.content.level == 'h3'"
+      class="font-headline text-title-2 leading-normal"
+      v-html="block.content.text"
+    />
+
+    <!-- EVEYTHING ELSE -->
+    <span v-else v-html="block.content.text" />
   </component>
 </template>
