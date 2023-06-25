@@ -33,6 +33,7 @@ const Component = defineComponent({
   video {
     width: 100% !important; /* This will make the width equal to the full width of its container */
     height: auto !important;
+    aspect-ratio: 1192 / 1080 !important;
   }
 }
 </style>
