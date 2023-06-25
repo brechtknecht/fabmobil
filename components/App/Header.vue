@@ -1,24 +1,29 @@
 <template>
   <header
-    class="bg-accent fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 sm:px-6 lg:px-8"
+    class="bg-accent fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 py-12 sm:px-6 lg:px-8"
   >
     <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">
-      <img src="/assets/img/logo.svg" :alt="site.title" />
+      <img class="h-12" src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
 
-    <div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
+    <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
       <NuxtLink
         v-for="item in listedChildren"
         :key="item.id"
         :to="`/${item.id}`"
-        class="text-sm font-medium text-white"
+        class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
         :aria-current="
           route.path.startsWith(`/${item.id}`) ? 'page' : undefined
         "
       >
         {{ item.title }}
       </NuxtLink>
-      <NuxtLink :to="`#`" class="text-sm font-medium text-white">
+    </div>
+    <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
+      <NuxtLink
+        :to="`#`"
+        class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
+      >
         Spenden
       </NuxtLink>
     </div>
@@ -161,6 +166,11 @@ const listedChildren = computed(() =>
   display: block;
 }
 .menu a[aria-current] {
+  text-decoration: underline;
+}
+/* Add the hover styles here */
+.menu a:hover {
+  background-color: #f3f3f3; /* Light gray background */
   text-decoration: underline;
 }
 </style>
