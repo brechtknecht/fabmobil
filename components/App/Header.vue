@@ -1,6 +1,7 @@
 <template>
   <header
     class="bg-accent fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 py-12 sm:px-6 lg:px-8"
+    :class="{ 'scrolled-up': isScrolledUp, 'scrolled-down': isScrolledDown }"
   >
     <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">
       <img class="h-12" src="/assets/img/logo.svg" :alt="site.title" />
@@ -136,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSite } from '~/composables/site'
 
@@ -144,33 +145,46 @@ const route = useRoute()
 const site = useSite()
 
 const open = ref(false)
+const isScrolledUp = ref(false)
+const isScrolledDown = ref(false)
+const lastScrollPosition = ref(0)
 
 const listedChildren = computed(() =>
   (site.value?.children ?? []).filter((i) => i.isListed)
 )
+
+onMounted(() => {
+  const checkScroll = () => {
+    const currentScrollPosition = window.pageYOffset
+    if (
+      currentScrollPosition > 50 &&
+      lastScrollPosition.value <= currentScrollPosition
+    ) {
+      isScrolledDown.value = true
+      isScrolledUp.value = false
+    } else if (
+      isScrolledDown.value &&
+      currentScrollPosition + 50 < lastScrollPosition.value
+    ) {
+      isScrolledDown.value = false
+      isScrolledUp.value = true
+    }
+    lastScrollPosition.value = currentScrollPosition
+  }
+  window.addEventListener('scroll', checkScroll)
+  onUnmounted(() => {
+    window.removeEventListener('scroll', checkScroll)
+  })
+})
 </script>
 
 <style scoped>
-.header {
-  position: fixed;
-  margin: 0;
-  width: 100vw;
-  padding: 0.5rem 1.5rem;
+.scrolled-down {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
 }
-
-.menu {
-  display: flex;
-}
-.menu a {
-  padding: 1rem;
-  display: block;
-}
-.menu a[aria-current] {
-  text-decoration: underline;
-}
-/* Add the hover styles here */
-.menu a:hover {
-  background-color: #f3f3f3; /* Light gray background */
-  text-decoration: underline;
+.scrolled-up {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
 }
 </style>

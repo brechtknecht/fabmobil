@@ -28,7 +28,7 @@
           id="vimeo"
           class="rounded-xl overflow-hidden border border-gray bg-black absolute top-0 left-0 w-full h-full"
           title="vimeo-player"
-          src="https://player.vimeo.com/video/746553056?autoplay=1&loop=1&muted=1"
+          src="https://player.vimeo.com/video/538316076?autoplay=1&loop=1&muted=1"
           frameborder="0"
           allowfullscreen
         ></iframe>

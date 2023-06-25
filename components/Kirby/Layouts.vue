@@ -18,13 +18,14 @@ function span(width: `${string}/${string}`, columns = 12) {
       v-for="layout in layouts"
       :id="layout.content.id"
       :key="layout.content.id"
-      class="grid margin-xl"
+      class="grid padding-xl items-center"
+      :class="{ 'text-white': layout.attrs.darkmode == 'true' }"
       :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}; background-image: url('${layout.image?.url}'); background-size: cover;`"
     >
       <div
         v-for="(column, index) in layout.content.columns"
         :key="index"
-        class="column"
+        class="column max-w-[80%] mx-auto py-16"
         :style="`--columns: ${span(column.width)}`"
       >
         <KirbyBlocks :blocks="column.blocks" class="text" />

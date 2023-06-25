@@ -10,23 +10,26 @@ defineProps<{
 <template>
   <component :is="block.content.level" :id="slugify(block.content.text)">
     <!-- H1 -->
-    <span
+    <div
       v-if="block.content.level == 'h1'"
-      class="font-headline text-large-title font-bold leading-normal"
-      v-html="block.content.text"
-    />
+      class="font-headline text-large-title font-bold leading-normal mb-8"
+    >
+      <span v-html="block.content.text" />
+    </div>
     <!-- H2 -->
-    <span
+    <div
       v-else-if="block.content.level == 'h2'"
-      class="font-headline text-title-1 leading-normal"
-      v-html="block.content.text"
-    />
+      class="font-headline text-title-1 leading-normal mb-8"
+    >
+      <span v-html="block.content.text" />
+    </div>
     <!-- H3 -->
-    <span
+    <div
       v-else-if="block.content.level == 'h3'"
-      class="font-headline text-title-2 leading-normal"
-      v-html="block.content.text"
-    />
+      class="font-headline text-title-2 leading-normal mb-16"
+    >
+      <span v-html="block.content.text" />
+    </div>
 
     <!-- EVEYTHING ELSE -->
     <span v-else v-html="block.content.text" />
