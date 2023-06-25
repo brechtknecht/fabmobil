@@ -24,7 +24,7 @@ setPage(page)
 </script>
 
 <template>
-  <div class="container mx-auto">
+  <div>
     <KirbyLayouts :layouts="page.layouts ?? []" />
 
     <aside class="contact">

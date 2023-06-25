@@ -19,7 +19,7 @@ function span(width: `${string}/${string}`, columns = 12) {
       :id="layout.id"
       :key="layout.id"
       class="grid margin-xl"
-      style="--gutter: 1.5rem"
+      :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}`"
     >
       <div
         v-for="(column, index) in layout.columns"
