@@ -10,17 +10,29 @@ const Component = defineComponent({
 </script>
 
 <template>
-  <div>
-    <div class="scrolly-video-container">
-      <ScrollyVideo src="/assets/video/bussl.mp4" transition-speed="0.005" />
+  <div class="section bg-black">
+    <div class="container mx-auto">
+      <div class="scrolly-video-container">
+        <ScrollyVideo
+          class="relative p-20"
+          src="/assets/video/bussl_neu.mp4"
+          transition-speed="0.005"
+          :cover="false"
+        />
+      </div>
     </div>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .scrolly-video-container {
   height: 300vh;
-  margin: 0;
-  padding: 0;
+  background: black;
+
+  canvas,
+  video {
+    width: 100% !important; /* This will make the width equal to the full width of its container */
+    height: auto !important;
+  }
 }
 </style>

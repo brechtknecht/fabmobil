@@ -31,9 +31,11 @@
     "nuxt-kql": "^0.26.3",
     "postcss": "^8.4.23",
     "prettier": "^2.8.7",
+    "sass": "^1.63.6",
     "simple-git-hooks": "^2.8.1",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.3",
+    "vite": "^4.3.9",
     "vue-tsc": "^1.2.0"
   },
   "pnpm": {
@@ -46,6 +48,8 @@
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@vitejs/plugin-vue": "^4.2.3",
-    "scrolly-video": "^0.0.15"
+    "scrolly-video": "^0.0.15",
+    "vue-rough": "^1.1.0",
+    "vue3-rough": "^1.1.1"
   }
 }

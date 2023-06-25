@@ -45,15 +45,6 @@ const listedChildren = computed(() =>
           </button>
         </div>
       </div>
-      <div
-        class="bg-accent flex flex-col justify-center sm:justify-start relative w-full sm:w-1/6 h-10 items-center py-2 rounded-lg"
-      >
-        <div
-          class="text-center text-lg font-body font-bold text-secondary relative w-full h-full"
-        >
-          Gib Fabo-Abo!
-        </div>
-      </div>
     </div>
     <div
       class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 justify-start mb-6 gap-16 relative w-full sm:w-5/6 items-center"

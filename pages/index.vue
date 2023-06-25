@@ -27,7 +27,6 @@ setPage(page)
 
 <template>
   <div>
-    {{ data }}
     <div class="w-full h-[60vh]">
       <iframe
         id="vimeo"
