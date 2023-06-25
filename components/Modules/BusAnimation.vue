@@ -14,7 +14,7 @@ const Component = defineComponent({
     <div class="container mx-auto">
       <div class="scrolly-video-container">
         <ScrollyVideo
-          class="relative p-20"
+          class="relative p-20 scale-75"
           src="/assets/video/bussl_neu.mp4"
           transition-speed="0.0001"
           :cover="false"

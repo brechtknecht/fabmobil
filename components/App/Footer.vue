@@ -11,48 +11,56 @@ const listedChildren = computed(() =>
       class="flex flex-col justify-start gap-16 relative w-full min-h-80 items-center px-4 sm:px-6 md:px-8 lg:px-10"
     >
       <div
-        class="flex flex-col sm:flex-row justify-start gap-px relative w-full sm:w-5/6 items-center"
+        class="flex flex-col sm:flex-row gap-px relative w-full items-cente justify-between items-center"
       >
         <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">
-          <img src="/assets/img/logo.svg" :alt="site.title" />
+          <img
+            src="/assets/img/logo-light.svg"
+            class="h-12"
+            :alt="site.title"
+          />
         </NuxtLink>
         <div
-          class="text-lg font-sans font-bold text-accent justify-start mr-40 relative w-1/3 h-full"
+          class="text-lg font-sans font-bold text-accent justify-start relative sm:w-1/3 w-full h-full pb-8 sm:pb-0"
         >
           Dann abonniere unser
-          <div class="text-lg font-medium text-accent contents">Fabo-Abo</div>
+          <div class="text-lg font-headline text-headline contents">
+            Fabo-Abo
+          </div>
           <div class="text-lg font-sans font-bold text-accent contents">
-            , um keine <br />
-            Aktionen und News zu verpassen!
+            , um keine Aktionen und News zu verpassen!
           </div>
         </div>
-        <div
-          class="flex flex-col justify-start mr-5 relative w-1/6 min-h-10 items-center py-2 rounded-lg"
-        >
-          <input
-            class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full bg-primary rounded-lg"
-            type="email"
-            placeholder="Gib Fabo-Abo!"
-          />
-        </div>
-        <div
-          class="flex flex-col justify-start relative w-1/6 min-h-10 items-center py-2 rounded-lg bg-accent"
-        >
-          <button
-            class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full"
+        <div class="flex flex-col sm:flex-row w-full sm:w-fit items-center">
+          <div
+            class="flex flex-col justify-start mr-2 relative w-full min-h-12 items-center py-2 rounded-lg"
           >
-            Gib Fabo-Abo!
-          </button>
+            <input
+              class="text-center text-lg font-sans font-bold text-secondary relative w-full bg-primary rounded-lg min-h-12 h-12"
+              type="email"
+              placeholder="E-Mail"
+            />
+          </div>
+          <div
+            class="flex flex-col justify-start relative w-full max-h-12 h-12 items-center py-2 rounded-lg bg-accent"
+          >
+            <button
+              class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full min-h-10"
+            >
+              Gib Fabo-Abo!
+            </button>
+          </div>
         </div>
       </div>
+      <hr class="h-px my-8 bg-white border border-white w-full" />
     </div>
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 justify-start mb-6 gap-16 relative w-full sm:w-5/6 items-center"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-start mb-6 gap-16 relative w-full sm:w-full items-center mx-auto py-4 px-8"
     >
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        TOURPLAN
+        ÜBER UNS
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
@@ -62,55 +70,52 @@ const listedChildren = computed(() =>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        MEDIA
+        LEHREN & LERNEN
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        KONTAKT
+        TOURPLAN
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        BUCHUNG
-      </div>
-      <div
-        class="text-center text-xl font-body text-primary relative w-full h-full"
-      >
-        LOKALLABORE
+        TEAM & KONTAKT
       </div>
     </div>
     <div
-      class="flex flex-col sm:flex-row justify-between relative w-full sm:w-5/6 items-center"
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-start mb-6 gap-16 relative w-full sm:w-full items-center py-4 px-8"
     >
       <div
-        class="text-justify text-xl font-body text-purple relative w-full sm:w-1/6 h-full mb-4 sm:mb-0"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+      >
+        FAQs
+      </div>
+      <div
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
       >
         CODE OF CONDUCT
       </div>
       <div
-        class="text-center sm:text-right text-xl font-body text-primary relative w-full sm:w-1/5 h-full"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
       >
         IMPRESSUM & DATENSCHUTZ
+      </div>
+      <div
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+      >
+        LOKALLABORE
+      </div>
+      <div
+        class="text-center text-xl font-body text-accent text-medium relative w-full h-full"
+      >
+        UNTERSTÜTZE UNS
       </div>
     </div>
   </footer>
 </template>
 
 <style scoped>
-.footer {
-  padding: 9rem 0 6rem;
-  line-height: 1.5em;
-}
-.footer:before {
-  content: '';
-  display: block;
-  width: 1.5rem;
-  height: 2px;
-  background: var(--color-black);
-  margin-bottom: 1.5rem;
-}
-
 .footer h2 {
   font-weight: 600;
   margin-bottom: 0.75rem;

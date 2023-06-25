@@ -27,7 +27,7 @@ setPage(page)
 
 <template>
   <div>
-    <div class="p-24">
+    <div class="px-24 pb-24 pt-12">
       <div
         class="video-container relative w-full items-center justify-center p-24 rounded-xl overflow-hidden border border-gray"
       >
