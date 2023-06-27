@@ -4,6 +4,8 @@ import { tutorialsQuery } from '~/queries'
 const route = useRoute()
 const { data } = await useKql(tutorialsQuery)
 
+console.log('Tutorial data: ', data)
+
 // Set the current page data for the global page context
 const page = data.value?.result
 setPage(page)
