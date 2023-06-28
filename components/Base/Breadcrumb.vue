@@ -1,10 +1,10 @@
 <template>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+  <nav aria-label="breadcrumb" class="bg-secondary py-2 drop-shadow-2">
+    <ol class="breadcrumb w-full px-12 flex mx-auto">
       <li
         v-for="(route, index) in breadcrumbs"
         :key="index"
-        class="breadcrumb-item"
+        class="breadcrumb-item text-primary text-headline weight-regular text-body font-medium"
       >
         <router-link v-if="index !== breadcrumbs.length - 1" :to="route.path">{{
           translate(route.name)
@@ -40,7 +40,10 @@ const breadcrumbs = computed(() => {
       ...breadcrumbArray,
       {
         path: (i !== 0 ? breadcrumbArray[i - 1].path : '') + '/' + path,
-        name: path.charAt(0).toUpperCase() + path.slice(1),
+        name: path
+          .split('-')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' '),
       },
     ]
   }, [])
@@ -59,10 +62,15 @@ const breadcrumbs = computed(() => {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-  content: '>';
+  content: ' → ';
 }
 
 .breadcrumb-item a {
   color: inherit;
+}
+
+.drop-shadow-2 {
+  box-shadow: 0px 0px 0.5px 0px rgba(0, 0, 0, 0.18),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 3px 8px 0px rgba(0, 0, 0, 0.1);
 }
 </style>

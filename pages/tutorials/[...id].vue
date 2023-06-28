@@ -31,6 +31,8 @@ const { data } = await useKql({
   },
 })
 
+console.log(data)
+
 // Set the current page data for the global page context
 const page = data.value?.result
 setPage(page)
@@ -52,8 +54,6 @@ function formatDateShort(date: Date) {
     <div v-if="coverUrl" class="img" style="--w: 2; --h: 1">
       <img :src="coverUrl" alt="" />
     </div>
-
-    {{ page }}
 
     <article class="note">
       <header class="note-header h1">

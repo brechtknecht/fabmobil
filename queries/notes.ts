@@ -9,7 +9,7 @@ export const notesQuery: KirbyQuerySchema = {
     subheadline: true,
     text: 'page.text.kirbytext',
     children: {
-      query: 'page.children.listed.sortBy("date", "desc")',
+      query: 'page.children.listed.sortBy("date", "asc")',
       select: {
         id: true,
         title: true,
