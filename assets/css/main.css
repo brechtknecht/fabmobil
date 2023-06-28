@@ -209,9 +209,6 @@ small {
   grid-gap: var(--gutter);
   grid-template-columns: 1fr;
 }
-.grid > .column {
-  margin-bottom: var(--gutter);
-}
 
 .autogrid {
   --gutter: 3rem;

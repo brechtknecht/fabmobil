@@ -24,7 +24,7 @@
     <transition-group
       name="fade"
       tag="ul"
-      class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4"
+      class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 p-8"
     >
       <li
         v-for="(item, index) in filteredTutorials"
