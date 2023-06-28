@@ -31,7 +31,7 @@
         :key="index"
         class="column"
       >
-        <AppNote :note="item" :excerpt="true" />
+        <AppTutorial :note="item" :excerpt="true" />
       </li>
     </transition-group>
 
