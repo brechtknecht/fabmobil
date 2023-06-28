@@ -20,16 +20,16 @@ function span(width: `${string}/${string}`, columns = 12) {
     :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}; background-image: url('${layout.image?.url}'); background-size: cover;`"
   >
     <section
-      class="container grid padding-xl items-center max-w-[90rem] mx-auto"
+      class="container grid padding-xl items-center mx-auto"
       :class="{ 'text-white': layout.attrs.darkmode == 'true' }"
     >
       <div
         v-for="(column, index) in layout.content.columns"
         :key="index"
-        class="column max-w-[80%] mx-auto py-16"
+        class="column mx-auto py-16 w-full"
         :style="`--columns: ${span(column.width)}`"
       >
-        <KirbyBlocks :blocks="column.blocks" class="text" />
+        <KirbyBlocks :blocks="column.blocks" class="text w-full" />
       </div>
     </section>
   </div>

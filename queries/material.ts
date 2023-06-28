@@ -1,11 +1,10 @@
 import type { KirbyQuerySchema } from '#nuxt-kql'
 
-export const tutorialsQuery: KirbyQuerySchema = {
+export const materialQuery: KirbyQuerySchema = {
   query: 'page(["tutorials", "notes"])',
   select: {
     title: true,
     intendedTemplate: true,
-    // description: true,
     subheadline: true,
     text: 'page.text.kirbytext',
     children: {
@@ -15,6 +14,7 @@ export const tutorialsQuery: KirbyQuerySchema = {
         title: true,
         tags: 'page.tags.split(",")',
         layout: 'page.layout.toLayouts',
+        category: 'page.category',
         published: 'page.date.toDate("c")',
         cover: {
           query: 'page.cover.toFile ?? page.images.first',

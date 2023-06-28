@@ -9,11 +9,12 @@ export const tutorialsQuery: KirbyQuerySchema = {
     subheadline: true,
     text: 'page.text.kirbytext',
     children: {
-      query: 'page.children.listed.sortBy("date", "desc")',
+      query: 'page.children.listed.sortBy("category", "asc", "date", "desc")',
       select: {
         id: true,
         title: true,
         tags: 'page.tags.split(",")',
+        category: 'page.category.split(",")',
         layout: 'page.layout.toLayouts',
         published: 'page.date.toDate("c")',
         cover: {

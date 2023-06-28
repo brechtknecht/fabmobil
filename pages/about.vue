@@ -49,4 +49,8 @@ setPage(page)
 .contact .h1 {
   margin-bottom: 1.5rem;
 }
+
+.grid > .column {
+  grid-column: span var(--columns);
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="block.content.url" class="video-container">
+  <div v-if="block.content.url" class="video-container w-full">
     <iframe
       :src="videoUrl"
       frameborder="0"

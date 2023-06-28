@@ -53,6 +53,8 @@ function formatDateShort(date: Date) {
       <img :src="coverUrl" alt="" />
     </div>
 
+    {{ page }}
+
     <article class="note">
       <header class="note-header h1">
         <h1 class="note-title">{{ page?.title }}</h1>
