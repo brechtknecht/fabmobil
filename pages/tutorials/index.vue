@@ -1,14 +1,19 @@
 <template>
   <div>
-    <header v-if="tag" class="h1">
-      <h1>
-        <small>Tag:</small>
-        {{ tag }}
-        <NuxtLink :to="route.path" aria-label="All Notes">&times;</NuxtLink>
-      </h1>
-    </header>
-
-    <AppIntro v-else />
+    <div
+      v-if="page.modules && page.modules.length > 0"
+      class="app-hero-wrapper"
+    >
+      <AppHero
+        v-for="(module, index) in page.modules"
+        :key="index"
+        :title="module.title"
+        :description="module.description"
+        :intro_text="module.intro_text"
+        :colors="module.colors"
+        :image="module.image"
+      />
+    </div>
 
     <div class="w-full max-w-xs mx-auto my-4">
       <select
@@ -41,6 +46,8 @@
     >
       <p>No tutorials available in this category.</p>
     </div>
+    <!-- Debug text -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 

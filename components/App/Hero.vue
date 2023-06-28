@@ -4,7 +4,8 @@
     class="hero relative text-white py-8 md:py-16 lg:py-24 overflow-hidden"
   >
     <img
-      :src="image.url"
+      v-if="image"
+      :src="image?.url"
       :alt="title"
       class="hero-image absolute top-0 left-0 w-full h-full object-cover opacity-1 z-10"
     />
@@ -34,11 +35,26 @@
 import { defineProps, toRefs } from 'vue'
 
 const props = defineProps({
-  title: String,
-  description: String,
-  intro_text: String,
-  colors: String,
-  image: Object,
+  title: {
+    type: String,
+    default: '',
+  },
+  description: {
+    type: String,
+    default: '',
+  },
+  introText: {
+    type: String,
+    default: '',
+  },
+  colors: {
+    type: String,
+    default: '',
+  },
+  image: {
+    type: Object,
+    default: function () {},
+  },
 })
 
 const { title, description, intro_text, colors, image } = toRefs(props)

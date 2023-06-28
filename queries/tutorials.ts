@@ -7,6 +7,18 @@ export const tutorialsQuery: KirbyQuerySchema = {
     intendedTemplate: true,
     // description: true,
     subheadline: true,
+    modules: {
+      // New modules field
+      query: 'page.children.children',
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        intro_text: true,
+        colors: true,
+        image: true,
+      },
+    },
     text: 'page.text.kirbytext',
     children: {
       query: 'page.children.listed.sortBy("category", "asc", "date", "desc")',
