@@ -6,7 +6,6 @@ const { data } = await useKql({
     title: true,
     intendedTemplate: true,
     // description: true,
-    layoutsOld: 'page.layout.toLayouts',
     layouts: {
       query: 'page.layout.toLayouts',
       select: {
@@ -15,6 +14,18 @@ const { data } = await useKql({
         image: {
           query: 'layout.attrs.image.toFile',
         },
+      },
+    },
+    modules: {
+      // New modules field
+      query: 'page.children.children',
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        intro_text: true,
+        colors: true,
+        image: true,
       },
     },
     address: 'page.address.kirbytext',
@@ -37,7 +48,24 @@ setPage(page)
 
 <template>
   <div>
+    <div
+      v-if="page.modules && page.modules.length > 0"
+      class="app-hero-wrapper"
+    >
+      <AppHero
+        v-for="(module, index) in page.modules"
+        :key="index"
+        :title="module.title"
+        :description="module.description"
+        :intro_text="module.intro_text"
+        :colors="module.colors"
+        :image="module.image"
+      />
+    </div>
     <KirbyLayouts :layouts="page.layouts ?? []" />
+    <ModulesLokallaboreTeaser />
+    <!-- Debug text -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 
