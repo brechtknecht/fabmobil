@@ -1,6 +1,6 @@
 <template>
   <section
-    :style="{ backgroundColor: colors }"
+    :style="{ backgroundColor: backgroundColor }"
     class="hero relative text-white py-8 md:py-16 lg:py-24 overflow-hidden"
   >
     <img
@@ -11,6 +11,7 @@
     />
     <div
       class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center z-20 relative"
+      :style="{ color: foregroundColor }"
     >
       <h1
         class="font-headline text-large-title font-bold hero-title md:text-title-1 lg:text-title-2 xl:text-title-3 2xl:text-large-title"
@@ -25,7 +26,7 @@
       <p
         class="hero-intro-text text-callout sm:text-subhead md:text-headline lg:text-title-3 xl:text-title-2 2xl:text-title-1 col-span-full"
       >
-        {{ intro_text }}
+        {{ introText }}
       </p>
     </div>
   </section>
@@ -47,7 +48,11 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  colors: {
+  backgroundColor: {
+    type: String,
+    default: '',
+  },
+  foregroundColor: {
     type: String,
     default: '',
   },
@@ -57,7 +62,7 @@ const props = defineProps({
   },
 })
 
-const { title, description, intro_text, colors, image } = toRefs(props)
+const { title, description, introText, colors, image } = toRefs(props)
 </script>
 
 <style scoped>

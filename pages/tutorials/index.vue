@@ -10,7 +10,8 @@
         :title="module.title"
         :description="module.description"
         :intro_text="module.intro_text"
-        :colors="module.colors"
+        :background-color="module.backgroundColor"
+        :foreground-color="module.foregroundColor"
         :image="module.image"
       />
     </div>

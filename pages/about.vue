@@ -24,7 +24,8 @@ const { data } = await useKql({
         title: true,
         description: true,
         intro_text: true,
-        colors: true,
+        backgroundColor: true,
+        foregroundColor: true,
         image: true,
       },
     },
@@ -58,7 +59,8 @@ setPage(page)
         :title="module.title"
         :description="module.description"
         :intro_text="module.intro_text"
-        :colors="module.colors"
+        :background-color="module.backgroundColor"
+        :foreground-color="module.foregroundColor"
         :image="module.image"
       />
     </div>
