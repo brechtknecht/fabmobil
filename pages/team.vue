@@ -1,8 +1,19 @@
 <template>
   <div>
-    <h1 class="font-headline text-large-title font-bold">{{ title }}</h1>
-    <p class="font-body text-body">{{ description }}</p>
-
+    <div
+      v-if="page.modules && page.modules.length > 0"
+      class="app-hero-wrapper"
+    >
+      <AppHero
+        v-for="(module, index) in page.modules"
+        :key="index"
+        :title="module.title"
+        :description="module.description"
+        :intro_text="module.intro_text"
+        :colors="module.colors"
+        :image="module.image"
+      />
+    </div>
     <div
       class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
@@ -31,6 +42,8 @@
         </div>
       </div>
     </div>
+    <!-- Debug text -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 
@@ -40,6 +53,18 @@ const { data } = await useKql({
   select: {
     title: true,
     description: true,
+    modules: {
+      // New modules field
+      query: 'page.children.children',
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        intro_text: true,
+        colors: true,
+        image: true,
+      },
+    },
     team: {
       query: 'page.children',
       select: {
@@ -61,6 +86,8 @@ const { data } = await useKql({
 
 // @ts-ignore
 const { title, description, team } = data.value.result
+const page = data.value?.result
+setPage(page)
 </script>
 
 <style scoped>
