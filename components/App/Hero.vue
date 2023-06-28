@@ -1,16 +1,37 @@
 <template>
-  <section :style="{ backgroundColor: colors }" class="hero">
-    <img :src="image.url" :alt="title" class="hero-image" />
-    <div class="hero-content">
-      <h1 class="hero-title">{{ title }}</h1>
-      <p class="hero-description">{{ description }}</p>
-      <p class="hero-intro-text">{{ intro_text }}</p>
+  <section
+    :style="{ backgroundColor: colors }"
+    class="hero relative text-white py-8 md:py-16 lg:py-24 overflow-hidden"
+  >
+    <img
+      :src="image.url"
+      :alt="title"
+      class="hero-image absolute top-0 left-0 w-full h-full object-cover opacity-1 z-10"
+    />
+    <div
+      class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center z-20 relative"
+    >
+      <h1
+        class="font-headline text-large-title font-bold hero-title md:text-title-1 lg:text-title-2 xl:text-title-3 2xl:text-large-title"
+      >
+        {{ title }}
+      </h1>
+      <p
+        class="hero-description text-body sm:text-callout md:text-subhead lg:text-headline xl:text-title-3 2xl:text-title-2"
+      >
+        {{ description }}
+      </p>
+      <p
+        class="hero-intro-text text-callout sm:text-subhead md:text-headline lg:text-title-3 xl:text-title-2 2xl:text-title-1 col-span-full"
+      >
+        {{ intro_text }}
+      </p>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { defineProps, ref, toRefs } from 'vue'
+import { defineProps, toRefs } from 'vue'
 
 const props = defineProps({
   title: String,
@@ -24,38 +45,5 @@ const { title, description, intro_text, colors, image } = toRefs(props)
 </script>
 
 <style scoped>
-.hero {
-  position: relative;
-  padding: 2em;
-  color: white;
-  text-align: center;
-}
-
-.hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.6;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-title {
-  font-size: 2em;
-  margin-bottom: 0.5em;
-}
-
-.hero-description {
-  margin-bottom: 1em;
-}
-
-.hero-intro-text {
-  font-size: 1.2em;
-}
+/* Add any additional styles here if needed */
 </style>
