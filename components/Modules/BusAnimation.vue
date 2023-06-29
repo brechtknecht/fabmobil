@@ -49,11 +49,16 @@ onBeforeUnmount(() => {
         <!-- ScrollyVideo component -->
         <ScrollyVideo
           ref="scrollyVideo"
-          class="relative p-20 scale-75"
+          class="relative p-4 md:p-12 scale-75 flex justify-center items-center h-full"
           src="/assets/video/bussl_neu.mp4"
           transition-speed="0.0001"
           :cover="false"
           :track-scroll="true"
+          :style="{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }"
         />
       </div>
     </div>
@@ -70,6 +75,14 @@ onBeforeUnmount(() => {
     width: 100% !important; /* This will make the width equal to the full width of its container */
     height: auto !important;
     aspect-ratio: 1192 / 1080 !important;
+  }
+}
+
+.scrolly-video-container {
+  canvas {
+    position: relative;
+    transform: translate(0, -50%);
+    top: 50%;
   }
 }
 </style>
