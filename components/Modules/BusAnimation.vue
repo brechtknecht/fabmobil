@@ -11,27 +11,18 @@ const Component = defineComponent({
 // Create a ref for ScrollyVideo
 const scrollyVideo = ref(null)
 
+// Ref for scroll percentage
+const scrollPercentage = ref(0)
+
 const handleScroll = () => {
-  // Access ScrollyVideo's properties here
-  console.log('ScrollyVideo props', scrollyVideo.value.scrollyVideo.currentTime)
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
-  const calculateCurrentTimePercentage = (scrollyVideoRef) => {
-    // Calculate the total duration of the video in seconds
-    const totalDuration =
-      scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
+  const totalDuration =
+    scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
 
-    // Calculate the percentage of the current time
-    const currentTimePercentage =
-      (scrollyVideoRef.currentTime / totalDuration) * 100
+  // Update the scroll percentage ref
+  scrollPercentage.value = (scrollyVideoRef.currentTime / totalDuration) * 100
 
-    return currentTimePercentage
-  }
-
-  // Use the function
-  const percentage = calculateCurrentTimePercentage(
-    scrollyVideo.value.scrollyVideo
-  )
-  console.log('Current Time Percentage: ', percentage)
+  // console.log(scrollPercentage.value)
 }
 
 onMounted(() => {
@@ -46,8 +37,16 @@ onBeforeUnmount(() => {
 <template>
   <div class="section bg-black">
     <div class="container mx-auto">
-      <div class="scrolly-video-container">
-        <!-- Assign the ref here -->
+      <div class="scrolly-video-container relative">
+        <!-- Pass scrollPercentage to VideoOverlay -->
+
+        <!-- Pass scrollPercentage to VideoOverlay -->
+        <BaseBusOverlays
+          class="appe w-full h-full relative z-50"
+          :scroll-percentage="scrollPercentage"
+        />
+
+        <!-- ScrollyVideo component -->
         <ScrollyVideo
           ref="scrollyVideo"
           class="relative p-20 scale-75"
