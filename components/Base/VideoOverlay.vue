@@ -13,7 +13,7 @@
     <!-- Absolute container for slot content -->
     <div
       :style="{ top: `${positionY}%`, left: `${positionX}%` }"
-      class="flex fixed top-0 bg-red-500"
+      class="flex fixed top-0"
     >
       <!-- Slot for overlay content -->
       <slot></slot>
