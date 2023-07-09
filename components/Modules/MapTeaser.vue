@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col bg-secondary items-center justify-center h-[80vh]">
     <h1 class="font-headline text-large-title text-primary w-full text-center">
-      In ganz Sachsen unterwegs FICKDICKn.
+      In ganz Sachsen unterwegs.
     </h1>
     <div ref="container" class="flex justify-center items-center space-x-4">
       <svg

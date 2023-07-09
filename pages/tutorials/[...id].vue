@@ -51,8 +51,24 @@ function formatDateShort(date: Date) {
 
 <template>
   <div>
-    <div v-if="coverUrl" class="img" style="--w: 2; --h: 1">
-      <img :src="coverUrl" alt="" />
+    <div
+      v-if="coverUrl"
+      class="flex relative max-h-[65vh] overflow-hidden"
+      style="--w: 2; --h: 1"
+    >
+      <img :src="coverUrl" class="blur-xl scale-[180%] origin-center" alt="" />
+      <div
+        class="absolute flex flex-col w-full h-full items-center justify-center"
+      >
+        <h1 class="font-headline text-large-title font-bold">
+          {{ page?.title }}
+        </h1>
+        <img
+          :src="coverUrl"
+          alt=""
+          class="w-auto h-auto max-h-[40vh] rounded-xl"
+        />
+      </div>
     </div>
 
     <article class="note">

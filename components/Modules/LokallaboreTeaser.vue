@@ -20,7 +20,9 @@
         text-color="text-black"
       />
     </div>
-    <div class="px-24 pb-24 pt-12 w-full h-full">
+    <div
+      class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 w-full h-full max-w-screen-2xl mx-auto"
+    >
       <div
         class="video-container relative w-full items-center justify-center p-24 rounded-xl overflow-hidden border border-gray"
       >
