@@ -1,10 +1,34 @@
 <template>
   <div class="relative w-full h-full">
     <div id="map"></div>
-    <modules-tour-map-u-i
-      @go-to-coordinate="handleGoToCoordinate"
-      @reset-zoom="resetZoom"
-    ></modules-tour-map-u-i>
+
+    <!-- The list component -->
+    <transition name="slide">
+      <div v-if="!viewingDetail">
+        <modules-tour-map-u-i
+          @go-to-coordinate="handleGoToCoordinate"
+          @reset-zoom="resetZoom"
+        ></modules-tour-map-u-i>
+      </div>
+    </transition>
+
+    <!-- The detail view component -->
+    <transition name="slide">
+      <div
+        v-if="viewingDetail"
+        class="absolute top-0 right-0 p-4 bg-white bg-opacity-80 z-10 w-80 h-screen overflow-auto"
+      >
+        <button
+          class="mb-6 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
+          @click="handleBack"
+        >
+          Back
+        </button>
+        <h1>{{ viewingDetail.city }}</h1>
+        <img :src="viewingDetail.image" alt="City image" />
+        <p>{{ viewingDetail.date }}</p>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -30,6 +54,7 @@ const data = [
 ]
 
 const map = ref(null)
+const viewingDetail = ref(null)
 const emit = defineEmits(['animation-year-updated'])
 const addedLayers = []
 
@@ -222,12 +247,27 @@ onMounted(() => {
     })
 })
 
-const handleGoToCoordinate = (coord) => {
+const handleGoToCoordinate = (coord, cityData) => {
   map.value.flyTo({
     center: coord,
     zoom: 10,
   })
+
+  viewingDetail.value = cityData
 }
+
+const handleBack = () => {
+  viewingDetail.value = null
+  resetZoom()
+}
+
+watch(viewingDetail, (newVal, oldVal) => {
+  if (newVal) {
+    handleGoToCoordinate(newVal.coordinates, newVal)
+  } else {
+    resetZoom()
+  }
+})
 </script>
 
 <style scoped>
@@ -237,5 +277,20 @@ const handleGoToCoordinate = (coord) => {
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  transform: translateX(0);
 }
 </style>

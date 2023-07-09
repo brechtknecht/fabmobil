@@ -17,7 +17,7 @@
       </p>
       <button
         class="mt-2 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
-        @click="handleClick(cityData.coordinates)"
+        @click="handleClick(cityData)"
       >
         Go to this location
       </button>
@@ -55,8 +55,8 @@ const cityDataList = ref(data)
 
 const emit = defineEmits(['go-to-coordinate', 'reset-zoom'])
 
-const handleClick = (coord) => {
-  emit('go-to-coordinate', coord)
+const handleClick = (cityData) => {
+  emit('go-to-coordinate', cityData.coordinates, cityData)
 }
 
 const handleResetZoom = () => {
