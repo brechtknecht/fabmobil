@@ -9,7 +9,6 @@
       Back
     </button>
     <h1>{{ detail.city }}</h1>
-    <img :src="detail.image" alt="City image" />
     <p>{{ detail.date }}</p>
   </div>
 </template>
@@ -17,14 +16,12 @@
 <script setup>
 import { defineEmits, defineProps } from 'vue'
 
-const props = withDefaults(
-  defineProps({
-    detail: Object,
-  }),
-  {
-    detail: () => ({}), // Set default value to an empty object
-  }
-)
+const props = defineProps({
+  detail: {
+    type: Array,
+    default: () => [],
+  },
+})
 
 const emit = defineEmits(['go-back'])
 </script>
