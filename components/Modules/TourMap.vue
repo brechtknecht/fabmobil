@@ -251,7 +251,7 @@ onMounted(() => {
 
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
-  const scale = 2000
+  const scale = 20000
   const totalAnimationDuration = 6000 // Total duration of all animations
 
   const modelLoadPromises = modelOrigins.map((modelOrigin, index) => {
@@ -270,88 +270,82 @@ onMounted(() => {
       scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits() * scale,
     }
 
-    // const customLayer = {
-    //   id: '3d-model-' + index,
-    //   type: 'custom',
-    //   renderingMode: '3d',
-    //   onAdd: function (map, gl) {
-    //     this.camera = new THREE.Camera()
-    //     this.scene = new THREE.Scene()
+    const customLayer = {
+      id: '3d-model-' + index,
+      type: 'custom',
+      renderingMode: '3d',
+      onAdd: function (map, gl) {
+        this.camera = new THREE.Camera()
+        this.scene = new THREE.Scene()
 
-    //     const directionalLight = new THREE.DirectionalLight(0xffffff)
-    //     directionalLight.position.set(0, -70, 100).normalize()
-    //     this.scene.add(directionalLight)
+        const textureLoader = new THREE.TextureLoader()
+        const loaderPromise = new Promise((resolve, reject) => {
+          textureLoader.load(
+            'https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png',
+            (texture) => {
+              const material = new THREE.SpriteMaterial({ map: texture })
+              const sprite = new THREE.Sprite(material)
+              this.scene.add(sprite)
+              resolve(this)
+            },
+            undefined,
+            (error) => {
+              reject(error)
+            }
+          )
+        })
 
-    //     const directionalLight2 = new THREE.DirectionalLight(0xffffff)
-    //     directionalLight2.position.set(0, 70, 100).normalize()
-    //     this.scene.add(directionalLight2)
+        this.map = map
+        this.renderer = new THREE.WebGLRenderer({
+          canvas: map.getCanvas(),
+          context: gl,
+          antialias: true,
+        })
 
-    //     const loader = new GLTFLoader()
-    //     const loaderPromise = new Promise((resolve, reject) => {
-    //       loader.load(
-    //         'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF/CesiumMilkTruck.gltf',
-    //         (gltf) => {
-    //           this.scene.add(gltf.scene)
-    //           resolve(this)
-    //         },
-    //         undefined,
-    //         (error) => {
-    //           reject(error)
-    //         }
-    //       )
-    //     })
+        this.renderer.autoClear = false
 
-    //     this.map = map
-    //     this.renderer = new THREE.WebGLRenderer({
-    //       canvas: map.getCanvas(),
-    //       context: gl,
-    //       antialias: true,
-    //     })
+        return loaderPromise
+      },
+      render: function (gl, matrix) {
+        const rotationX = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(1, 0, 0),
+          modelTransform.rotateX
+        )
+        const rotationY = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(0, 0, 0),
+          modelTransform.rotateY
+        )
+        const rotationZ = new THREE.Matrix4().makeRotationAxis(
+          new THREE.Vector3(0, 0, 0),
+          modelTransform.rotateZ
+        )
 
-    //     this.renderer.autoClear = false
+        const m = new THREE.Matrix4().fromArray(matrix)
+        const l = new THREE.Matrix4()
+          .makeTranslation(
+            modelTransform.translateX,
+            modelTransform.translateY,
+            modelTransform.translateZ
+          )
+          .scale(
+            new THREE.Vector3(
+              modelTransform.scale,
+              -modelTransform.scale,
+              modelTransform.scale
+            )
+          )
+        // .multiply(rotationX)
+        // .multiply(rotationY)
+        // .multiply(rotationZ)
 
-    //     return loaderPromise
-    //   },
-    //   render: function (gl, matrix) {
-    //     const rotationX = new THREE.Matrix4().makeRotationAxis(
-    //       new THREE.Vector3(1, 0, 0),
-    //       modelTransform.rotateX
-    //     )
-    //     const rotationY = new THREE.Matrix4().makeRotationAxis(
-    //       new THREE.Vector3(0, 1, 0),
-    //       modelTransform.rotateY
-    //     )
-    //     const rotationZ = new THREE.Matrix4().makeRotationAxis(
-    //       new THREE.Vector3(0, 0, 1),
-    //       modelTransform.rotateZ
-    //     )
+        this.camera.projectionMatrix = m.multiply(l)
+        this.renderer.resetState()
+        this.renderer.render(toRaw(this.scene), toRaw(this.camera))
+        this.map.triggerRepaint()
+      },
+    }
 
-    //     const m = new THREE.Matrix4().fromArray(matrix)
-    //     const l = new THREE.Matrix4()
-    //       .makeTranslation(
-    //         modelTransform.translateX,
-    //         modelTransform.translateY,
-    //         modelTransform.translateZ
-    //       )
-    //       .scale(
-    //         new THREE.Vector3(
-    //           modelTransform.scale,
-    //           -modelTransform.scale,
-    //           modelTransform.scale
-    //         )
-    //       )
-    //       .multiply(rotationX)
-    //       .multiply(rotationY)
-    //       .multiply(rotationZ)
-
-    //     this.camera.projectionMatrix = m.multiply(l)
-    //     this.renderer.resetState()
-    //     this.renderer.render(toRaw(this.scene), toRaw(this.camera))
-    //     this.map.triggerRepaint()
-    //   },
-    // }
-
-    // return customLayer
+    return customLayer
   })
 
   Promise.all(modelLoadPromises)
