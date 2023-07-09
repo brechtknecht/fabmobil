@@ -216,6 +216,8 @@ onMounted(() => {
     // Then set up an interval to gradually add more points to the line.
     let currentIndex = 1
     const pointsToAddPerInterval = 5 // Adjust this value to add more points per interval
+    const intervalDuration =
+      totalAnimationDuration / tourPath.geometry.coordinates.length
 
     const intervalId = setInterval(() => {
       if (currentIndex < tourPath.geometry.coordinates.length) {
@@ -235,7 +237,7 @@ onMounted(() => {
       } else {
         clearInterval(intervalId) // Stop the interval once we've added all the points.
       }
-    }, 1) // Keep the interval at 1 ms
+    }, intervalDuration) // Keep the interval at 1 ms
   })
 
   map.value.scrollZoom.disable()
@@ -252,7 +254,7 @@ onMounted(() => {
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
   const scale = 20000
-  const totalAnimationDuration = 6000 // Total duration of all animations
+  const totalAnimationDuration = 0 // Total duration of all animations
 
   const modelLoadPromises = modelOrigins.map((modelOrigin, index) => {
     const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
