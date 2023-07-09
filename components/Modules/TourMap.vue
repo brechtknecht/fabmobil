@@ -194,7 +194,13 @@ onMounted(() => {
   map.value.on('load', () => {
     map.value.addSource('tour-path', {
       type: 'geojson',
-      data: tourPath,
+      data: {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          coordinates: [tourPath.geometry.coordinates[0]], // Start with only the first coordinate.
+        },
+      },
     })
 
     map.value.addLayer({
@@ -202,10 +208,34 @@ onMounted(() => {
       type: 'line',
       source: 'tour-path',
       paint: {
-        'line-width': 2,
-        'line-color': '#ff0000', // Change this to the desired color of the line.
+        'line-width': 8,
+        'line-color': '#00FF00', // Change this to the desired color of the line.
       },
     })
+
+    // Then set up an interval to gradually add more points to the line.
+    let currentIndex = 1
+    const pointsToAddPerInterval = 5 // Adjust this value to add more points per interval
+
+    const intervalId = setInterval(() => {
+      if (currentIndex < tourPath.geometry.coordinates.length) {
+        const currentData = map.value.getSource('tour-path')._data
+        for (
+          let i = 0;
+          i < pointsToAddPerInterval &&
+          currentIndex < tourPath.geometry.coordinates.length;
+          i++
+        ) {
+          currentData.geometry.coordinates.push(
+            tourPath.geometry.coordinates[currentIndex]
+          )
+          currentIndex++
+        }
+        map.value.getSource('tour-path').setData(currentData)
+      } else {
+        clearInterval(intervalId) // Stop the interval once we've added all the points.
+      }
+    }, 1) // Keep the interval at 1 ms
   })
 
   map.value.scrollZoom.disable()
@@ -240,88 +270,88 @@ onMounted(() => {
       scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits() * scale,
     }
 
-    const customLayer = {
-      id: '3d-model-' + index,
-      type: 'custom',
-      renderingMode: '3d',
-      onAdd: function (map, gl) {
-        this.camera = new THREE.Camera()
-        this.scene = new THREE.Scene()
+    // const customLayer = {
+    //   id: '3d-model-' + index,
+    //   type: 'custom',
+    //   renderingMode: '3d',
+    //   onAdd: function (map, gl) {
+    //     this.camera = new THREE.Camera()
+    //     this.scene = new THREE.Scene()
 
-        const directionalLight = new THREE.DirectionalLight(0xffffff)
-        directionalLight.position.set(0, -70, 100).normalize()
-        this.scene.add(directionalLight)
+    //     const directionalLight = new THREE.DirectionalLight(0xffffff)
+    //     directionalLight.position.set(0, -70, 100).normalize()
+    //     this.scene.add(directionalLight)
 
-        const directionalLight2 = new THREE.DirectionalLight(0xffffff)
-        directionalLight2.position.set(0, 70, 100).normalize()
-        this.scene.add(directionalLight2)
+    //     const directionalLight2 = new THREE.DirectionalLight(0xffffff)
+    //     directionalLight2.position.set(0, 70, 100).normalize()
+    //     this.scene.add(directionalLight2)
 
-        const loader = new GLTFLoader()
-        const loaderPromise = new Promise((resolve, reject) => {
-          loader.load(
-            'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF/CesiumMilkTruck.gltf',
-            (gltf) => {
-              this.scene.add(gltf.scene)
-              resolve(this)
-            },
-            undefined,
-            (error) => {
-              reject(error)
-            }
-          )
-        })
+    //     const loader = new GLTFLoader()
+    //     const loaderPromise = new Promise((resolve, reject) => {
+    //       loader.load(
+    //         'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/CesiumMilkTruck/glTF/CesiumMilkTruck.gltf',
+    //         (gltf) => {
+    //           this.scene.add(gltf.scene)
+    //           resolve(this)
+    //         },
+    //         undefined,
+    //         (error) => {
+    //           reject(error)
+    //         }
+    //       )
+    //     })
 
-        this.map = map
-        this.renderer = new THREE.WebGLRenderer({
-          canvas: map.getCanvas(),
-          context: gl,
-          antialias: true,
-        })
+    //     this.map = map
+    //     this.renderer = new THREE.WebGLRenderer({
+    //       canvas: map.getCanvas(),
+    //       context: gl,
+    //       antialias: true,
+    //     })
 
-        this.renderer.autoClear = false
+    //     this.renderer.autoClear = false
 
-        return loaderPromise
-      },
-      render: function (gl, matrix) {
-        const rotationX = new THREE.Matrix4().makeRotationAxis(
-          new THREE.Vector3(1, 0, 0),
-          modelTransform.rotateX
-        )
-        const rotationY = new THREE.Matrix4().makeRotationAxis(
-          new THREE.Vector3(0, 1, 0),
-          modelTransform.rotateY
-        )
-        const rotationZ = new THREE.Matrix4().makeRotationAxis(
-          new THREE.Vector3(0, 0, 1),
-          modelTransform.rotateZ
-        )
+    //     return loaderPromise
+    //   },
+    //   render: function (gl, matrix) {
+    //     const rotationX = new THREE.Matrix4().makeRotationAxis(
+    //       new THREE.Vector3(1, 0, 0),
+    //       modelTransform.rotateX
+    //     )
+    //     const rotationY = new THREE.Matrix4().makeRotationAxis(
+    //       new THREE.Vector3(0, 1, 0),
+    //       modelTransform.rotateY
+    //     )
+    //     const rotationZ = new THREE.Matrix4().makeRotationAxis(
+    //       new THREE.Vector3(0, 0, 1),
+    //       modelTransform.rotateZ
+    //     )
 
-        const m = new THREE.Matrix4().fromArray(matrix)
-        const l = new THREE.Matrix4()
-          .makeTranslation(
-            modelTransform.translateX,
-            modelTransform.translateY,
-            modelTransform.translateZ
-          )
-          .scale(
-            new THREE.Vector3(
-              modelTransform.scale,
-              -modelTransform.scale,
-              modelTransform.scale
-            )
-          )
-          .multiply(rotationX)
-          .multiply(rotationY)
-          .multiply(rotationZ)
+    //     const m = new THREE.Matrix4().fromArray(matrix)
+    //     const l = new THREE.Matrix4()
+    //       .makeTranslation(
+    //         modelTransform.translateX,
+    //         modelTransform.translateY,
+    //         modelTransform.translateZ
+    //       )
+    //       .scale(
+    //         new THREE.Vector3(
+    //           modelTransform.scale,
+    //           -modelTransform.scale,
+    //           modelTransform.scale
+    //         )
+    //       )
+    //       .multiply(rotationX)
+    //       .multiply(rotationY)
+    //       .multiply(rotationZ)
 
-        this.camera.projectionMatrix = m.multiply(l)
-        this.renderer.resetState()
-        this.renderer.render(toRaw(this.scene), toRaw(this.camera))
-        this.map.triggerRepaint()
-      },
-    }
+    //     this.camera.projectionMatrix = m.multiply(l)
+    //     this.renderer.resetState()
+    //     this.renderer.render(toRaw(this.scene), toRaw(this.camera))
+    //     this.map.triggerRepaint()
+    //   },
+    // }
 
-    return customLayer
+    // return customLayer
   })
 
   Promise.all(modelLoadPromises)
