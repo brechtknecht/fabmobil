@@ -60,6 +60,114 @@ const resetZoom = () => {
   })
 }
 
+const generateTourPath = (waviness = 10, granularity = 50) => {
+  // Get the coordinates of Dresden.
+  const dresdenCoordinates = [13.7, 51.1]
+  let currentPoint = dresdenCoordinates
+
+  // Create an array to hold the coordinates of the tour path.
+  let tourPathCoordinates = [dresdenCoordinates]
+
+  // Iterate over the tour data and add each location to the tour path.
+  data.value.forEach((item, index) => {
+    const destinationCoordinates = [item.location.lon, item.location.lat]
+
+    // Generate the path from current point to destination
+    const pathSegmentCoordinates = generateSplinePath(
+      currentPoint,
+      destinationCoordinates,
+      waviness,
+      granularity
+    )
+    tourPathCoordinates = tourPathCoordinates.concat(pathSegmentCoordinates)
+
+    // Update current point to the destination
+    currentPoint = destinationCoordinates
+
+    // After each location, there's a 20% chance to return to Dresden before moving on to the next location.
+    if (Math.random() < 0.2 && index < data.value.length - 1) {
+      const pathBackToDresden = generateSplinePath(
+        currentPoint,
+        dresdenCoordinates,
+        waviness,
+        granularity
+      )
+      tourPathCoordinates = tourPathCoordinates.concat(pathBackToDresden)
+      currentPoint = dresdenCoordinates // Update current point back to Dresden
+    }
+  })
+
+  // Always return to Dresden after the last location.
+  if (
+    currentPoint[0] !== dresdenCoordinates[0] ||
+    currentPoint[1] !== dresdenCoordinates[1]
+  ) {
+    const pathBackToDresden = generateSplinePath(
+      currentPoint,
+      dresdenCoordinates,
+      waviness,
+      granularity
+    )
+    tourPathCoordinates = tourPathCoordinates.concat(pathBackToDresden)
+  }
+
+  // Create a LineString geometry representing the tour path.
+  return {
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: tourPathCoordinates,
+    },
+  }
+}
+
+// This function generates a random path between two points.
+const generateRandomPath = (startCoordinates, endCoordinates) => {
+  const pathCoordinates = []
+  const count = 10 // Number of intermediate points.
+  const variability = 0.01 // Degree of variability in the path.
+  for (let i = 1; i <= count; i++) {
+    const t = i / (count + 1)
+    const x =
+      startCoordinates[0] + t * (endCoordinates[0] - startCoordinates[0])
+    const y =
+      startCoordinates[1] + t * (endCoordinates[1] - startCoordinates[1])
+    const randomFactor = (Math.random() - 0.5) * variability
+    const randomPoint = [x + randomFactor, y + randomFactor]
+    pathCoordinates.push(randomPoint)
+  }
+  return pathCoordinates
+}
+
+function generateSplinePath(start, end, curviness = 1, granularity = 50) {
+  // Generate the control points for the spline.
+  const midPointX = (start[0] + end[0]) / 2
+  const midPointY = (start[1] + end[1]) / 2
+  const controlPoint1 = [start[0], midPointY]
+  const controlPoint2 = [midPointX, start[1]]
+  const controlPoints = [
+    new THREE.Vector2(...start),
+    new THREE.Vector2(...controlPoint1),
+    new THREE.Vector2(...controlPoint2),
+    new THREE.Vector2(...end),
+  ]
+
+  // Create the spline.
+  const spline = new THREE.CatmullRomCurve3(
+    controlPoints.map((point) => new THREE.Vector3(point.x, point.y, 0)),
+    false,
+    'centripetal'
+  )
+
+  // Generate the points along the spline.
+  const points = spline
+    .getPoints(granularity)
+    .map((point) => [point.x, point.y])
+
+  // Return the points.
+  return points
+}
+
 onBeforeUnmount(() => {
   if (map.value) {
     map.value.remove()
@@ -78,6 +186,26 @@ onMounted(() => {
     center: [13.7, 51.1],
     pitch: 33,
     antialias: true,
+  })
+
+  // Create the tour path and add it to the map as a GeoJSON source and a line layer.
+  const tourPath = generateTourPath()
+
+  map.value.on('load', () => {
+    map.value.addSource('tour-path', {
+      type: 'geojson',
+      data: tourPath,
+    })
+
+    map.value.addLayer({
+      id: 'tour-path',
+      type: 'line',
+      source: 'tour-path',
+      paint: {
+        'line-width': 2,
+        'line-color': '#ff0000', // Change this to the desired color of the line.
+      },
+    })
   })
 
   map.value.scrollZoom.disable()
