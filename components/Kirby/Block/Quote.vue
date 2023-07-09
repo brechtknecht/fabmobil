@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <blockquote>
+  <blockquote class="max-w-prose mx-auto">
     <div class="font-body text-callout" v-html="block.content.text" />
     <footer v-html="block.content.citation" />
   </blockquote>

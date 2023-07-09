@@ -8,7 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <component :is="block.content.level" :id="slugify(block.content.text)">
+  <component
+    :is="block.content.level"
+    :id="slugify(block.content.text)"
+    class="max-w-prose mx-auto"
+  >
     <!-- H1 -->
     <div
       v-if="block.content.level == 'h1'"

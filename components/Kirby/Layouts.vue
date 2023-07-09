@@ -26,7 +26,7 @@ function span(width: `${string}/${string}`, columns = 12) {
       <div
         v-for="(column, index) in layout.content.columns"
         :key="index"
-        class="column mx-auto py-16 w-full"
+        class="column mx-auto py-8 w-full"
         :style="`--columns: ${span(column.width)}`"
       >
         <KirbyBlocks :blocks="column.blocks" class="text w-full" />

@@ -71,17 +71,10 @@ function formatDateShort(date: Date) {
       </div>
     </div>
 
-    <article class="note">
-      <header class="note-header h1">
-        <h1 class="note-title">{{ page?.title }}</h1>
-        <p v-if="page?.subheading" class="note-subheading">
-          <small>{{ page?.subheading }}</small>
-        </p>
-      </header>
-
+    <article class="note py-8">
       <KirbyLayouts :layouts="page.layouts ?? []" />
 
-      <footer class="note-footer">
+      <footer class="max-w-prose mx-auto py-2">
         <ul v-if="page?.tags" class="note-tags">
           <li v-for="(tag, index) in page.tags" :key="index">
             <NuxtLink :to="{ path: parentRoute, query: { tag } }">{{
@@ -100,14 +93,14 @@ function formatDateShort(date: Date) {
         </time>
       </footer>
 
-      <LazyAppPrevNext />
+      <LazyAppPrevNextMaterial />
     </article>
   </div>
 </template>
 
 <style scoped>
 .note {
-  max-width: 35rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 .note-header {
@@ -115,7 +108,7 @@ function formatDateShort(date: Date) {
   margin-bottom: 3rem;
 }
 .note-footer {
-  padding: 6rem 0;
+  padding: 2rem 0;
 }
 .note-date {
   color: var(--color-text-grey);

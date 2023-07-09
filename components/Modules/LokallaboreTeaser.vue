@@ -15,7 +15,7 @@
       class="flex justify-center items-center space-x-4 relative w-full h-full"
     >
       <BaseButton
-        class="bg-white absolute z-10 top-80 right-[15%]"
+        class="bg-white relative lg:absolute z-10 lg:top-80 lg:right-[15%]"
         label="Erfahre Mehr!"
         text-color="text-black"
       />
@@ -23,18 +23,9 @@
     <div
       class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 w-full h-full max-w-screen-2xl mx-auto"
     >
-      <div
-        class="video-container relative w-full items-center justify-center p-24 rounded-xl overflow-hidden border border-gray"
-      >
-        <iframe
-          id="vimeo"
-          class="rounded-xl overflow-hidden border border-gray bg-black absolute top-0 left-0 w-full h-full"
-          title="vimeo-player"
-          src="https://player.vimeo.com/video/538316076?autoplay=1&loop=1&muted=1"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <BaseVideo
+        url="https://player.vimeo.com/video/538316076?autoplay=1&loop=1&muted=1"
+      />
     </div>
   </div>
 </template>

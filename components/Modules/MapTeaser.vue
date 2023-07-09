@@ -3,13 +3,17 @@
     <h1 class="font-headline text-large-title text-primary w-full text-center">
       In ganz Sachsen unterwegs.
     </h1>
-    <div ref="container" class="flex justify-center items-center space-x-4">
+    <div
+      ref="container"
+      class="flex flex-col lg:flex-row justify-center items-center space-x-4 w-full md:w-auto"
+    >
       <svg
         width="604"
         height="463"
         viewBox="0 0 604 463"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        class="w-full md:w-auto p-8 md:p-2 h-auto"
       >
         <g clip-path="url(#clip0_559_5638)">
           <path
@@ -73,7 +77,7 @@ onUnmounted(stop)
 }
 
 .animate {
-  animation: dash 15s linear forwards; /* Adjust the duration as needed */
+  animation: dash 11s linear forwards; /* Adjust the duration as needed */
 }
 
 @keyframes dash {

@@ -7,5 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <hr />
+  <hr class="max-w-prose mx-auto" />
 </template>

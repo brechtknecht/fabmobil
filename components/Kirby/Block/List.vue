@@ -7,5 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="font-body text-body" v-html="block.content.text" />
+  <div
+    class="font-body text-body max-w-prose mx-auto"
+    v-html="block.content.text"
+  />
 </template>

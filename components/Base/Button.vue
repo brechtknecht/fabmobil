@@ -1,6 +1,6 @@
 <template>
   <div
-    class="button transform border-2 h-fit flexitems-start justify-items-start flex-col w-64 py-1.5 px-4"
+    class="button transform border-2 h-fit flexitems-start justify-items-start flex-col md:flex-row w-64 py-1.5 px-4"
   >
     <span class="text-paragraph text-large-title" :class="[textColor]">{{
       label
@@ -32,12 +32,14 @@ const props = defineProps({
 </script>
 
 <style>
-.button {
-  transform: rotate(-30deg) skewX(-30deg) scale(0.864);
-  transition: 200ms ease-out;
-}
+@media (min-width: 768px) {
+  .button {
+    transform: rotate(-30deg) skewX(-30deg) scale(0.864);
+    transition: 200ms ease-out;
+  }
 
-.button:hover {
-  transform: rotate(0) skewX(0) scale(1);
+  .button:hover {
+    transform: rotate(0) skewX(0) scale(1);
+  }
 }
 </style>
