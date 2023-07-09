@@ -31,7 +31,7 @@ const { data } = await useKql({
   },
 })
 
-console.log(data)
+// console.log(data)
 
 // Set the current page data for the global page context
 const page = data.value?.result

@@ -11,12 +11,18 @@ dependencies:
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
     version: 4.2.3(vite@4.3.9)
+  '@vueuse/core':
+    specifier: ^10.2.1
+    version: 10.2.1
   '@vueuse/motion':
     specifier: ^2.0.0
     version: 2.0.0
   scrolly-video:
     specifier: ^0.0.15
     version: 0.0.15
+  vue-intersect:
+    specifier: ^1.1.6
+    version: 1.1.6
   vue-rough:
     specifier: ^1.1.0
     version: 1.1.0(roughjs@4.5.2)
@@ -5887,6 +5893,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /vue-intersect@1.1.6:
+    resolution: {integrity: sha512-m9K48wkti8K0no0F8QdiShukenLDg80JS246Lf7QWgI0XOHkBkzn921FCwLtb49Jj14KK8itVZw4iOVxPc/PsA==}
+    peerDependencies:
+      vue: ^2.4.2
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dev: false
 
   /vue-rough@1.1.0(roughjs@4.5.2):
     resolution: {integrity: sha512-C/msFg893WsPPMAfe2p7Y1JfPA+e8lQ9wZ0mMYeP2cW9+NJstX1w/lQQIDnIjx4OawwZkU2P4buxVIo31ElzAw==}
