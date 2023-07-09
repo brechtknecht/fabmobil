@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <div id="control-panel">
-      <div v-for="(cityData, index) in cityDataList" :key="index">
+  <div
+    class="absolute top-0 right-0 p-4 bg-white bg-opacity-80 z-10 w-80 h-screen overflow-auto"
+  >
+    <button
+      class="mb-6 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
+      @click="handleResetZoom"
+    >
+      Reset Zoom
+    </button>
+    <div v-for="(cityData, index) in cityDataList" :key="index" class="mb-6">
+      <h2 class="text-lg font-semibold text-gray-700 mb-1">
         Animating Year: {{ currentYear }}
-        <p>{{ cityData.city }}: {{ cityData.coordinates }}</p>
-        <button @click="handleClick(cityData.coordinates)">
-          Go to this location
-        </button>
-      </div>
+      </h2>
+      <p class="text-gray-600">
+        {{ cityData.city }}: {{ cityData.coordinates }}
+      </p>
+      <button
+        class="mt-2 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
+        @click="handleClick(cityData.coordinates)"
+      >
+        Go to this location
+      </button>
     </div>
   </div>
 </template>
@@ -40,23 +53,15 @@ watch(
 
 const cityDataList = ref(data)
 
-const emit = defineEmits(['go-to-coordinate'])
+const emit = defineEmits(['go-to-coordinate', 'reset-zoom'])
 
 const handleClick = (coord) => {
   emit('go-to-coordinate', coord)
 }
+
+const handleResetZoom = () => {
+  emit('reset-zoom')
+}
 </script>
 
-<style scoped>
-#control-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1em;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1;
-  width: 20rem;
-  max-height: 100vh;
-  overflow: scroll;
-}
-</style>
+<style scoped></style>

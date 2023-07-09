@@ -3,6 +3,7 @@
     <div id="map"></div>
     <modules-tour-map-u-i
       @go-to-coordinate="handleGoToCoordinate"
+      @reset-zoom="resetZoom"
     ></modules-tour-map-u-i>
   </div>
 </template>
@@ -38,6 +39,13 @@ const generateRandomDate = (year) => {
     Math.floor(Math.random() * 12),
     Math.floor(Math.random() * 28)
   )
+}
+
+const resetZoom = () => {
+  map.value.flyTo({
+    center: [13.7, 51.1],
+    zoom: 8,
+  })
 }
 
 onMounted(() => {
