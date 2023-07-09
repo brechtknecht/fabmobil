@@ -85,7 +85,7 @@ const generateTourPath = (waviness = 10, granularity = 50) => {
     currentPoint = destinationCoordinates
 
     // After each location, there's a 20% chance to return to Dresden before moving on to the next location.
-    if (Math.random() < 0.2 && index < data.value.length - 1) {
+    if (Math.random() < 0.4 && index < data.value.length - 1) {
       const pathBackToDresden = generateSplinePath(
         currentPoint,
         dresdenCoordinates,
@@ -121,30 +121,18 @@ const generateTourPath = (waviness = 10, granularity = 50) => {
   }
 }
 
-// This function generates a random path between two points.
-const generateRandomPath = (startCoordinates, endCoordinates) => {
-  const pathCoordinates = []
-  const count = 10 // Number of intermediate points.
-  const variability = 0.01 // Degree of variability in the path.
-  for (let i = 1; i <= count; i++) {
-    const t = i / (count + 1)
-    const x =
-      startCoordinates[0] + t * (endCoordinates[0] - startCoordinates[0])
-    const y =
-      startCoordinates[1] + t * (endCoordinates[1] - startCoordinates[1])
-    const randomFactor = (Math.random() - 0.5) * variability
-    const randomPoint = [x + randomFactor, y + randomFactor]
-    pathCoordinates.push(randomPoint)
-  }
-  return pathCoordinates
-}
-
-function generateSplinePath(start, end, curviness = 1, granularity = 50) {
+function generateSplinePath(start, end, curviness = 10, granularity = 50) {
   // Generate the control points for the spline.
   const midPointX = (start[0] + end[0]) / 2
   const midPointY = (start[1] + end[1]) / 2
-  const controlPoint1 = [start[0], midPointY]
-  const controlPoint2 = [midPointX, start[1]]
+  const controlPoint1 = [
+    midPointX - (midPointX - start[0]) / (curviness * Math.random()),
+    midPointY,
+  ]
+  const controlPoint2 = [
+    midPointX,
+    midPointY - (midPointY - start[1]) / (curviness * Math.random()),
+  ]
   const controlPoints = [
     new THREE.Vector2(...start),
     new THREE.Vector2(...controlPoint1),
@@ -240,7 +228,7 @@ onMounted(() => {
     }, intervalDuration) // Keep the interval at 1 ms
   })
 
-  map.value.scrollZoom.disable()
+  // map.value.scrollZoom.disable()
 
   const modelOrigins = data.value.map((item) => ({
     city: item.location.city,
@@ -283,7 +271,7 @@ onMounted(() => {
         const textureLoader = new THREE.TextureLoader()
         const loaderPromise = new Promise((resolve, reject) => {
           textureLoader.load(
-            'https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png',
+            '/assets/img/bus.png',
             (texture) => {
               const material = new THREE.SpriteMaterial({ map: texture })
               const sprite = new THREE.Sprite(material)
@@ -393,7 +381,7 @@ onMounted(() => {
             layout: {
               'text-field': modelOrigin.city,
               'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-              'text-offset': [0, 0.6],
+              'text-offset': [0, 3],
               'text-anchor': 'center',
             },
           })
