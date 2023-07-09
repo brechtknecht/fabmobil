@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute top-0 right-0 p-4 bg-secondary bg-opacity-80 z-10 w-80 h-full overflow-auto"
+    class="absolute top-0 right-0 p-4 bg-secondary bg-opacity-80 z-10 w-80 h-full w-full overflow-auto"
   >
     <button
       class="mb-6 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"

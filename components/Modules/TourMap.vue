@@ -1,9 +1,9 @@
 <template>
-  <div class="relative w-full h-full">
-    <div id="map" class="absolute"></div>
+  <div class="relative w-full h-full flex flex-row">
+    <div id="map" class="relative w-[80%]"></div>
 
     <!-- The list component -->
-    <div class="absolute w-full h-full top-0">
+    <div class="relative h-full w-[20%] top-0">
       <transition name="slide" mode="out-in">
         <div v-if="!viewingDetail">
           <modules-tour-map-u-i
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { defineEmits, onMounted, ref, toRef } from 'vue'
+import { defineEmits, onBeforeUnmount, onMounted, ref, toRef } from 'vue'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -59,6 +59,13 @@ const resetZoom = () => {
     zoom: 8,
   })
 }
+
+onBeforeUnmount(() => {
+  if (map.value) {
+    map.value.remove()
+    map.value = null
+  }
+})
 
 onMounted(() => {
   mapboxgl.accessToken =
@@ -265,14 +272,6 @@ watch(viewingDetail, (newVal) => {
 </script>
 
 <style scoped>
-#map {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .slide-enter-active,
 .slide-leave-active {
   transition: transform 0.3s;
