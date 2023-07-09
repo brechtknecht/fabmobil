@@ -16,12 +16,13 @@
       />
     </div>
     <div class="bg-secondary h-fit">
-      <div class="h-[100vh] text-primary">
-        <ModulesTourMap />
+      <div class="h-[70vh] text-primary">
+        <ModulesTourMap :tour-data="page.tourdates" />
+        <!-- Pass the tourdates as locations to the Map component -->
       </div>
     </div>
     <!-- Debug text -->
-    <!-- <pre>{{ page }}</pre> -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 
@@ -29,7 +30,7 @@
 import { reactive, ref } from 'vue'
 const showInfo = reactive({})
 const { data } = await useKql({
-  query: `page("/team")`,
+  query: `page("/tour")`,
   select: {
     title: true,
     description: true,
@@ -46,28 +47,15 @@ const { data } = await useKql({
         image: true,
       },
     },
-    team: {
-      query: 'page.children',
-      select: {
-        name: true,
-        description: true,
-        pronoun: true,
-        category: true,
-        email: true,
-        phone: true,
-        contact: true,
-        image: {
-          query: 'page.image',
-          select: {
-            url: true,
-          },
-        },
-      },
+    tourdates: {
+      query: 'page.tourdates.toStructure',
     },
   },
 })
 
-const { title, description, team } = data.value.result
+console.log(data)
+
+const { title, description, tourdates } = data.value.result
 const page = data.value?.result
 setPage(page)
 </script>

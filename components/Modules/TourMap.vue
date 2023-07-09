@@ -1,61 +1,57 @@
 <template>
   <div class="relative w-full h-full">
-    <div id="map"></div>
+    <div id="map" class="absolute"></div>
 
     <!-- The list component -->
-    <transition name="slide" mode="out-in">
-      <div v-if="!viewingDetail">
-        <modules-tour-map-u-i
-          @go-to-coordinate="handleGoToCoordinate"
-          @reset-zoom="resetZoom"
-        />
-      </div>
-    </transition>
+    <div class="absolute w-full h-full top-0">
+      <transition name="slide" mode="out-in">
+        <div v-if="!viewingDetail">
+          <modules-tour-map-u-i
+            class="h-full"
+            :city-data-list="data"
+            @go-to-coordinate="handleGoToCoordinate"
+            @reset-zoom="resetZoom"
+          />
+        </div>
+      </transition>
 
-    <!-- The detail view component -->
-    <transition name="slide" mode="in-out">
-      <modules-tour-map-detail
-        v-if="viewingDetail"
-        :detail="viewingDetail"
-        @go-back="handleBack"
-      />
-    </transition>
+      <!-- The detail view component -->
+      <transition name="slide" mode="in-out">
+        <modules-tour-map-detail
+          v-if="viewingDetail"
+          class="h-full"
+          :detail="viewingDetail"
+          @go-back="handleBack"
+        />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { defineEmits, onMounted, ref } from 'vue'
+import { defineEmits, onMounted, ref, toRef } from 'vue'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import { toRaw } from 'vue'
 
-const data = [
-  {
-    city: 'Dresden',
-    coordinates: [13.73, 51.05],
-    date: new Date(),
+import { defineProps } from 'vue'
+const props = defineProps({
+  tourData: {
+    type: Array,
+    default: () => [],
   },
-  {
-    city: 'Chemnitz',
-    coordinates: [12.92, 50.83],
-    date: new Date(),
-  },
-]
+})
+
+const data = toRef(props, 'tourData')
+
+console.log('DATA', data)
 
 const map = ref(null)
 const viewingDetail = ref(null)
 const emit = defineEmits(['animation-year-updated'])
 const addedLayers = []
-
-const generateRandomDate = (year) => {
-  return new Date(
-    year,
-    Math.floor(Math.random() * 12),
-    Math.floor(Math.random() * 28)
-  )
-}
 
 const resetZoom = () => {
   map.value.flyTo({
@@ -79,7 +75,11 @@ onMounted(() => {
 
   map.value.scrollZoom.disable()
 
-  const modelOrigins = data
+  const modelOrigins = data.value.map((item) => ({
+    city: item.location.city,
+    coordinates: [item.location.lon, item.location.lat],
+    date: new Date(item.date),
+  }))
 
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
@@ -239,8 +239,11 @@ onMounted(() => {
 })
 
 const handleGoToCoordinate = (coord, cityData) => {
+  // Update here to match new structure
+  const coordinates = [cityData.location.lon, cityData.location.lat]
+
   map.value.flyTo({
-    center: coord,
+    center: coordinates,
     zoom: 10,
   })
 
@@ -252,7 +255,7 @@ const handleBack = () => {
   resetZoom()
 }
 
-watch(viewingDetail, (newVal, oldVal) => {
+watch(viewingDetail, (newVal) => {
   if (newVal) {
     handleGoToCoordinate(newVal.coordinates, newVal)
   } else {
