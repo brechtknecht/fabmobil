@@ -1,20 +1,12 @@
 <template>
   <div
-    class="absolute top-0 right-0 p-4 bg-white bg-opacity-80 z-10 w-80 h-screen overflow-auto"
+    class="absolute bg-secondary top-0 right-0 p-4 bg-opacity-80 z-10 w-80 h-screen overflow-auto"
   >
-    <button
-      class="mb-6 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
-      @click="handleResetZoom"
-    >
-      Reset Zoom
-    </button>
     <div v-for="(cityData, index) in cityDataList" :key="index" class="mb-6">
-      <h2 class="text-lg font-semibold text-gray-700 mb-1">
+      <h2 class="text-lg font-semibold text-white mb-1">
         Animating Year: {{ currentYear }}
       </h2>
-      <p class="text-gray-600">
-        {{ cityData.city }}: {{ cityData.coordinates }}
-      </p>
+      <p class="text-white">{{ cityData.city }}: {{ cityData.coordinates }}</p>
       <button
         class="mt-2 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
         @click="handleClick(cityData)"

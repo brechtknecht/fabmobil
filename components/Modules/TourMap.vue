@@ -3,31 +3,22 @@
     <div id="map"></div>
 
     <!-- The list component -->
-    <transition name="slide">
+    <transition name="slide" mode="out-in">
       <div v-if="!viewingDetail">
         <modules-tour-map-u-i
           @go-to-coordinate="handleGoToCoordinate"
           @reset-zoom="resetZoom"
-        ></modules-tour-map-u-i>
+        />
       </div>
     </transition>
 
     <!-- The detail view component -->
-    <transition name="slide">
-      <div
+    <transition name="slide" mode="in-out">
+      <modules-tour-map-detail
         v-if="viewingDetail"
-        class="absolute top-0 right-0 p-4 bg-white bg-opacity-80 z-10 w-80 h-screen overflow-auto"
-      >
-        <button
-          class="mb-6 w-full text-white bg-indigo-500 hover:bg-indigo-600 rounded py-2"
-          @click="handleBack"
-        >
-          Back
-        </button>
-        <h1>{{ viewingDetail.city }}</h1>
-        <img :src="viewingDetail.image" alt="City image" />
-        <p>{{ viewingDetail.date }}</p>
-      </div>
+        :detail="viewingDetail"
+        @go-back="handleBack"
+      />
     </transition>
   </div>
 </template>
