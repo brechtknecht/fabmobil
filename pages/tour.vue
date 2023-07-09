@@ -55,7 +55,6 @@ const { data } = await useKql({
 
 console.log(data)
 
-const { title, description, tourdates } = data.value.result
 const page = data.value?.result
 setPage(page)
 </script>

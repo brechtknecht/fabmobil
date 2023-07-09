@@ -18,8 +18,8 @@ import { defineEmits, defineProps } from 'vue'
 
 const props = defineProps({
   detail: {
-    type: Array,
-    default: () => [],
+    type: Object,
+    default: () => {},
   },
 })
 

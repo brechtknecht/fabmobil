@@ -85,7 +85,10 @@ onMounted(() => {
   const modelOrigins = data.value.map((item) => ({
     city: item.location.city,
     coordinates: [item.location.lon, item.location.lat],
-    date: new Date(item.date),
+    startdate: new Date(item.startdate),
+    enddate: new Date(item.enddate),
+    venuename: item.venuename,
+    category: item.category,
   }))
 
   const modelAltitude = 0
@@ -197,7 +200,7 @@ onMounted(() => {
     .then((customLayers) => {
       // Sort modelOrigins by date, not customLayers.
       const sortedOrigins = modelOrigins.sort(
-        (a, b) => a.date.getTime() - b.date.getTime()
+        (a, b) => a.startdate.getTime() - b.startdate.getTime()
       )
       map.value.on('styledata', function () {
         sortedOrigins.forEach((modelOrigin, index) => {
@@ -208,7 +211,10 @@ onMounted(() => {
             addedLayers.push(layerId) // Add to the record of layers being added
             setTimeout(() => {
               map.value.addLayer(customLayer)
-              emit('animation-year-updated', modelOrigin.date.getFullYear())
+              emit(
+                'animation-year-updated',
+                modelOrigin.startdate.getFullYear()
+              )
             }, (totalAnimationDuration / sortedOrigins.length) * index)
           }
         })
@@ -246,7 +252,6 @@ onMounted(() => {
 })
 
 const handleGoToCoordinate = (coord, cityData) => {
-  // Update here to match new structure
   const coordinates = [cityData.location.lon, cityData.location.lat]
 
   map.value.flyTo({
