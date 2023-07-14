@@ -128,33 +128,35 @@ function generateSplinePath(
   granularity = 50,
   variance = 0.2
 ) {
-  // Generate the control points for the spline.
-  const midPointX = (start[0] + end[0]) / 2
-  const midPointY = (start[1] + end[1]) / 2
+  // Generate multiple control points for the spline.
+  const controlPoints = []
 
-  // Introduce a random factor for more natural look.
-  const controlPoint1 = [
-    midPointX -
-      (midPointX - start[0]) / curviness +
-      (Math.random() - 0.5) * variance,
-    midPointY + (Math.random() - 0.5) * variance,
-  ]
-  const controlPoint2 = [
-    midPointX + (Math.random() - 0.5) * variance,
-    midPointY -
-      (midPointY - start[1]) / curviness +
-      (Math.random() - 0.5) * variance,
-  ]
-  const controlPoints = [
-    new THREE.Vector2(...start),
-    new THREE.Vector2(...controlPoint1),
-    new THREE.Vector2(...controlPoint2),
-    new THREE.Vector2(...end),
-  ]
+  // Define how many additional control points we want
+  const additionalPoints = 3
+
+  // For each additional point, calculate its position
+  for (let i = 1; i <= additionalPoints; i++) {
+    const t = i / (additionalPoints + 1)
+    const midPointX = (1 - t) * start[0] + t * end[0]
+    const midPointY = (1 - t) * start[1] + t * end[1]
+
+    const controlPoint = [
+      midPointX -
+        (midPointX - start[0]) / curviness +
+        (Math.random() - 0.5) * variance,
+      midPointY + (Math.random() - 0.5) * variance,
+    ]
+
+    controlPoints.push(new THREE.Vector2(...controlPoint))
+  }
 
   // Create the spline.
   const spline = new THREE.CatmullRomCurve3(
-    controlPoints.map((point) => new THREE.Vector3(point.x, point.y, 0)),
+    [
+      new THREE.Vector2(...start),
+      ...controlPoints,
+      new THREE.Vector2(...end),
+    ].map((point) => new THREE.Vector3(point.x, point.y, 0)),
     false,
     'centripetal'
   )
