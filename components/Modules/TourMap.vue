@@ -121,17 +121,29 @@ const generateTourPath = (waviness = 12, granularity = 50) => {
   }
 }
 
-function generateSplinePath(start, end, curviness = 50, granularity = 50) {
+function generateSplinePath(
+  start,
+  end,
+  curviness = 2,
+  granularity = 50,
+  variance = 0.2
+) {
   // Generate the control points for the spline.
   const midPointX = (start[0] + end[0]) / 2
   const midPointY = (start[1] + end[1]) / 2
+
+  // Introduce a random factor for more natural look.
   const controlPoint1 = [
-    midPointX - (midPointX - start[0]) / (curviness * Math.random()),
-    midPointY,
+    midPointX -
+      (midPointX - start[0]) / curviness +
+      (Math.random() - 0.5) * variance,
+    midPointY + (Math.random() - 0.5) * variance,
   ]
   const controlPoint2 = [
-    midPointX,
-    midPointY - (midPointY - start[1]) / (curviness * Math.random()),
+    midPointX + (Math.random() - 0.5) * variance,
+    midPointY -
+      (midPointY - start[1]) / curviness +
+      (Math.random() - 0.5) * variance,
   ]
   const controlPoints = [
     new THREE.Vector2(...start),
