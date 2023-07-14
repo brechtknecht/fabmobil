@@ -3,7 +3,7 @@
     <div id="map" class="relative w-[80%]"></div>
 
     <!-- The list component -->
-    <div class="relative h-full w-[20%] top-0">
+    <div class="relative h-[100%] overflow-y-scroll w-[20%] top-0">
       <transition name="slide" mode="out-in">
         <div v-if="!viewingDetail">
           <modules-tour-map-u-i
@@ -60,7 +60,7 @@ const resetZoom = () => {
   })
 }
 
-const generateTourPath = (waviness = 10, granularity = 50) => {
+const generateTourPath = (waviness = 12, granularity = 50) => {
   // Get the coordinates of Dresden.
   const dresdenCoordinates = [13.7, 51.1]
   let currentPoint = dresdenCoordinates
@@ -121,7 +121,7 @@ const generateTourPath = (waviness = 10, granularity = 50) => {
   }
 }
 
-function generateSplinePath(start, end, curviness = 10, granularity = 50) {
+function generateSplinePath(start, end, curviness = 50, granularity = 50) {
   // Generate the control points for the spline.
   const midPointX = (start[0] + end[0]) / 2
   const midPointY = (start[1] + end[1]) / 2
@@ -228,7 +228,7 @@ onMounted(() => {
     }, intervalDuration) // Keep the interval at 1 ms
   })
 
-  // map.value.scrollZoom.disable()
+  map.value.scrollZoom.disable()
 
   const modelOrigins = data.value.map((item) => ({
     city: item.location.city,
@@ -242,7 +242,7 @@ onMounted(() => {
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
   const scale = 20000
-  const totalAnimationDuration = 0 // Total duration of all animations
+  const totalAnimationDuration = 20000 // Total duration of all animations
 
   const modelLoadPromises = modelOrigins.map((modelOrigin, index) => {
     const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
@@ -344,49 +344,67 @@ onMounted(() => {
       const sortedOrigins = modelOrigins.sort(
         (a, b) => a.startdate.getTime() - b.startdate.getTime()
       )
-      map.value.on('styledata', function () {
-        sortedOrigins.forEach((modelOrigin, index) => {
-          const customLayer = customLayers[index]
-          const layerId = '3d-model-' + index
-          if (!map.value.getLayer(layerId) && !addedLayers.includes(layerId)) {
-            // Check if the layer already exists or is in the process of being added.
-            addedLayers.push(layerId) // Add to the record of layers being added
-            setTimeout(() => {
-              map.value.addLayer(customLayer)
-              emit(
-                'animation-year-updated',
-                modelOrigin.startdate.getFullYear()
-              )
-            }, (totalAnimationDuration / sortedOrigins.length) * index)
-          }
-        })
-      })
 
-      modelOrigins.forEach((modelOrigin, index) => {
-        map.value.on('load', () => {
-          map.value.addSource('point' + index, {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: modelOrigin.coordinates,
-              },
-            },
+      // Load the image into Mapbox
+      map.value.loadImage(
+        '/assets/img/bus.png', // Replace with the URL or relative path of your image file
+        function (error, image) {
+          if (error) throw error
+          map.value.addImage('custom-marker', image)
+
+          sortedOrigins.forEach((modelOrigin, index) => {
+            map.value.on('load', () => {
+              const pointSource = 'point' + index
+              const imageSource = 'image' + index
+
+              // Add the text layer
+              map.value.addSource(pointSource, {
+                type: 'geojson',
+                data: {
+                  type: 'Feature',
+                  geometry: {
+                    type: 'Point',
+                    coordinates: modelOrigin.coordinates,
+                  },
+                },
+              })
+              map.value.addLayer({
+                id: pointSource,
+                type: 'symbol',
+                source: pointSource,
+                layout: {
+                  'text-field': modelOrigin.city,
+                  'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                  'text-offset': [0, 3],
+                  'text-anchor': 'center',
+                },
+              })
+
+              // Add the image layer
+              map.value.addSource(imageSource, {
+                type: 'geojson',
+                data: {
+                  type: 'Feature',
+                  geometry: {
+                    type: 'Point',
+                    coordinates: modelOrigin.coordinates,
+                  },
+                },
+              })
+              map.value.addLayer({
+                id: imageSource,
+                type: 'symbol',
+                source: imageSource,
+                layout: {
+                  'icon-image': 'custom-marker', // Reference the image we loaded earlier
+                  'icon-size': 0.12, // You can adjust the size of the image here
+                  'icon-offset': [0, 0], // You can adjust the position of the image here
+                },
+              })
+            })
           })
-          map.value.addLayer({
-            id: 'point' + index,
-            type: 'symbol',
-            source: 'point' + index,
-            layout: {
-              'text-field': modelOrigin.city,
-              'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-              'text-offset': [0, 3],
-              'text-anchor': 'center',
-            },
-          })
-        })
-      })
+        }
+      )
     })
     .catch((error) => {
       console.error('An error occurred while loading the models:', error)
