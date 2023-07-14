@@ -184,7 +184,7 @@ onMounted(() => {
   map.value = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
-    zoom: 8,
+    zoom: 7.4,
     center: [13.7, 51.1],
     pitch: 33,
     antialias: true,
@@ -256,7 +256,7 @@ onMounted(() => {
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
   const scale = 20000
-  const totalAnimationDuration = 20000 // Total duration of all animations
+  const totalAnimationDuration = 30000 // Total duration of all animations
 
   const modelLoadPromises = modelOrigins.map((modelOrigin, index) => {
     const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
