@@ -8,12 +8,12 @@
       'transition-opacity': true,
       'duration-500': true,
     }"
-    class="absolute z-50 w-full h-ful"
+    class="absolute z-50 w-full h-full top-0"
   >
     <!-- Absolute container for slot content -->
     <div
       :style="{ top: `${positionY}%`, left: `${positionX}%` }"
-      class="flex fixed top-0"
+      class="flex fixed top-0 affepenner"
     >
       <!-- Slot for overlay content -->
       <slot></slot>
@@ -63,6 +63,12 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 639px) {
+  .affepenner {
+    transform: translateY(-100%);
+  }
+}
+
 .opacity-0 {
   opacity: 0;
 }

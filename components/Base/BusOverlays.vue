@@ -1,8 +1,7 @@
 <template>
   <div class="absolute w-full" style="position: absolute">
     <BaseVideoOverlay
-      :class="overlayClasses"
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="overlay-item text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(20)"
       :position-y="getPositionY(20)"
@@ -70,15 +69,6 @@ export default {
       isSmallScreen: true,
     }
   },
-  computed: {
-    overlayClasses() {
-      return [
-        'text-primary',
-        'z-50',
-        this.isSmallScreen ? 'bottom-0 left-0 w-full' : 'absolute',
-      ]
-    },
-  },
   mounted() {
     if (process.client) {
       this.isSmallScreen = window.innerWidth < 640
@@ -96,7 +86,7 @@ export default {
       return this.isSmallScreen ? 0 : x
     },
     getPositionY(y) {
-      return this.isSmallScreen ? 0 : y
+      return this.isSmallScreen ? 100 : y
     },
     checkWindowSize() {
       this.isSmallScreen = window.innerWidth < 640
