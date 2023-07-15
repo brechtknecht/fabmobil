@@ -38,9 +38,11 @@
       <div
         v-for="(tourDate, index) in upcomingTourDates"
         :key="index"
-        class="mb-2 flex flex-row items-center justify-between w-full"
+        class="mb-2 flex flex-col sm:flex-row items-start sm:items-center justify-between w-full pb-4 sm:pb-0"
       >
-        <div class="flex flex-row items-baseline gap-8">
+        <div
+          class="flex flex-col sm:flex-row items-baseline gap-0 pb-2 sm:pb-0 sm:gap-8"
+        >
           <p class="font-headline text-title-3 text-primary leading-normal">
             {{ formatDate(tourDate.startdate) }} –
             {{ formatDate(tourDate.enddate) }}
@@ -58,7 +60,7 @@
       </div>
     </div>
     <!-- Debug text -->
-    <pre>{{ page }}</pre>
+    <!-- <pre>{{ page }}</pre> -->
   </div>
 </template>
 

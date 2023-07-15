@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div
-    class="font-body text-body leading-relaxed max-w-prose mx-auto"
+    class="font-body text-body leading-relaxed max-w-prose mx-auto px-4 sm:px-8 md:px-0"
     v-html="block.content.text"
   />
 </template>
