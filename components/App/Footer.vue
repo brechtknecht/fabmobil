@@ -6,7 +6,7 @@ const listedChildren = computed(() =>
 </script>
 
 <template>
-  <footer class="footer bg-secondary py-24">
+  <footer class="footer bg-secondary py-24 border-t border-white">
     <div
       class="flex flex-col justify-start gap-16 relative w-full min-h-80 items-center px-4 sm:px-6 md:px-8 lg:px-10"
     >

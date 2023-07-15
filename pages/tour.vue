@@ -15,31 +15,47 @@
         :image="module.image"
       />
     </div>
-    <div class="section-tour bg-secondary h-fit">
+    <div class="section-tour bg-secondary h-fit border-t border-b border-black">
       <div class="h-[90vh] text-primary">
-        <ModulesTourMap :tour-data="page.tourdates" />
+        <h2
+          class="font-headline text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black mt-2"
+        >
+          Wo wir bereits waren
+        </h2>
         <!-- Pass the tourdates as locations to the Map component -->
+        <ModulesTourMap :tour-data="page.tourdates" />
       </div>
     </div>
 
     <!-- New Section: Upcoming Dates -->
-    <div class="section-upcoming-dates bg-secondary p-4">
-      <h2 class="text-2xl font-bold text-white mb-4">Upcoming Dates</h2>
+    <div class="section-upcoming-dates bg-secondary px-4 pt-12 pb-64">
+      <h2 class="font-headline text-primary text-large-title font-bold mb-4">
+        Upcoming Dates
+      </h2>
       <div
         v-for="(tourDate, index) in upcomingTourDates"
         :key="index"
-        class="mb-2"
+        class="mb-2 flex flex-row items-center justify-between w-full"
       >
-        <p class="text-white">
-          {{ formatDate(tourDate.startdate) }} –
-          {{ formatDate(tourDate.enddate) }} <strong>Venue:</strong>
-          {{ tourDate.venuename }} <strong>Application Required:</strong>
-          {{ mockApplicationRequired(index) }}
+        <div class="flex flex-row items-baseline gap-8">
+          <p class="font-headline text-title-3 text-primary leading-normal">
+            {{ formatDate(tourDate.startdate) }} –
+            {{ formatDate(tourDate.enddate) }}
+          </p>
+          <p class="font-paragraph text-white text-title-3 leading-normal">
+            {{ tourDate.venuename }}
+          </p>
+        </div>
+        <p
+          class="text-white border border-white rounded-md px-2"
+          if="mockApplicationRequired(index)"
+        >
+          Voranmeldung Nötig
         </p>
       </div>
     </div>
     <!-- Debug text -->
-    <pre>{{ page }}</pre>
+    <!-- <pre>{{ page }}</pre> -->
   </div>
 </template>
 
