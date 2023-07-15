@@ -55,7 +55,7 @@ const addedLayers = []
 
 const resetZoom = () => {
   map.value.flyTo({
-    center: [13.7, 51.1],
+    center: [12.8, 51.1],
     zoom: 7.4,
   })
 }
@@ -85,7 +85,7 @@ const generateTourPath = (waviness = 2, granularity = 50) => {
     currentPoint = destinationCoordinates
 
     // After each location, there's a 20% chance to return to Dresden before moving on to the next location.
-    if (Math.random() < 0.85 && index < data.value.length - 1) {
+    if (Math.random() < 0.4 && index < data.value.length - 1) {
       const pathBackToDresden = generateSplinePath(
         currentPoint,
         dresdenCoordinates,
@@ -186,7 +186,7 @@ onMounted(() => {
     // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
     style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
     zoom: 7.4,
-    center: [13.7, 51.1],
+    center: [12.8, 51.1],
     pitch: 33,
     antialias: true,
   })

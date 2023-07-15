@@ -15,10 +15,27 @@
         :image="module.image"
       />
     </div>
-    <div class="bg-secondary h-fit">
+    <div class="section-tour bg-secondary h-fit">
       <div class="h-[90vh] text-primary">
         <ModulesTourMap :tour-data="page.tourdates" />
         <!-- Pass the tourdates as locations to the Map component -->
+      </div>
+    </div>
+
+    <!-- New Section: Upcoming Dates -->
+    <div class="section-upcoming-dates bg-secondary p-4">
+      <h2 class="text-2xl font-bold text-white mb-4">Upcoming Dates</h2>
+      <div
+        v-for="(tourDate, index) in upcomingTourDates"
+        :key="index"
+        class="mb-2"
+      >
+        <p class="text-white">
+          {{ formatDate(tourDate.startdate) }} –
+          {{ formatDate(tourDate.enddate) }} <strong>Venue:</strong>
+          {{ tourDate.venuename }} <strong>Application Required:</strong>
+          {{ mockApplicationRequired(index) }}
+        </p>
       </div>
     </div>
     <!-- Debug text -->
@@ -57,6 +74,29 @@ console.log(data)
 
 const page = data.value?.result
 setPage(page)
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString)
+  const dd = String(date.getDate()).padStart(2, '0')
+  const mm = String(date.getMonth() + 1).padStart(2, '0') // January is 0!
+  const yyyy = date.getFullYear()
+
+  return dd + '.' + mm + '.' + yyyy
+}
+
+// Function to mock whether an application is required for each date
+const mockApplicationRequired = (index) => {
+  // Mock data: alternating true/false values
+  return index % 2 === 0 ? 'Yes' : 'No'
+}
+
+// Filter tour dates to include only upcoming dates
+const upcomingTourDates = ref([])
+if (page && page.tourdates) {
+  upcomingTourDates.value = page.tourdates.filter(
+    (tourDate) => new Date(tourDate.enddate) > new Date()
+  )
+}
 </script>
 
 <style scoped>
