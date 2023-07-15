@@ -16,14 +16,17 @@
       />
     </div>
     <div class="section-tour bg-secondary h-fit border-t border-b border-black">
-      <div class="h-[90vh] text-primary">
-        <h2
-          class="font-headline text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black mt-2"
-        >
-          Wo wir bereits waren
-        </h2>
+      <h2
+        class="font-headline text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-2"
+      >
+        Wo wir schon waren (2017 – 2023)
+      </h2>
+      <div class="h-[100vh] text-primary">
         <!-- Pass the tourdates as locations to the Map component -->
-        <ModulesTourMap :tour-data="page.tourdates" />
+        <ModulesTourMap
+          :tour-data="page.tourdates"
+          @animation-year-updated="handleEmit"
+        />
       </div>
     </div>
 
@@ -47,21 +50,28 @@
           </p>
         </div>
         <p
+          v-if="tourDate.registration == 'true'"
           class="text-white border border-white rounded-md px-2"
-          if="mockApplicationRequired(index)"
         >
           Voranmeldung Nötig
         </p>
       </div>
     </div>
     <!-- Debug text -->
-    <!-- <pre>{{ page }}</pre> -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 const showInfo = reactive({})
+
+const emittedData = ref('')
+
+const handleEmit = (emittedValue) => {
+  emittedData.value = emittedValue
+}
+
 const { data } = await useKql({
   query: `page("/tour")`,
   select: {
@@ -98,12 +108,6 @@ const formatDate = (dateString) => {
   const yyyy = date.getFullYear()
 
   return dd + '.' + mm + '.' + yyyy
-}
-
-// Function to mock whether an application is required for each date
-const mockApplicationRequired = (index) => {
-  // Mock data: alternating true/false values
-  return index % 2 === 0 ? 'Yes' : 'No'
 }
 
 // Filter tour dates to include only upcoming dates

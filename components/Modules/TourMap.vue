@@ -53,6 +53,8 @@ const viewingDetail = ref(null)
 const emit = defineEmits(['animation-year-updated'])
 const addedLayers = []
 
+const animationYear = ref(null) // to keep track of the current year
+
 const resetZoom = () => {
   map.value.flyTo({
     center: [12.8, 51.1],
@@ -368,6 +370,15 @@ onMounted(() => {
           map.value.addImage('custom-marker', image)
 
           sortedOrigins.forEach((modelOrigin, index) => {
+            const year = modelOrigin.startdate.getFullYear()
+            console.log('Year:', year)
+            // If the year is different from the current animation year, update it and emit the new year
+            if (year !== animationYear.value) {
+              animationYear.value = year
+              console.log('Animationyear ', animationYear)
+              emit('animation-year-updated', year)
+            }
+
             map.value.on('load', () => {
               const pointSource = 'point' + index
               const imageSource = 'image' + index
@@ -396,6 +407,7 @@ onMounted(() => {
                 },
                 paint: {
                   'text-color': '#FFFFFF', // Here you can set the color you want
+                  'text-halo-blur': 3,
                 },
               })
 
