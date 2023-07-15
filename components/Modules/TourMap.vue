@@ -1,9 +1,9 @@
 <template>
   <div class="relative w-full h-full flex flex-row">
-    <div id="map" class="relative w-[80%]"></div>
+    <div id="map" class="relative w-full"></div>
 
     <!-- The list component -->
-    <div class="relative h-[100%] overflow-y-scroll w-[20%] top-0">
+    <div class="relative h-[100%] overflow-y-scroll w-[20%] top-0 hidden">
       <transition name="slide" mode="out-in">
         <div v-if="!viewingDetail">
           <modules-tour-map-u-i
@@ -85,7 +85,7 @@ const generateTourPath = (waviness = 2, granularity = 50) => {
     currentPoint = destinationCoordinates
 
     // After each location, there's a 20% chance to return to Dresden before moving on to the next location.
-    if (Math.random() < 0.4 && index < data.value.length - 1) {
+    if (Math.random() < 0.85 && index < data.value.length - 1) {
       const pathBackToDresden = generateSplinePath(
         currentPoint,
         dresdenCoordinates,

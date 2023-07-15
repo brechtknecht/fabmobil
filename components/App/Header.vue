@@ -137,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSite } from '~/composables/site'
 
@@ -174,6 +174,11 @@ onMounted(() => {
   window.addEventListener('scroll', checkScroll)
   onUnmounted(() => {
     window.removeEventListener('scroll', checkScroll)
+  })
+
+  // Close the mobile navigation when route changes
+  watch(route, () => {
+    open.value = false
   })
 })
 </script>
