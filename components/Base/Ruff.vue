@@ -1,26 +1,24 @@
 <template>
   <div ref="wrapperRef" class="relative" style="display: inline-block">
-    <slot></slot>
+    <div class="relative z-10">
+      <slot></slot>
+    </div>
     <ClientOnly>
       <RoughCanvas
         :width="dimensions.width + padding * 2"
         :height="dimensions.height + padding * 2"
         :config="config"
-        class="absolute"
-        style="z-index: -1; top: -10px; left: -10px"
+        class="absolute z-40"
+        :style="{ zIndex: 1, top: `-${padding}px`, left: `-${padding}px` }"
       >
         <RoughEllipse
           :x="dimensions.width / 2 + padding"
           :y="dimensions.height / 2 + padding"
-          :width="dimensions.width"
-          :height="dimensions.height"
+          :width="dimensions.width + padding"
+          :height="dimensions.height + padding"
           stroke="#DCB9FB"
           :stroke-width="6"
-          :roughness="1"
-          fill="#eee"
-          fill-style="hachure"
-          :hachure-gap="4"
-          :hachure-angle="60"
+          :roughness="2"
         />
       </RoughCanvas>
     </ClientOnly>
@@ -28,14 +26,22 @@
 </template>
 
 <script>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, toRefs } from 'vue'
 
 export default {
   name: 'Rough',
-  setup() {
+  props: {
+    padding: {
+      type: Number,
+      default: 10,
+    },
+  },
+  setup(props) {
     const wrapperRef = ref(null)
     const dimensions = reactive({ width: 0, height: 0 })
-    const padding = 10
+
+    // Use `toRefs` to convert reactive `props` into plain references
+    const { padding } = toRefs(props)
 
     const config = {
       roughness: 1.5,
@@ -53,7 +59,6 @@ export default {
     return {
       wrapperRef,
       dimensions,
-      padding,
       config,
     }
   },

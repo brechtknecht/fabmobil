@@ -13,7 +13,7 @@
       >
         Das Fabmobil ist ein fahrendes
         <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für
-        <BaseRuff><span>Sachsen.</span></BaseRuff>
+        <BaseRuff :padding="20"><span>ganz Sachsen</span></BaseRuff>
       </h1>
     </div>
     <div

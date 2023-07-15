@@ -3,7 +3,9 @@
     class="flex flex-col bg-secondary items-center justify-center h-auto py-20"
   >
     <h1 class="font-headline text-large-title text-primary w-full text-center">
-      In ganz Sachsen unterwegs.
+      In
+      <BaseRuff :padding="20"><span>Fabmobil</span></BaseRuff>
+      unterwegs.
     </h1>
     <div
       ref="container"
