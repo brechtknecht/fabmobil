@@ -16,7 +16,7 @@
       />
     </div>
     <div class="bg-secondary h-fit">
-      <div class="h-[70vh] text-primary">
+      <div class="h-[90vh] text-primary">
         <ModulesTourMap :tour-data="page.tourdates" />
         <!-- Pass the tourdates as locations to the Map component -->
       </div>

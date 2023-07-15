@@ -56,7 +56,7 @@ const addedLayers = []
 const resetZoom = () => {
   map.value.flyTo({
     center: [13.7, 51.1],
-    zoom: 8,
+    zoom: 7.4,
   })
 }
 
@@ -183,7 +183,8 @@ onMounted(() => {
 
   map.value = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
+    // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
+    style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
     zoom: 7.4,
     center: [13.7, 51.1],
     pitch: 33,
@@ -210,7 +211,7 @@ onMounted(() => {
       type: 'line',
       source: 'tour-path',
       paint: {
-        'line-width': 8,
+        'line-width': 4,
         'line-color': '#00FF00', // Change this to the desired color of the line.
       },
     })
@@ -391,6 +392,9 @@ onMounted(() => {
                   'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
                   'text-offset': [0, 3],
                   'text-anchor': 'center',
+                },
+                paint: {
+                  'text-color': '#FFFFFF', // Here you can set the color you want
                 },
               })
 

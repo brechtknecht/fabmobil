@@ -38,7 +38,8 @@ const youtubeUrl = computed(() => {
     0px 253.22579956054688px 202.5806427001953px 0px rgba(124, 0, 255, 0.11);
 }
 .video-container {
-  padding-bottom: 56.25%; /* for 16:9 aspect ratio, change as needed */
+  /* padding-bottom: 56.25%;  */
+  padding-bottom: 49.1%;
   height: 0;
   position: relative;
 }

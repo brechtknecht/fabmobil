@@ -43,7 +43,7 @@
     0px 253.22579956054688px 202.5806427001953px 0px rgba(255, 255, 255, 0.11);
 }
 .video-container {
-  padding-bottom: 56.25%; /* for 16:9 aspect ratio, change as needed */
+  padding-bottom: 49.2%; /* for 16:9 aspect ratio, change as needed */
   height: 0;
   position: relative;
 }
