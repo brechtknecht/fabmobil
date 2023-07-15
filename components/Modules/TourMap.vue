@@ -60,7 +60,7 @@ const resetZoom = () => {
   })
 }
 
-const generateTourPath = (waviness = 12, granularity = 50) => {
+const generateTourPath = (waviness = 2, granularity = 50) => {
   // Get the coordinates of Dresden.
   const dresdenCoordinates = [13.7, 51.1]
   let currentPoint = dresdenCoordinates
@@ -392,6 +392,7 @@ onMounted(() => {
                   'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
                   'text-offset': [0, 3],
                   'text-anchor': 'center',
+                  'text-allow-overlap': true,
                 },
                 paint: {
                   'text-color': '#FFFFFF', // Here you can set the color you want
@@ -417,6 +418,7 @@ onMounted(() => {
                   'icon-image': 'custom-marker', // Reference the image we loaded earlier
                   'icon-size': 0.12, // You can adjust the size of the image here
                   'icon-offset': [0, 0], // You can adjust the position of the image here
+                  'icon-allow-overlap': true,
                 },
               })
             })
