@@ -1,6 +1,6 @@
 <template>
   <div
-    class="button transform border-2 h-fit flexitems-start justify-items-start flex-col md:flex-row w-64 py-1.5 px-4"
+    class="button transform border-2 h-fit flexitems-start justify-items-start flex-col md:flex-row w-64 py-1.5 px-4 cursor-pointer"
   >
     <span class="text-paragraph text-large-title" :class="[textColor]">{{
       label

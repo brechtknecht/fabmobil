@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-accent fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 py-12 sm:px-6 lg:px-8"
+    class="bg-[#DDBBFC] fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 py-12 sm:px-6 lg:px-8"
     :class="{ 'scrolled-up': isScrolledUp, 'scrolled-down': isScrolledDown }"
   >
     <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">

@@ -6,16 +6,18 @@
     }"
   >
     <div
-      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32"
+      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
     >
       <h1
         class="font-bold text-3xl sm:text-5xl text-black w-full text-center sm:text-left py-8"
       >
-        Das Fabmobil ist eine mobile Digitalwerkstatt für Sachsen
+        Das Fabmobil ist ein fahrendes
+        <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für
+        <BaseRuff><span>Sachsen.</span></BaseRuff>
       </h1>
     </div>
     <div
-      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32"
+      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
     >
       <p
         class="font-normal text-xl sm:text-2xl leading-relaxed text-black w-full text-center sm:text-left py-8"

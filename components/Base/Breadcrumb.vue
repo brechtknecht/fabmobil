@@ -1,5 +1,9 @@
 <template>
-  <nav aria-label="breadcrumb" class="bg-secondary py-2 drop-shadow-2">
+  <nav
+    v-if="breadcrumbs.length > 0"
+    aria-label="breadcrumb"
+    class="bg-secondary py-2 drop-shadow-2"
+  >
     <ol class="breadcrumb w-full px-12 flex mx-auto">
       <li
         v-for="(route, index) in breadcrumbs"
@@ -16,9 +20,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+const breadcrumbDepth = ref(2)
 
 const translate = (name) => {
   const dictionary = {
@@ -32,14 +38,15 @@ const translate = (name) => {
 }
 
 const breadcrumbs = computed(() => {
-  const pathArray = route.path.split('/')
-  pathArray.shift()
+  const pathArray = route.path.split('/').filter(Boolean)
+
+  if (pathArray.length !== breadcrumbDepth.value) return []
 
   const breadcrumbs = pathArray.reduce((breadcrumbArray, path, i) => {
     return [
       ...breadcrumbArray,
       {
-        path: (i !== 0 ? breadcrumbArray[i - 1].path : '') + '/' + path,
+        path: '/' + (i !== 0 ? breadcrumbArray[i - 1].path : '') + '/' + path,
         name: path
           .split('-')
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -61,8 +68,17 @@ const breadcrumbs = computed(() => {
   margin-top: 1rem;
 }
 
+.breadcrumb-item {
+  display: inline-block;
+}
+
 .breadcrumb-item + .breadcrumb-item::before {
-  content: ' → ';
+  content: '→';
+  padding: 0 8px; /* Adjust spacing as needed */
+}
+
+.breadcrumb-item:last-child::before {
+  content: ''; /* Removes arrow after last item */
 }
 
 .breadcrumb-item a {
