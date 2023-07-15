@@ -1,12 +1,16 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@tailwindcss/aspect-ratio':
     specifier: ^0.4.2
     version: 0.4.2(tailwindcss@3.3.2)
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
-    version: 4.2.3(vite@4.2.1)(vue@3.2.47)
+    version: 4.2.3(vite@4.3.9)
   '@vueuse/core':
     specifier: ^10.2.1
     version: 10.2.1
@@ -29,8 +33,8 @@ dependencies:
     specifier: ^1.1.0
     version: 1.1.0(roughjs@4.5.2)
   vue3-rough:
-    specifier: ^1.1.1
-    version: 1.1.1(roughjs@4.5.2)
+    specifier: ^1.1.3
+    version: 1.1.3(roughjs@4.5.2)
 
 devDependencies:
   '@nuxt/eslint-config':
@@ -1401,6 +1405,20 @@ packages:
     dependencies:
       vite: 4.2.1(@types/node@18.15.11)(sass@1.63.6)
       vue: 3.2.47
+    dev: true
+
+  /@vitejs/plugin-vue@4.2.3(vite@4.3.9):
+    resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^4.0.0
+      vue: ^3.2.25
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      vite: 4.3.9(@types/node@18.15.11)(sass@1.63.6)
+    dev: false
 
   /@volar/language-core@1.3.0-alpha.0:
     resolution: {integrity: sha512-W3uMzecHPcbwddPu4SJpUcPakRBK/y/BP+U0U6NiPpUX1tONLC4yCawt+QBJqtgJ+sfD6ztf5PyvPL3hQRqfOA==}
@@ -5891,6 +5909,7 @@ packages:
       sass: 1.63.6
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
 
   /vite@4.3.9(@types/node@18.15.11)(sass@1.63.6):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
@@ -5924,7 +5943,6 @@ packages:
       sass: 1.63.6
     optionalDependencies:
       fsevents: 2.3.2
-    dev: true
 
   /vscode-jsonrpc@6.0.0:
     resolution: {integrity: sha512-wnJA4BnEjOSyFMvjZdpiOwhSq9uDoK8e/kpRJDTaMYzwlkrhG1fwDIZI94CLsLzlCK5cIbMMtFlJlfR57Lavmg==}
@@ -6078,8 +6096,8 @@ packages:
       typescript: 5.0.3
     dev: true
 
-  /vue3-rough@1.1.1(roughjs@4.5.2):
-    resolution: {integrity: sha512-blwdB5FuRPpIeuum346t8tVqTSy5JWoNDT7745ihHtmjcQmc+pya0Uv4FbxccL0usomb3+hQ0vVQh03e9mHMpQ==}
+  /vue3-rough@1.1.3(roughjs@4.5.2):
+    resolution: {integrity: sha512-hzL2gyVlRsa09SEejP2DxUjyHBhYvdQjzrcIw1u5f+BHlOu9DlbmlWGKJqBOIa4Qw2GN7A5aopJXnOtCRgDXyg==}
     peerDependencies:
       roughjs: ^4.3.1
     dependencies:
@@ -6235,7 +6253,3 @@ packages:
       compress-commons: 4.1.1
       readable-stream: 3.6.2
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

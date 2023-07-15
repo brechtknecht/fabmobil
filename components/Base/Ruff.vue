@@ -14,6 +14,13 @@
           :y="dimensions.height / 2 + padding"
           :width="dimensions.width"
           :height="dimensions.height"
+          stroke="#DCB9FB"
+          :stroke-width="6"
+          :roughness="1"
+          fill="#eee"
+          fill-style="hachure"
+          :hachure-gap="4"
+          :hachure-angle="60"
         />
       </RoughCanvas>
     </ClientOnly>
