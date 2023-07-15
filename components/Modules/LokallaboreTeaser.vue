@@ -2,30 +2,34 @@
   <div
     class="flex flex-col bg-tertiary items-center justify-center h-fit py-24"
   >
-    <img
-      src="/assets/img/frontpage/LOKALLABORE.svg"
-      class="w-5/6 md:max-w-[1280px] py-8"
-    />
-    <h1
-      class="font-headline text-large-title text-primary w-full text-center py-8"
-    >
-      Ein Netzwerk aus Digitalwerkstätten für Jugendliche im ländlichen Raum
-    </h1>
-    <div
-      class="flex justify-center items-center space-x-4 relative w-full h-full"
-    >
-      <BaseButton
-        class="bg-white relative lg:absolute z-10 lg:top-80 lg:right-[15%]"
-        label="Erfahre Mehr!"
-        text-color="text-black"
+    <div class="container mx-auto px-4">
+      <img
+        src="/assets/img/frontpage/LOKALLABORE.svg"
+        class="w-5/6 md:max-w-[1280px] py-8 mx-0 sm:mx-auto"
       />
-    </div>
-    <div
-      class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 w-full h-full max-w-screen-2xl mx-auto"
-    >
-      <BaseVideo
-        url="https://player.vimeo.com/video/538316076?autoplay=1&loop=1&muted=1"
-      />
+      <h1
+        class="font-headline text-3xl leading-normal sm:text-large-title text-left sm:text-center text-primary w-full py-8"
+      >
+        Ein Netzwerk aus Digitalwerkstätten für Jugendliche im ländlichen Raum
+      </h1>
+      <div
+        class="flex flex-col-reverse sm:flex-row-reverse justify-center items-center space-x-4 relative w-full h-full"
+      >
+        <div class="flex flex-row">
+          <BaseButton
+            class="bg-white relative lg:absolute z-10 lg:top-80 lg:right-[15%]"
+            label="Erfahre Mehr!"
+            text-color="text-black"
+          />
+        </div>
+        <div
+          class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 w-full h-full max-w-screen-2xl mx-auto"
+        >
+          <BaseVideo
+            url="https://player.vimeo.com/video/538316076?autoplay=1&loop=1&muted=1"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
