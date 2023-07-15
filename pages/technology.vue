@@ -7,15 +7,39 @@
             <h1 class="font-headline text-primary text-large-title font-bold">
               {{ page.title }}
             </h1>
-            <h2 class="font-headline text-primary">All Available Categories</h2>
+            <h2
+              class="font-paragraph text-headline opacity-60 text-primary pb-2 pt-8"
+            >
+              All Available Categories
+            </h2>
             <ul>
               <li
                 v-for="(category, index) in categoryData?.result.categories"
                 :key="index"
-                class="font-paragraph text-primary cursor-pointer"
-                @click="scrollToCategory(category)"
+                class="font-headline text-title-3 text-primary cursor-pointer flex justify-between items-center hover:bg-primary hover:text-white transition-colors duration-300 pr-40"
+                @click="scrollToTechnology(index)"
+                @mouseover="hoveredIndex = index"
+                @mouseleave="hoveredIndex = null"
               >
                 {{ category.name }}
+                <svg
+                  v-if="hoveredIndex === index"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-5 h-5 inline-block ml-1 transition-all ease-in-out duration-300 transform translate-x-0 opacity-0"
+                  :class="{
+                    'translate-x-2 opacity-100': hoveredIndex === index,
+                  }"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </li>
             </ul>
           </div>
@@ -23,8 +47,8 @@
           <div class="tech-grid w-full md:w-8/12 pt-16">
             <div
               v-for="(tech, index) in technologyData?.result.technologies"
-              :id="'tech-item-' + tech.id"
               :key="index"
+              ref="technologies"
               class="tech-item"
             >
               <div class="flex flex-col md:flex-row">
@@ -92,12 +116,16 @@
           </div>
         </div>
       </div>
+
+      <!-- DEBUG -->
+      <!-- <pre>{{ technologyData }}</pre> -->
+      <!-- <pre>{{ categoryData }}</pre> -->
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 
 const { data } = await useKql({
   query: 'page("technology")',
@@ -107,7 +135,6 @@ const { data } = await useKql({
 })
 
 const page = data.value?.result
-setPage(page)
 
 const { data: technologyData } = await useKql({
   query: 'page("technology")',
@@ -157,30 +184,20 @@ const { data: categoryData } = await useKql({
   },
 })
 
+const technologies = ref(null)
+const hoveredIndex = ref(null)
+
+function scrollToTechnology(index) {
+  technologies.value[index].scrollIntoView({
+    behavior: 'smooth',
+  })
+}
+
 onMounted(() => {
   for (const tech of technologyData.value?.result.technologies ?? []) {
     tech.showDevices = false
   }
 })
-
-const getTechIdFromCategory = (categoryName) => {
-  const tech = technologyData.value?.result.technologies.find(
-    (tech) => tech.category === categoryName
-  )
-
-  return tech ? tech.id : null
-}
-
-const scrollToCategory = (category) => {
-  console.log('ScrollTo:', category)
-  const techId = getTechIdFromCategory(category.name)
-  console.log('TechID', techId)
-  if (techId) {
-    document.getElementById('tech-item-' + techId).scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-}
 </script>
 
 <style scoped>
@@ -210,5 +227,14 @@ const scrollToCategory = (category) => {
 
 .rotate-180 {
   rotate: 180deg;
+}
+
+li:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+li svg {
+  transition: all 0.3s ease;
 }
 </style>
