@@ -16,8 +16,13 @@ const scrollPercentage = ref(0)
 
 const handleScroll = () => {
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
-  const totalDuration =
-    scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
+  console.log(scrollyVideoRef)
+  let totalDuration = 0
+  if (!scrollyVideoRef.isSafari) {
+    totalDuration = scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
+  } else {
+    totalDuration = scrollyVideoRef.video.duration
+  }
 
   // Update the scroll percentage ref
   scrollPercentage.value = (scrollyVideoRef.currentTime / totalDuration) * 100
@@ -38,7 +43,7 @@ onBeforeUnmount(() => {
   <div class="section bg-black">
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
-        <!-- Pass scrollPercentage to VideoOverlay -->
+        <pre class="sticky top-32 text-white">{{ scrollPercentage }}</pre>
 
         <!-- Pass scrollPercentage to VideoOverlay -->
         <BaseBusOverlays
