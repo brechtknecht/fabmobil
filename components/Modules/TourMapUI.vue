@@ -33,19 +33,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-  animationYear: {
-    type: Number,
-    default: 0,
-  },
 })
-
-const currentYear = ref(null)
-watch(
-  () => props.animationYear,
-  (newYear) => {
-    currentYear.value = newYear
-  }
-)
 
 const emit = defineEmits(['go-to-coordinate', 'reset-zoom'])
 

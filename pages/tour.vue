@@ -23,17 +23,14 @@
       </h2>
       <div class="h-[100vh] text-primary">
         <!-- Pass the tourdates as locations to the Map component -->
-        <ModulesTourMap
-          :tour-data="page.tourdates"
-          @animation-year-updated="handleEmit"
-        />
+        <ModulesTourMap :tour-data="page.tourdates" />
       </div>
     </div>
 
     <!-- New Section: Upcoming Dates -->
     <div class="section-upcoming-dates bg-secondary px-4 pt-12 pb-64">
       <h2 class="font-headline text-primary text-large-title font-bold mb-4">
-        Upcoming Dates
+        Die nächsten S pots:
       </h2>
       <div
         v-for="(tourDate, index) in upcomingTourDates"
@@ -66,13 +63,6 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-const showInfo = reactive({})
-
-const emittedData = ref('')
-
-const handleEmit = (emittedValue) => {
-  emittedData.value = emittedValue
-}
 
 const { data } = await useKql({
   query: `page("/tour")`,
