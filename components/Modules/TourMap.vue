@@ -180,12 +180,22 @@ onMounted(() => {
   mapboxgl.accessToken =
     'pk.eyJ1IjoiYnJlY2h0a25lY2h0IiwiYSI6ImNqZ2lkOHM1MDBidGkyeW84aXJwbmc2ZWoifQ.C4Qv0LupRWQ2b1ZamWqqUA'
 
+  const viewportWidth =
+    window.innerWidth || document.documentElement.clientWidth
+  let zoom = 8
+  if (viewportWidth <= 600) {
+    // This is typically the width of a mobile device
+    zoom = 6.6 // Adjust this to your preferred zoom level on mobile devices
+  } else {
+    zoom = 7.4 // Adjust this to your preferred zoom level on larger devices
+  }
+
   map.value = new mapboxgl.Map({
     container: 'map',
     // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
     style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
-    zoom: 7.4,
-    center: [12.8, 51.1],
+    zoom: zoom,
+    center: [13.1, 51.1],
     pitch: 33,
     antialias: true,
   })

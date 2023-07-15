@@ -17,7 +17,7 @@
     </div>
     <div class="section-tour bg-secondary h-fit border-t border-b border-black">
       <h2
-        class="font-headline text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-2"
+        class="font-headline text-xl sm:text-5xl leading-relaxed text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-4 pb-2 px-4"
       >
         Wo wir schon waren (2017 – 2023)
       </h2>
