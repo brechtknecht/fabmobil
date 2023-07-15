@@ -7,7 +7,7 @@
       <img class="h-12" src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
 
-    <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
+    <div class="hidden xl:ml-16 xl:flex xl:items-center xl:space-x-12">
       <NuxtLink
         v-for="item in listedChildren"
         :key="item.id"
@@ -29,7 +29,7 @@
       </NuxtLink>
     </div>
 
-    <div class="-mr-2 flex items-center sm:hidden">
+    <div class="-mr-2 flex items-center xl:hidden">
       <button
         class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         @click="open = !open"
@@ -74,7 +74,7 @@
 
     <div
       v-if="open"
-      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right sm:hidden"
+      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right xl:hidden"
     >
       <div
         class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
