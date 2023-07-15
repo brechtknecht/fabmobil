@@ -156,22 +156,32 @@ const listedChildren = computed(() =>
 onMounted(() => {
   const checkScroll = () => {
     const currentScrollPosition = window.pageYOffset
-    if (
+    const threshold = 100 // Set your desired threshold here
+
+    if (currentScrollPosition < threshold) {
+      // If we're within the threshold from the top, always show the navbar
+      isScrolledDown.value = false
+      isScrolledUp.value = true
+    } else if (
       currentScrollPosition > 50 &&
       lastScrollPosition.value <= currentScrollPosition
     ) {
+      // Otherwise, hide or show the navbar based on scroll direction
       isScrolledDown.value = true
       isScrolledUp.value = false
     } else if (
       isScrolledDown.value &&
-      currentScrollPosition + 50 < lastScrollPosition.value
+      currentScrollPosition + 10 < lastScrollPosition.value
     ) {
       isScrolledDown.value = false
       isScrolledUp.value = true
     }
+
     lastScrollPosition.value = currentScrollPosition
   }
+
   window.addEventListener('scroll', checkScroll)
+
   onUnmounted(() => {
     window.removeEventListener('scroll', checkScroll)
   })

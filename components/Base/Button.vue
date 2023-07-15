@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    :to="to"
     class="button transform border-2 h-fit flexitems-start justify-items-start flex-col md:flex-row w-64 py-1.5 px-4 cursor-pointer"
   >
     <span class="text-paragraph text-large-title" :class="[textColor]">{{
@@ -16,7 +17,7 @@
       class="w-20 pb-4 mt-24"
       src="/assets/img/components/arrow-right-dark.svg"
     />
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +26,10 @@ const props = defineProps({
   textColor: {
     type: String,
     default: 'text-white',
+  },
+  to: {
+    type: String,
+    default: '#',
   },
 })
 </script>

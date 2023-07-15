@@ -47,7 +47,7 @@
         </defs>
       </svg>
 
-      <BaseButton label="Tourplan" />
+      <BaseButton to="/tour" label="Tourplan" />
     </div>
   </div>
 </template>
