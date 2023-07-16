@@ -21,9 +21,20 @@
       >
         Wo wir schon waren (2017 – 2023)
       </h2>
+      <!-- Add Selector here -->
+      <div>
+        <h3>Select Category</h3>
+        <button
+          v-for="(category, index) in categories"
+          :key="index"
+          @click="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+      </div>
       <div class="h-[100vh] text-primary">
         <!-- Pass the tourdates as locations to the Map component -->
-        <ModulesTourMap :tour-data="page.tourdates" />
+        <ModulesTourMap :tour-data="filteredTourDates" />
       </div>
     </div>
 
@@ -109,6 +120,37 @@ if (page && page.tourdates) {
     (tourDate) => new Date(tourDate.enddate) > new Date()
   )
 }
+
+// Initialize selectedCategory as a reactive ref, with a default value of 'All'
+const selectedCategory = ref('All')
+
+// Define a function to update selectedCategory
+const selectCategory = (category) => {
+  selectedCategory.value = category
+}
+
+// Assuming each tourDate has a category property, we can collect all unique categories this way:
+const categories = computed(() => {
+  if (page && page.tourdates) {
+    const uniqueCategories = Array.from(
+      new Set(page.tourdates.map((tourDate) => tourDate.category))
+    )
+    return ['All', ...uniqueCategories]
+  }
+  return ['All']
+})
+
+// Computed property for filteredTourDates
+const filteredTourDates = computed(() => {
+  if (page && page.tourdates) {
+    return page.tourdates.filter(
+      (tourDate: { enddate: string | number | Date; category: string }) =>
+        selectedCategory.value === 'All' ||
+        selectedCategory.value === tourDate.category
+    )
+  }
+  return []
+})
 </script>
 
 <style scoped>

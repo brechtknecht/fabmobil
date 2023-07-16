@@ -10,17 +10,19 @@ const pageIndex = children?.findIndex(({ id }: any) => id === page?.id)
 </script>
 
 <template>
-  <nav class="blog-prevnext py-8">
+  <nav class="blog-prevnext py-8 px-4 xl:px-0">
     <h2 class="font-headline text-title-3 pb-4">Andere Materialien:</h2>
 
-    <div class="autogrid" style="--gutter: 1.5rem">
+    <div class="flex flex-col sm:flex-row gap-4">
       <AppNote
         v-if="pageIndex !== undefined && pageIndex > 0"
+        class="w-full h-full"
         :note="children[pageIndex - 1]"
         :excerpt="false"
       />
       <AppNote
         v-if="pageIndex !== undefined && pageIndex < children.length - 1"
+        class="w-full h-full"
         :note="children[pageIndex + 1]"
         :excerpt="false"
       />

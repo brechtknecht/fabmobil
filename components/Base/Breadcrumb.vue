@@ -2,9 +2,11 @@
   <nav
     v-if="breadcrumbs.length > 0"
     aria-label="breadcrumb"
-    class="bg-secondary py-2 drop-shadow-2"
+    class="bg-secondary py-8 pb-4 md:py-2 drop-shadow-2"
   >
-    <ol class="breadcrumb w-full px-12 flex mx-auto">
+    <ol
+      class="breadcrumb w-full px-4 sm:px-12 flex flex-col sm:flex-row mx-auto"
+    >
       <li
         v-for="(route, index) in breadcrumbs"
         :key="index"
@@ -75,10 +77,6 @@ const breadcrumbs = computed(() => {
 .breadcrumb-item + .breadcrumb-item::before {
   content: '→';
   padding: 0 8px; /* Adjust spacing as needed */
-}
-
-.breadcrumb-item:last-child::before {
-  content: ''; /* Removes arrow after last item */
 }
 
 .breadcrumb-item a {

@@ -187,7 +187,7 @@ onMounted(() => {
     // This is typically the width of a mobile device
     zoom = 6.6 // Adjust this to your preferred zoom level on mobile devices
   } else {
-    zoom = 7.4 // Adjust this to your preferred zoom level on larger devices
+    zoom = 8 // Adjust this to your preferred zoom level on larger devices
   }
 
   map.value = new mapboxgl.Map({
@@ -195,7 +195,7 @@ onMounted(() => {
     // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
     style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
     zoom: zoom,
-    center: [13.1, 51.1],
+    center: [14, 51.1],
     pitch: 33,
     antialias: true,
   })
@@ -399,16 +399,20 @@ onMounted(() => {
                 layout: {
                   'text-field': modelOrigin.city,
                   'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                  'text-offset': [0, 3],
+                  'text-size': 16,
+                  'text-transform': 'uppercase',
+                  'text-letter-spacing': 0.05,
+                  'text-offset': [-0.6, 2.2],
                   'text-anchor': 'center',
                   'text-allow-overlap': true,
                 },
                 paint: {
-                  'text-color': '#FFFFFF', // Here you can set the color you want
-                  'text-halo-blur': 3,
+                  'text-color': '#202',
+                  'text-halo-color': '#fff',
+                  'text-halo-width': 2.5,
                 },
               })
-
+              console.log('Model: ', modelOrigin)
               // Add the image layer
               map.value.addSource(imageSource, {
                 type: 'geojson',
@@ -426,8 +430,8 @@ onMounted(() => {
                 source: imageSource,
                 layout: {
                   'icon-image': 'custom-marker', // Reference the image we loaded earlier
-                  'icon-size': 0.12, // You can adjust the size of the image here
-                  'icon-offset': [0, 0], // You can adjust the position of the image here
+                  'icon-size': 0.1, // You can adjust the size of the image here
+                  'icon-offset': [-100, -100], // You can adjust the position of the image here
                   'icon-allow-overlap': true,
                 },
               })

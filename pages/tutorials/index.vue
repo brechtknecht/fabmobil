@@ -48,7 +48,7 @@
       <p>No tutorials available in this category.</p>
     </div>
     <!-- Debug text -->
-    <pre>{{ page }}</pre>
+    <!-- <pre>{{ page }}</pre> -->
   </div>
 </template>
 
