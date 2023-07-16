@@ -190,12 +190,18 @@ onMounted(() => {
     zoom = 8 // Adjust this to your preferred zoom level on larger devices
   }
 
+  const bounds = [
+    [11.5, 50], // Southwest coordinates
+    [16, 53], // Northeast coordinates
+  ]
+
   map.value = new mapboxgl.Map({
     container: 'map',
     // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
     style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
     zoom: zoom,
     center: [14, 51.1],
+    maxBounds: bounds, // Set the map's geographical boundaries.
     pitch: 33,
     antialias: true,
     cooperativeGestures: true,
