@@ -39,32 +39,34 @@
     </div>
 
     <!-- New Section: Upcoming Dates -->
-    <div class="section-upcoming-dates bg-secondary px-4 pt-12 pb-64">
-      <h2 class="font-headline text-primary text-large-title font-bold mb-4">
-        Die nächsten S pots:
-      </h2>
-      <div
-        v-for="(tourDate, index) in upcomingTourDates"
-        :key="index"
-        class="mb-2 flex flex-col sm:flex-row items-start sm:items-center justify-between w-full pb-4 sm:pb-0"
-      >
+    <div class="bg-secondary">
+      <div class="container mx-auto section-upcoming-date px-4 pt-12 pb-64">
+        <h2 class="font-headline text-primary text-large-title font-bold mb-4">
+          Die nächsten Spots:
+        </h2>
         <div
-          class="flex flex-col sm:flex-row items-baseline gap-0 pb-2 sm:pb-0 sm:gap-8"
+          v-for="(tourDate, index) in upcomingTourDates"
+          :key="index"
+          class="mb-2 flex flex-col sm:flex-row items-start sm:items-center justify-between w-full pb-4 sm:pb-0"
         >
-          <p class="font-headline text-title-3 text-primary leading-normal">
-            {{ formatDate(tourDate.startdate) }} –
-            {{ formatDate(tourDate.enddate) }}
-          </p>
-          <p class="font-paragraph text-white text-title-3 leading-normal">
-            {{ tourDate.venuename }}
+          <div
+            class="flex flex-col sm:flex-row items-baseline gap-0 pb-2 sm:pb-0 sm:gap-8"
+          >
+            <p class="font-headline text-title-3 text-primary leading-normal">
+              {{ formatDate(tourDate.startdate) }} –
+              {{ formatDate(tourDate.enddate) }}
+            </p>
+            <p class="font-paragraph text-white text-title-3 leading-normal">
+              {{ tourDate.venuename }}
+            </p>
+          </div>
+          <p
+            v-if="tourDate.registration == 'true'"
+            class="text-white border border-white rounded-md px-2"
+          >
+            Voranmeldung Nötig
           </p>
         </div>
-        <p
-          v-if="tourDate.registration == 'true'"
-          class="text-white border border-white rounded-md px-2"
-        >
-          Voranmeldung Nötig
-        </p>
       </div>
     </div>
     <!-- Debug text -->
