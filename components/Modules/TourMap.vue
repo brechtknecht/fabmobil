@@ -198,6 +198,7 @@ onMounted(() => {
     center: [14, 51.1],
     pitch: 33,
     antialias: true,
+    cooperativeGestures: true,
   })
 
   // Create the tour path and add it to the map as a GeoJSON source and a line layer.

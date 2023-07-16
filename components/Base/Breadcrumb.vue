@@ -2,7 +2,7 @@
   <nav
     v-if="breadcrumbs.length > 0"
     aria-label="breadcrumb"
-    class="bg-secondary py-8 pb-4 md:py-2 drop-shadow-2"
+    class="bg-secondary py-4 pb-4 md:py-2 drop-shadow-2"
   >
     <ol
       class="breadcrumb w-full px-4 sm:px-12 flex flex-col sm:flex-row mx-auto"
@@ -10,7 +10,7 @@
       <li
         v-for="(route, index) in breadcrumbs"
         :key="index"
-        class="breadcrumb-item text-primary text-headline weight-regular text-body font-medium"
+        class="breadcrumb-item text-primary weight-regular text-body font-medium"
       >
         <router-link v-if="index !== breadcrumbs.length - 1" :to="route.path">{{
           translate(route.name)
