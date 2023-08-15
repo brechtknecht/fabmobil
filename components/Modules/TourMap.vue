@@ -259,7 +259,7 @@ onMounted(() => {
     }, intervalDuration) // Keep the interval at 1 ms
   })
 
-  map.value.scrollZoom.disable()
+  // map.value.scrollZoom.disable()
 
   const modelOrigins = data.value.map((item) => ({
     city: item.location.city,
