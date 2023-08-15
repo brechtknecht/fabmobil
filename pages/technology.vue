@@ -49,7 +49,7 @@
               v-for="(tech, index) in technologyData?.result.technologies"
               :key="index"
               ref="technologies"
-              class="tech-item"
+              class="tech-item border-b border-white py-8"
             >
               <div class="flex flex-col md:flex-row">
                 <div class="left-side w-full md:w-1/2">

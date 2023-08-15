@@ -4,7 +4,7 @@
   >
     <h1 class="font-headline text-large-title text-primary w-full text-center">
       In
-      <BaseRuff :padding="20"><span>Fabmobil</span></BaseRuff>
+      <BaseRuff :padding="30"><span>ganz Sachsen</span></BaseRuff>
       unterwegs.
     </h1>
     <div

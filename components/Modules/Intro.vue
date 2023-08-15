@@ -13,7 +13,7 @@
       >
         Das Fabmobil ist ein fahrendes
         <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für
-        <BaseRuff :padding="20"><span>ganz Sachsen</span></BaseRuff>
+        <BaseRuff :padding="10"><span>ganz Sachsen</span></BaseRuff>
       </h1>
     </div>
     <div
@@ -28,10 +28,10 @@
       </p>
     </div>
     <div
-      class="flex flex-col sm:flex-row h-auto sm:h-full justify-center items-center py-32"
+      class="flex flex-col sm:flex-row h-auto sm:h-full justify-center items-center py-32 max-w-5xl"
     >
       <h1
-        class="font-bold text-3xl sm:text-5xl text-black w-full text-center sm:text-left"
+        class="font-bold font-headline text-3xl sm:text-5xl text-black w-full text-center sm:text-left"
       >
         Kostenlose Workshops
       </h1>
