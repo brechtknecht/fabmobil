@@ -202,7 +202,7 @@ onMounted(() => {
     zoom: zoom,
     center: [14, 51.1],
     maxBounds: bounds, // Set the map's geographical boundaries.
-    pitch: 33,
+    // pitch: 33,
     antialias: true,
     cooperativeGestures: true,
   })
