@@ -2,16 +2,13 @@
   <section class="bg-secondary">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       <div>
-        <div class="flex flex-row">
+        <div class="flex flex-row pb-32">
           <div class="category-list sticky top-0 w-4/12 hidden md:block">
-            <h1 class="font-headline text-primary text-large-title font-bold">
+            <h1
+              class="font-headline text-primary text-large-title font-bold leading-tight py-4"
+            >
               {{ page.title }}
             </h1>
-            <h2
-              class="font-paragraph text-headline opacity-60 text-primary pb-2 pt-8"
-            >
-              All Available Categories
-            </h2>
             <ul>
               <li
                 v-for="(category, index) in categoryData?.result.categories"
