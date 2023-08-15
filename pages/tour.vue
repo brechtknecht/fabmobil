@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div
+    <!-- <div
       v-if="page.modules && page.modules.length > 0"
       class="app-hero-wrapper"
     >
@@ -14,8 +14,10 @@
         :foreground-color="module.foregroundColor"
         :image="module.image"
       />
-    </div>
-    <div class="section-tour bg-secondary h-fit border-t border-b border-black">
+    </div> -->
+    <div
+      class="section-tour bg-secondary h-fit border-t border-b border-black py-4"
+    >
       <h2
         class="font-headline text-xl sm:text-5xl leading-relaxed text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-4 pb-2 px-4"
       >
