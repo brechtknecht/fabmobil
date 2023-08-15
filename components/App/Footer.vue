@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const site = useSite()
 const listedChildren = computed(() =>
   (site.value?.children ?? []).filter((i) => i.isListed)
@@ -50,6 +50,11 @@ const listedChildren = computed(() =>
               Gib Fabo-Abo!
             </button>
           </div>
+          <img
+            class="w-20 pb-4 -rotate-90 scale-50"
+            src="/assets/img/components/arrow-right.svg"
+            @click="scrollToTop()"
+          />
         </div>
       </div>
       <hr class="h-px my-8 bg-white border border-white w-full" />
@@ -114,6 +119,16 @@ const listedChildren = computed(() =>
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  methods: {
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    },
+  },
+}
+</script>
 
 <style scoped>
 .footer h2 {
