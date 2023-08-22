@@ -21,6 +21,14 @@ export default {
   props: {
     speed: {
       type: Number,
+      default: 0.000001,
+    },
+    mouseEffectIntensity: {
+      type: Number,
+      default: 0.000000001,
+    },
+    scale: {
+      type: Number,
       default: 1,
     },
   },
@@ -42,16 +50,47 @@ export default {
   },
   methods: {
     initImages() {
-      // Define number of images you want to float
       const numberOfImages = 5
+      // Divide the screen into grid
+      const rows = 5 // Number of rows
+      const cols = 5 // Number of columns
+      const cellWidth = this.screenWidth / cols
+      const cellHeight = this.screenHeight / rows
+
+      // Create an array to track selected cells
+      const selectedCells = []
+
       for (let i = 0; i < numberOfImages; i++) {
-        const x = this.screenWidth + Math.random() * 300 // Start from the right side
-        const y = Math.random() * this.screenHeight
-        const size = Math.random() * 100 + 50 // Random size between 50px and 150px
+        // Find a unique random cell
+        let cell
+        do {
+          cell = {
+            row: Math.floor(Math.random() * rows),
+            col: Math.floor(Math.random() * cols),
+          }
+        } while (
+          selectedCells.some(
+            (selectedCell) =>
+              selectedCell.row === cell.row && selectedCell.col === cell.col
+          )
+        )
+
+        selectedCells.push(cell)
+
+        // Compute the position based on the cell, with a random offset within the cell
+        const x = cell.col * cellWidth + Math.random() * cellWidth
+        const y = cell.row * cellHeight + Math.random() * cellHeight
+
+        const size = (Math.random() * 100 + 50) * this.scale // Apply scale factor
+
+        const url = `/assets/img/background-items/${String(i + 1).padStart(
+          2,
+          '0'
+        )}.png`
 
         this.images.push({
           id: i,
-          url: 'https://upload.wikimedia.org/wikipedia/commons/7/70/Example.png',
+          url: url,
           style: `left:${x}px;top:${y}px;width:${size}px;`,
           x,
           y,
@@ -59,7 +98,6 @@ export default {
         })
       }
 
-      // Start animation
       this.animateImages()
     },
     handleMouseMove(event) {
@@ -72,11 +110,11 @@ export default {
       this.images.forEach((image, index) => {
         // Calculate parallax shift based on mouse position relative to the center
         const shiftX =
-          (this.mouseX - this.screenWidth / 2) * (image.size * 0.0001)
+          (this.mouseX - this.screenWidth / 2) * (image.size * 0.000001)
         const shiftY =
-          (this.mouseY - this.screenHeight / 2) * (image.size * 0.0001)
+          (this.mouseY - this.screenHeight / 2) * (image.size * 0.000001)
 
-        let x = image.x + this.speed + image.size * 0.05 + shiftX // Move right with parallax effect
+        let x = image.x + this.speed + image.size * 0.0002 + shiftX // Move right with parallax effect
         let y = image.y + shiftY
 
         // Respawn logic for all edges
@@ -99,6 +137,7 @@ export default {
 <style scoped>
 .floating-image {
   position: absolute;
+  mix-blend-mode: overlay;
 }
 
 .floating-images {

@@ -26,7 +26,7 @@ setPage(page)
 </script>
 
 <template>
-  <div class="bg-[#DDBBFC]">
+  <div class="bg-[#DDBBFC] pb-32">
     <div
       class="px-0 pb-0 3xl:px-24 3xl:pb-24 3xl:pt-12 max-w-screen-2xl mx-auto"
     >
@@ -35,7 +35,7 @@ setPage(page)
       />
     </div>
     <!--...and so on...-->
-    <BaseFloatingImages :speed="0.0000000001">
+    <BaseFloatingImages :speed="0.000000000000000001" :scale="10">
       <ModulesIntro />
     </BaseFloatingImages>
     <ModulesBusAnimation />
