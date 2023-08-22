@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { computed } from 'vue'
 import type { KirbyLayout } from '#nuxt-kql'
 
 defineProps<{
@@ -10,6 +11,27 @@ defineProps<{
 function span(width: `${string}/${string}`, columns = 12) {
   const [a, b] = width.split('/')
   return columns * (parseInt(a) / parseInt(b))
+}
+
+function getLayoutClass(layoutPosition) {
+  switch (layoutPosition) {
+    case 'top-center':
+      return 'items-start justify-center'
+    case 'top-left':
+      return 'items-start justify-start'
+    case 'top-right':
+      return 'items-start justify-end'
+    case 'center':
+      return 'items-center justify-center'
+    case 'bottom-left':
+      return 'items-end justify-start'
+    case 'bottom-center':
+      return 'items-end justify-center'
+    case 'bottom-right':
+      return 'items-end justify-end'
+    default:
+      return ''
+  }
 }
 
 // Set up ScrollReveal on client side
@@ -39,11 +61,14 @@ onMounted(async () => {
     :id="layout.content.id"
     :key="layout.content.id"
     :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}; background-image: url('${layout.image?.url}'); background-size: cover;`"
-    :class="layout.attrs.verticalspace"
+    :class="[layout.attrs.verticalspace]"
   >
     <section
-      class="container grid padding-xl items-center mx-auto"
-      :class="[{ 'text-white': layout.attrs.darkmode == 'true' }]"
+      class="container grid padding-xl mx-auto"
+      :class="[
+        { 'text-white': layout.attrs.darkmode == 'true' },
+        getLayoutClass(layout.attrs.layoutposition),
+      ]"
     >
       <div
         v-for="(column, index) in layout.content.columns"

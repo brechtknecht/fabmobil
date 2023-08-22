@@ -7,7 +7,13 @@
       target="_blank"
     >
       <div
-        class="border-2 border-gray-800 rounded-lg px-3 py-2 text-gray-800 cursor-pointer hover:bg-gray-800 hover:text-gray-200 w-full"
+        class="border-2 rounded-lg px-3 py-2 cursor-pointer w-full"
+        :class="{
+          'border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-gray-200':
+            button.dark !== 'true',
+          'border-white text-white hover:bg-gray-200 hover:text-gray-800':
+            button.dark == 'true',
+        }"
       >
         {{ button.text }}
       </div>
