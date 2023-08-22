@@ -8,17 +8,16 @@
     </NuxtLink>
 
     <div class="hidden xl:ml-16 xl:flex xl:items-center xl:space-x-12">
-      <NuxtLink
+      <BaseAnimatedNuxtLink
         v-for="item in listedChildren"
         :key="item.id"
         :to="`/${item.id}`"
-        class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
+        :title-a="item.title"
+        :title-b="item.title"
         :aria-current="
           route.path.startsWith(`/${item.id}`) ? 'page' : undefined
         "
-      >
-        {{ item.title }}
-      </NuxtLink>
+      />
     </div>
     <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
       <NuxtLink
