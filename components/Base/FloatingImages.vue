@@ -50,36 +50,37 @@ export default {
   },
   methods: {
     initImages() {
-      const numberOfImages = 5
+      const numberOfImages = 6
+      // Divide the screen into grid
       // Divide the screen into grid
       const rows = 5 // Number of rows
       const cols = 5 // Number of columns
       const cellWidth = this.screenWidth / cols
       const cellHeight = this.screenHeight / rows
 
-      // Create an array to track selected cells
-      const selectedCells = []
+      // Create an array of all cells
+      const cells = []
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          cells.push({ row, col })
+        }
+      }
 
+      // Shuffle the cells array to randomize the order
+      for (let i = cells.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[cells[i], cells[j]] = [cells[j], cells[i]] // Swap
+      }
+
+      // Place each image in a cell from the shuffled array
       for (let i = 0; i < numberOfImages; i++) {
-        // Find a unique random cell
-        let cell
-        do {
-          cell = {
-            row: Math.floor(Math.random() * rows),
-            col: Math.floor(Math.random() * cols),
-          }
-        } while (
-          selectedCells.some(
-            (selectedCell) =>
-              selectedCell.row === cell.row && selectedCell.col === cell.col
-          )
-        )
+        const cell = cells[i]
 
-        selectedCells.push(cell)
-
-        // Compute the position based on the cell, with a random offset within the cell
-        const x = cell.col * cellWidth + Math.random() * cellWidth
-        const y = cell.row * cellHeight + Math.random() * cellHeight
+        // Compute the position based on the cell, with optional offset within the cell
+        const offsetX = cellWidth * 0.1 // Optional offset for more centered placement
+        const offsetY = cellHeight * 0.1
+        const x = cell.col * cellWidth + offsetX
+        const y = cell.row * cellHeight + offsetY
 
         const size = (Math.random() * 100 + 50) * this.scale // Apply scale factor
 

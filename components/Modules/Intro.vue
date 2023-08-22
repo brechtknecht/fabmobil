@@ -1,12 +1,9 @@
 <template>
   <div
-    class="container mx-auto intro-section flex flex-col bg-cover bg-no-repeat bg-purple-600 items-center justify-center h-auto sm:h-full py-24"
-    :style="{
-      backgroundImage: 'url(/assets/img/frontpage/background-sword.png)',
-    }"
+    class="container mx-auto intro-section flex flex-col bg-cover bg-no-repeat bg-purple-600 items-center justify-center h-auto sm:h-full py-8"
   >
     <div
-      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
+      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-2xl"
     >
       <h1
         class="font-bold text-2xl sm:text-5xl text-black w-full text-center sm:text-left py-8 leading-8"
