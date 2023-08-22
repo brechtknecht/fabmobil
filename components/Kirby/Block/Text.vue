@@ -9,6 +9,7 @@ defineProps<{
 <template>
   <div
     class="text font-body text-headline leading-relaxed max-w-prose px-4 sm:px-8 md:px-0"
+    :class="{ 'mx-auto': block.content.alignment === 'center' }"
     v-html="block.content.text"
   />
 </template>

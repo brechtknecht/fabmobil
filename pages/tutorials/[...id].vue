@@ -8,6 +8,9 @@ const { data } = await useKql({
     intendedTemplate: true,
     // description: true,
     subheading: true,
+    video: {
+      query: 'page.video_url',
+    },
     tags: 'page.tags.split(",")',
     layouts: {
       query: 'page.layout.toLayouts',
@@ -61,23 +64,30 @@ function formatDateShort(date: Date) {
         class="relative flex flex-col w-full h-full items-center justify-center module py-32 md:py-64 px-4 sm:px-0"
         :style="{ '--coverUrl': `url(${coverUrl})` }"
       >
-        <div class="module-inside">
+        <div class="module-inside w-full px-32">
           <h1
             class="font-headline leading-tight text-center text-large-title font-bold pb-4"
           >
             {{ page?.title }}
           </h1>
-          <img
-            :src="coverUrl"
-            alt=""
-            class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border"
-          />
+          <div class="hero-wrapper w-full mx-auto">
+            <img
+              v-if="!page.video"
+              :src="coverUrl"
+              alt=""
+              class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
+            />
+            <BaseVideo v-else class="w-full" :url="page.video" />
+          </div>
         </div>
       </div>
     </div>
 
     <article class="note py-8">
-      <KirbyLayouts :layouts="page.layouts ?? []" />
+      <KirbyLayouts
+        :layouts="page.layouts ?? []"
+        class="mx-auto flex justify-center items-center"
+      />
 
       <footer class="max-w-prose mx-auto py-2 px-4 xl:px-0">
         <ul v-if="page?.tags" class="note-tags">
