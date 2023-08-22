@@ -67,7 +67,7 @@ setPage(page)
     <KirbyLayouts :layouts="page.layouts ?? []" />
     <ModulesLokallaboreTeaser />
     <!-- Debug text -->
-    <pre>{{ page }}</pre>
+    <!-- <pre>{{ page }}</pre> -->
   </div>
 </template>
 
