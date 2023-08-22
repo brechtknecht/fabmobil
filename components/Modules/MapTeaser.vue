@@ -2,11 +2,17 @@
   <div
     class="flex flex-col bg-secondary items-center justify-center h-auto py-20"
   >
-    <h1 class="font-headline text-large-title text-primary w-full text-center">
+    <!-- <h1 class="font-headline text-large-title text-primary w-full text-center">
       In
       <BaseRuff :padding="30"><span>ganz Sachsen</span></BaseRuff>
       unterwegs.
-    </h1>
+    </h1> -->
+    <img
+      class="h-64 w-auto align-start"
+      src="/assets/img/frontpage/alloversaxony.svg"
+      alt="Logo"
+    />
+
     <div
       ref="container"
       class="flex flex-col lg:flex-row justify-center items-center space-x-4 w-full md:w-auto"

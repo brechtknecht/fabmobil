@@ -2,7 +2,7 @@
   <div
     class="container mx-auto intro-section flex flex-col bg-cover bg-no-repeat bg-purple-600 items-center justify-center h-auto sm:h-full py-24"
     :style="{
-      backgroundImage: 'url(/assets/img/frontpage/background-layer.png)',
+      backgroundImage: 'url(/assets/img/frontpage/background-sword.png)',
     }"
   >
     <div

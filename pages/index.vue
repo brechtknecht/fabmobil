@@ -35,8 +35,9 @@ setPage(page)
       />
     </div>
     <!--...and so on...-->
-
-    <ModulesIntro />
+    <BaseFloatingImages :speed="0.0000000001">
+      <ModulesIntro />
+    </BaseFloatingImages>
     <ModulesBusAnimation />
     <ModulesMapTeaser />
     <ModulesLokallaboreTeaser />
