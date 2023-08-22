@@ -1,10 +1,10 @@
 <template>
   <div
-    class="video-container relative w-full items-center justify-center p-24 rounded-xl overflow-hidden border border-gray"
+    class="video-container relative w-full items-center justify-center p-24 rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray"
   >
     <iframe
       id="youtube"
-      class="rounded-xl overflow-hidden border border-gray bg-black absolute top-0 left-0 w-full h-full"
+      class="rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray bg-black absolute top-0 left-0 w-full h-full"
       title="youtube-player"
       :src="youtubeUrl"
       frameborder="0"

@@ -21,6 +21,12 @@
     </div>
     <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
       <NuxtLink
+        to="https://www.instagram.com/fabmobil/"
+        class="logo flex-shrink-0 flex items-center"
+      >
+        <img class="h-12" src="/assets/img/insta-icon.svg" alt="Instagram" />
+      </NuxtLink>
+      <NuxtLink
         :to="`#`"
         class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
       >
@@ -73,7 +79,7 @@
 
     <div
       v-if="open"
-      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right xl:hidden"
+      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right xl:hidden z-50"
     >
       <div
         class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
@@ -119,6 +125,7 @@
           >
             {{ item.title }}
           </NuxtLink>
+
           <NuxtLink
             to="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-accent"

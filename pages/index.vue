@@ -26,7 +26,7 @@ setPage(page)
 </script>
 
 <template>
-  <div>
+  <div class="bg-[#DDBBFC]">
     <div
       class="px-0 pb-0 3xl:px-24 3xl:pb-24 3xl:pt-12 max-w-screen-2xl mx-auto"
     >

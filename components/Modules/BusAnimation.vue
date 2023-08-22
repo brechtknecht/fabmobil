@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
         <ScrollyVideo
           ref="scrollyVideo"
           class="relative p-4 md:p-12 scale-75 flex justify-center items-center h-full"
-          src="/assets/video/bussl_neu.mp4"
+          src="/assets/video/sequence.mp4"
           transition-speed="0.0001"
           :cover="false"
           :track-scroll="true"
