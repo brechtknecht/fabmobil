@@ -9,7 +9,7 @@
       class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
     >
       <h1
-        class="font-bold text-3xl sm:text-5xl text-black w-full text-center sm:text-left py-8"
+        class="font-bold text-2xl sm:text-5xl text-black w-full text-center sm:text-left py-8 leading-8"
       >
         Das Fabmobil ist ein fahrendes
         <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für

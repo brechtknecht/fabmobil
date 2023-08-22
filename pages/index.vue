@@ -27,7 +27,9 @@ setPage(page)
 
 <template>
   <div>
-    <div class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 max-w-screen-2xl mx-auto">
+    <div
+      class="px-0 pb-0 3xl:px-24 3xl:pb-24 3xl:pt-12 max-w-screen-2xl mx-auto"
+    >
       <BaseVideo
         url="https://player.vimeo.com/video/746553056?autoplay=1&loop=1&muted=1"
       />
