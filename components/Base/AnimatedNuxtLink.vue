@@ -3,14 +3,14 @@
     <NuxtLink :to="to" @mouseenter="animateLink" @mouseleave="resetLink">
       <div class="animation-container">
         <div
-          :class="{ 'animate-out': isHovered }"
+          :class="{ 'animate-out': isHovered, 'animate-back': !isHovered }"
           class="animate-content text-headline weight-medium text-body font-medium text-black"
           :aria-current="ariaCurrent"
         >
           {{ titleA }}
         </div>
         <div
-          :class="{ 'animate-in': isHovered }"
+          :class="{ 'animate-in': isHovered, 'animate-back-in': !isHovered }"
           class="animate-content text-headline weight-medium text-body font-medium text-black"
         >
           {{ titleB }}
@@ -54,29 +54,53 @@ const resetLink = () => {
 }
 
 .animate-content {
+  will-change: transform, opacity;
   grid-area: 1 / 1;
 }
 
+.animate-out,
+.animate-back {
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 .animate-out {
-  text-decoration: none;
-  animation: out-up 0.5s forwards;
+  animation-name: out-up;
+}
+
+.animate-back {
+  animation-name: back-down;
+}
+
+.animate-in,
+.animate-back-in {
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .animate-in {
-  text-decoration: none;
-  animation: in-up 0.5s forwards;
-  font-family: 'Migra-Regular'; /* Your Font B here */
-  font-size: 1.55rem;
-  letter-spacing: 0.75px;
-  position: relative;
-  top: 3px;
-  opacity: 0;
+  animation-name: in-up;
+}
+
+.animate-back-in {
+  animation-name: back-in-down;
 }
 
 @keyframes out-up {
   to {
     transform: translateY(-100%);
     opacity: 0;
+  }
+}
+
+@keyframes back-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
@@ -89,5 +113,26 @@ const resetLink = () => {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+@keyframes back-in-down {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.animate-in {
+  text-decoration: none;
+  font-family: 'Migra-Regular'; /* Your Font B here */
+  font-size: 1.55rem;
+  letter-spacing: 0.75px;
+  position: relative;
+  top: 3px;
+  opacity: 0;
 }
 </style>
