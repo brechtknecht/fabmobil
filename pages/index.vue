@@ -40,12 +40,7 @@ setPage(page)
     <ModulesBusAnimation />
     <ModulesMapTeaser />
     <ModulesLokallaboreTeaser />
-    <h1 class="font-headline text-large-title font-bold">Large Title</h1>
-    <h2 class="font-headline text-title-1">Title 1</h2>
-    <h3 class="font-headline text-title-2">Title 2</h3>
-    <!--...and so on...-->
-    <p class="font-body text-body">Body text goes here.</p>
-    <p class="font-body text-callout">Callout text goes here.</p>
+    <ModulesFAQ />
   </div>
 </template>
 

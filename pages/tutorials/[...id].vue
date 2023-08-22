@@ -64,7 +64,7 @@ function formatDateShort(date: Date) {
         class="relative flex flex-col w-full h-full items-center justify-center module py-32 md:py-64 px-4 sm:px-0"
         :style="{ '--coverUrl': `url(${coverUrl})` }"
       >
-        <div class="module-inside w-full px-32">
+        <div class="module-inside w-full px-2 md:px-32">
           <h1
             class="font-headline leading-tight text-center text-large-title font-bold pb-4"
           >

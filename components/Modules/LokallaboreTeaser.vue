@@ -8,7 +8,7 @@
         class="w-5/6 md:max-w-[1280px] py-8 mx-0 sm:mx-auto"
       />
       <h1
-        class="font-headline text-3xl leading-normal sm:text-large-title text-left sm:text-center text-primary w-full py-8"
+        class="font-headline text-3xl leading-normal sm:text-large-title text-left sm:text-center text-black w-full py-8"
       >
         Ein Netzwerk aus Digitalwerkstätten für Jugendliche im ländlichen Raum
       </h1>
@@ -17,7 +17,7 @@
       >
         <div class="flex flex-row">
           <BaseButton
-            class="bg-white relative lg:absolute z-10 lg:top-80 lg:right-[15%]"
+            class="bg-white relative lg:absolute z-10 lg:top-0 lg:right-[15%]"
             label="Erfahre Mehr!"
             text-color="text-black"
           />

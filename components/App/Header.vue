@@ -36,7 +36,7 @@
 
     <div class="-mr-2 flex items-center xl:hidden">
       <button
-        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        class="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         @click="open = !open"
       >
         <span class="sr-only">Open main menu</span>
@@ -90,7 +90,7 @@
           </div>
           <div class="-mr-2">
             <button
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               @click="open = !open"
             >
               <span class="sr-only">Close menu</span>
