@@ -211,7 +211,7 @@ small {
 }
 
 .autogrid {
-  --gutter: 3rem;
+  --gutter: 8rem;
   --min: 10rem;
   display: grid;
   grid-gap: var(--gutter);

@@ -8,7 +8,13 @@ defineProps<{
 
 <template>
   <div
-    class="font-body text-headline leading-relaxed max-w-prose px-4 sm:px-8 md:px-0"
+    class="text font-body text-headline leading-relaxed max-w-prose px-4 sm:px-8 md:px-0"
     v-html="block.content.text"
   />
 </template>
+
+<style scoped>
+.text {
+  max-width: 48ch;
+}
+</style>

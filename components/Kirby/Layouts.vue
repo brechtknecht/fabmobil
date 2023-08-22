@@ -78,7 +78,11 @@ onMounted(async () => {
         :style="`--columns: ${span(column.width)}`"
       >
         <!-- Wrapper with reveal class -->
-        <KirbyBlocks :blocks="column.blocks" class="text w-full" />
+        <KirbyBlocks
+          :blocks="column.blocks"
+          class="text w-full"
+          :style="`color:${layout.attrs.foregroundcolor}`"
+        />
       </div>
     </section>
   </div>

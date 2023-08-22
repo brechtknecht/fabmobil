@@ -39,7 +39,7 @@ const { width } = useElementSize(figure)
       :href="block.content.link || undefined"
       :data-contain="block.content.crop === false || undefined"
       :class="[ratio === 'auto' ? 'auto' : 'img']"
-      :style="`--w: ${size.w}; --h: ${size.h};`"
+      :style="`--w: ${block}; --h: ${size.h};`"
     >
       <img
         v-if="block.content.location === 'web'"
