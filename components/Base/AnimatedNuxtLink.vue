@@ -54,13 +54,15 @@ const resetLink = () => {
 }
 
 .animate-content {
-  will-change: transform, opacity;
   grid-area: 1 / 1;
 }
 
 .animate-out,
-.animate-back {
+.animate-back,
+.animate-in,
+.animate-back-in {
   animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.175, 0.54, 0.51, 1.09); /* custom */
   animation-fill-mode: forwards;
 }
 
@@ -70,12 +72,6 @@ const resetLink = () => {
 
 .animate-back {
   animation-name: back-down;
-}
-
-.animate-in,
-.animate-back-in {
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
 }
 
 .animate-in {
