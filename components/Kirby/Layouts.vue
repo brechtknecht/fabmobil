@@ -39,16 +39,18 @@ onMounted(async () => {
     :id="layout.content.id"
     :key="layout.content.id"
     :style="`--gutter: 1.5rem; background-color: ${layout.attrs.colors}; background-image: url('${layout.image?.url}'); background-size: cover;`"
-    class="py-16"
   >
     <section
-      class="container grid padding-xl items-center mx-auto py-16"
-      :class="{ 'text-white': layout.attrs.darkmode == 'true' }"
+      class="container grid padding-xl items-center mx-auto"
+      :class="[
+        { 'text-white': layout.attrs.darkmode == 'true' },
+        layout.attrs.verticalspace,
+      ]"
     >
       <div
         v-for="(column, index) in layout.content.columns"
         :key="index"
-        class="column mx-auto py-8 w-full reveal"
+        class="column mx-auto w-full reveal"
         :style="`--columns: ${span(column.width)}`"
       >
         <!-- Wrapper with reveal class -->
