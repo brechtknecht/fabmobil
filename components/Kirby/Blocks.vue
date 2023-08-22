@@ -3,12 +3,14 @@ import {
   LazyKirbyBlockButton,
   LazyKirbyBlockHeading,
   LazyKirbyBlockImage,
+  LazyKirbyBlockLargeButton,
   LazyKirbyBlockLine,
   LazyKirbyBlockList,
   LazyKirbyBlockQuote,
   LazyKirbyBlockText,
   LazyKirbyBlockVideo,
 } from '#components'
+
 import type { KirbyBlock } from '#nuxt-kql'
 
 defineProps<{
@@ -26,6 +28,7 @@ const blockComponents: Partial<Record<string, Component>> = {
   text: LazyKirbyBlockText,
   video: LazyKirbyBlockVideo,
   button: LazyKirbyBlockButton,
+  largebutton: LazyKirbyBlockLargeButton,
 }
 </script>
 

@@ -48,7 +48,7 @@ onMounted(async () => {
       <div
         v-for="(column, index) in layout.content.columns"
         :key="index"
-        class="column mx-auto w-full"
+        class="column w-full"
         :class="{ reveal: layout.attrs.revealed == 'true' }"
         :style="`--columns: ${span(column.width)}`"
       >

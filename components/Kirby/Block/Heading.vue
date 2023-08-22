@@ -11,7 +11,7 @@ defineProps<{
   <component
     :is="block.content.level"
     :id="slugify(block.content.text)"
-    class="max-w-prose mx-auto"
+    class="max-w-prose"
   >
     <!-- H1 -->
     <div

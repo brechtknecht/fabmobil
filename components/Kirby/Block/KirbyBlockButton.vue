@@ -7,7 +7,7 @@
       target="_blank"
     >
       <div
-        class="border-2 border-gray-800 rounded-lg px-3 py-2 text-gray-400 cursor-pointer hover:bg-gray-800 hover:text-gray-200 w-full"
+        class="border-2 border-gray-800 rounded-lg px-3 py-2 text-gray-800 cursor-pointer hover:bg-gray-800 hover:text-gray-200 w-full"
       >
         {{ button.text }}
       </div>
