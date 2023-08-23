@@ -8,15 +8,14 @@ const Component = defineComponent({
   },
 })
 
-// Create a ref for ScrollyVideo
+// Create refs for ScrollyVideo, loading state, and progress
 const scrollyVideo = ref(null)
-
-// Ref for scroll percentage
+const loadingState = ref(false) // Ref for loading state
+const progressPercentage = ref(0) // Ref for progress percentage
 const scrollPercentage = ref(0)
 
 const handleScroll = () => {
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
-  console.log(scrollyVideoRef)
   let totalDuration = 0
   if (!scrollyVideoRef.isSafari) {
     totalDuration = scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
@@ -55,7 +54,7 @@ onBeforeUnmount(() => {
         <ScrollyVideo
           ref="scrollyVideo"
           class="relative p-4 md:p-12 scale-75 flex justify-center items-center h-full"
-          src="/assets/video/sequence.mp4"
+          src="/assets/video/sequence-compressed.mp4"
           transition-speed="0.0001"
           :cover="false"
           :track-scroll="true"

@@ -6,7 +6,8 @@
       class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-2xl"
     >
       <h1
-        class="font-bold text-2xl sm:text-5xl text-black w-full text-center sm:text-left py-8 leading-8"
+        class="font-bold text-2xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left py-8 leading-8"
+        style="line-height: 4rem"
       >
         Das Fabmobil ist ein fahrendes
         <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für
@@ -17,7 +18,7 @@
       class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
     >
       <p
-        class="font-normal text-xl sm:text-2xl leading-relaxed text-black w-full text-center sm:text-left py-8"
+        class="font-normal text-xl sm:text-2xl leading-relaxed text-[#1a1a1a] w-full text-center sm:text-left py-8"
       >
         Der mit Digitaltechnik und Maschinen ausgestattete Doppeldeckerbus
         bietet Kindern und Jugendlichen die Möglichkeit allerlei Cerative
@@ -28,7 +29,7 @@
       class="flex flex-col sm:flex-row h-auto sm:h-full justify-center items-center py-32 max-w-5xl"
     >
       <h1
-        class="font-bold font-headline text-3xl sm:text-5xl text-black w-full text-center sm:text-left"
+        class="font-bold font-headline text-3xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left"
       >
         Kostenlose Workshops
       </h1>

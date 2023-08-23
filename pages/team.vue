@@ -15,6 +15,7 @@
         :image="module.image"
       />
     </div>
+
     <div class="bg-secondary">
       <div
         class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
