@@ -228,7 +228,7 @@ onMounted(() => {
       source: 'tour-path',
       paint: {
         'line-width': 3,
-        'line-color': '#FFFFFF', // Change this to the desired color of the line.
+        'line-color': '#353535', // Change this to the desired color of the line.
       },
     })
 
@@ -393,7 +393,7 @@ onMounted(() => {
           type: 'geojson',
           data: geoJsonData,
           cluster: true,
-          clusterMaxZoom: 14,
+          clusterMaxZoom: 8,
           clusterRadius: 50,
         })
 
@@ -442,6 +442,7 @@ onMounted(() => {
         })
 
         // Unclustered point layer
+        // Unclustered point layer with a bigger circle radius and stroke width
         map.value.addLayer({
           id: 'unclustered-point',
           type: 'circle',
@@ -449,13 +450,28 @@ onMounted(() => {
           filter: ['!', ['has', 'point_count']],
           paint: {
             'circle-color': '#11b4da',
-            'circle-radius': 4,
-            'circle-stroke-width': 1,
+            'circle-radius': 10, // Increase the radius for a larger hitbox
+            'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
             'circle-stroke-color': '#fff',
           },
         })
 
-        // Unclustered point layer
+        // Add an invisible larger circle for the hit area
+        map.value.addLayer(
+          {
+            id: 'unclustered-point-hit-area',
+            type: 'circle',
+            source: 'cities',
+            filter: ['!', ['has', 'point_count']],
+            paint: {
+              'circle-radius': 20, // Increase the radius for a larger hitbox
+              'circle-opacity': 0, // Make the circle invisible
+            },
+          },
+          'unclustered-point'
+        ) // Add this layer before the actual unclustered-point layer
+
+        // Unclustered point layer remains the same
         map.value.addLayer({
           id: 'unclustered-point',
           type: 'circle',
@@ -504,16 +520,47 @@ onMounted(() => {
             })
         })
 
-        // Open a popup with the city name on unclustered point click
-        map.value.on('click', 'unclustered-point', (e) => {
+        let popup
+
+        function handleMouseOver(e) {
           const coordinates = e.features[0].geometry.coordinates.slice()
           const city = e.features[0].properties.city
 
-          new mapboxgl.Popup()
+          popup = new mapboxgl.Popup()
             .setLngLat(coordinates)
             .setHTML(`City: ${city}`)
             .addTo(map.value)
-        })
+        }
+
+        function handleMouseLeave() {
+          if (popup) {
+            popup.remove()
+          }
+        }
+
+        const isTouchDevice =
+          'ontouchstart' in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.msMaxTouchPoints > 0
+
+        if (isTouchDevice) {
+          map.value.on(
+            'touchstart',
+            'unclustered-point-hit-area',
+            handleMouseOver
+          )
+        } else {
+          map.value.on(
+            'mouseover',
+            'unclustered-point-hit-area',
+            handleMouseOver
+          )
+          map.value.on(
+            'mouseleave',
+            'unclustered-point-hit-area',
+            handleMouseLeave
+          )
+        }
 
         // Cursor pointer on clusters
         map.value.on('mouseenter', 'clusters', () => {
