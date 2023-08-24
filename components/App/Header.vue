@@ -23,6 +23,7 @@
       <NuxtLink
         to="https://www.instagram.com/fabmobil/"
         class="logo flex-shrink-0 flex items-center"
+        target="_blank"
       >
         <img class="h-12" src="/assets/img/insta-icon.svg" alt="Instagram" />
       </NuxtLink>

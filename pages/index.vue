@@ -35,7 +35,7 @@ setPage(page)
       />
     </div>
     <!--...and so on...-->
-    <BaseFloatingImages :speed="0.000000000000000001" :scale="10">
+    <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
     <ModulesBusAnimation />

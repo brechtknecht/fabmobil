@@ -1,5 +1,9 @@
 <template>
-  <div class="floating-images" @mousemove="handleMouseMove">
+  <div
+    class="floating-images"
+    :style="{ '--background-color': backgroundcolor }"
+    @mousemove="handleMouseMove"
+  >
     <div
       v-for="image in images"
       :key="image.id"
@@ -30,6 +34,10 @@ export default {
     scale: {
       type: Number,
       default: 1,
+    },
+    backgroundcolor: {
+      type: String,
+      default: '#000000',
     },
   },
   data() {
@@ -135,10 +143,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .floating-image {
   position: absolute;
   mix-blend-mode: overlay;
+  z-index: -1;
+  img {
+    mix-blend-mode: overlay;
+    opacity: 0.3;
+  }
 }
 
 .floating-images {
@@ -146,6 +159,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: 10;
 }
 
 .floating-images::after {
@@ -155,12 +169,16 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background: radial-gradient(circle at center, transparent 10%, #ddbbfc);
+  background: radial-gradient(
+    circle at center,
+    transparent 1%,
+    var(--background-color)
+  );
   pointer-events: none; /* So it doesn't interfere with mouse events */
-  z-index: 1; /* Make sure it's above the images */
+  z-index: 12; /* Make sure it's above the images */
 }
 .slot-content {
   position: relative;
-  z-index: 2; /* Higher z-index to appear above the gradient */
+  z-index: 13; /* Higher z-index to appear above the gradient */
 }
 </style>

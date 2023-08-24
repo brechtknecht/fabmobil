@@ -227,8 +227,8 @@ onMounted(() => {
       type: 'line',
       source: 'tour-path',
       paint: {
-        'line-width': 4,
-        'line-color': '#00FF00', // Change this to the desired color of the line.
+        'line-width': 3,
+        'line-color': '#FFFFFF', // Change this to the desired color of the line.
       },
     })
 
@@ -371,81 +371,158 @@ onMounted(() => {
 
   Promise.all(modelLoadPromises)
     .then((customLayers) => {
-      // Sort modelOrigins by date, not customLayers.
       const sortedOrigins = modelOrigins.sort(
         (a, b) => a.startdate.getTime() - b.startdate.getTime()
       )
 
-      // Load the image into Mapbox
-      map.value.loadImage(
-        '/assets/img/bus.png', // Replace with the URL or relative path of your image file
-        function (error, image) {
-          if (error) throw error
-          map.value.addImage('custom-marker', image)
+      const geoJsonData = {
+        type: 'FeatureCollection',
+        features: sortedOrigins.map((origin) => ({
+          type: 'Feature',
+          properties: { city: origin.city },
+          geometry: {
+            type: 'Point',
+            coordinates: origin.coordinates,
+          },
+        })),
+      }
 
-          sortedOrigins.forEach((modelOrigin, index) => {
-            map.value.on('load', () => {
-              const pointSource = 'point' + index
-              const imageSource = 'image' + index
+      map.value.on('load', () => {
+        // Add the cluster source
+        map.value.addSource('cities', {
+          type: 'geojson',
+          data: geoJsonData,
+          cluster: true,
+          clusterMaxZoom: 14,
+          clusterRadius: 50,
+        })
 
-              // Add the text layer
-              map.value.addSource(pointSource, {
-                type: 'geojson',
-                data: {
-                  type: 'Feature',
-                  geometry: {
-                    type: 'Point',
-                    coordinates: modelOrigin.coordinates,
-                  },
-                },
-              })
-              map.value.addLayer({
-                id: pointSource,
-                type: 'symbol',
-                source: pointSource,
-                layout: {
-                  'text-field': modelOrigin.city,
-                  'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                  'text-size': 16,
-                  'text-transform': 'uppercase',
-                  'text-letter-spacing': 0.05,
-                  'text-offset': [-0.6, 2.2],
-                  'text-anchor': 'center',
-                  'text-allow-overlap': true,
-                },
-                paint: {
-                  'text-color': '#202',
-                  'text-halo-color': '#fff',
-                  'text-halo-width': 2.5,
-                },
-              })
-              console.log('Model: ', modelOrigin)
-              // Add the image layer
-              map.value.addSource(imageSource, {
-                type: 'geojson',
-                data: {
-                  type: 'Feature',
-                  geometry: {
-                    type: 'Point',
-                    coordinates: modelOrigin.coordinates,
-                  },
-                },
-              })
-              map.value.addLayer({
-                id: imageSource,
-                type: 'symbol',
-                source: imageSource,
-                layout: {
-                  'icon-image': 'custom-marker', // Reference the image we loaded earlier
-                  'icon-size': 0.1, // You can adjust the size of the image here
-                  'icon-offset': [-100, -100], // You can adjust the position of the image here
-                  'icon-allow-overlap': true,
-                },
+        // Cluster layer
+        map.value.addLayer({
+          id: 'clusters',
+          type: 'circle',
+          source: 'cities',
+          filter: ['has', 'point_count'],
+          paint: {
+            'circle-color': [
+              'step',
+              ['get', 'point_count'],
+              '#51bbd6',
+              100,
+              '#f1f075',
+              750,
+              '#f28cb1',
+            ],
+            'circle-radius': [
+              'step',
+              ['get', 'point_count'],
+              20,
+              100,
+              30,
+              750,
+              40,
+            ],
+          },
+        })
+
+        // Cluster count layer
+        map.value.addLayer({
+          id: 'cluster-count',
+          type: 'symbol',
+          source: 'cities',
+          filter: ['has', 'point_count'],
+          layout: {
+            'text-field': ['get', 'point_count_abbreviated'],
+            'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+            'text-size': 12,
+          },
+          paint: {
+            'text-color': '#FFFFFF', // Set the text color to white
+          },
+        })
+
+        // Unclustered point layer
+        map.value.addLayer({
+          id: 'unclustered-point',
+          type: 'circle',
+          source: 'cities',
+          filter: ['!', ['has', 'point_count']],
+          paint: {
+            'circle-color': '#11b4da',
+            'circle-radius': 4,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#fff',
+          },
+        })
+
+        // Unclustered point layer
+        map.value.addLayer({
+          id: 'unclustered-point',
+          type: 'circle',
+          source: 'cities',
+          filter: ['!', ['has', 'point_count']],
+          paint: {
+            'circle-color': '#11b4da',
+            'circle-radius': 4,
+            'circle-stroke-width': 1,
+            'circle-stroke-color': '#fff',
+          },
+        })
+
+        // Add a layer for the city names (unclustered)
+        map.value.addLayer({
+          id: 'unclustered-point-label',
+          type: 'symbol',
+          source: 'cities',
+          filter: ['!', ['has', 'point_count']],
+          layout: {
+            'text-field': ['get', 'city'],
+            'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 1.5],
+            'text-anchor': 'top',
+          },
+          paint: {
+            'text-color': '#FFFFFF', // Set the text color to white
+          },
+        })
+
+        // Inspect a cluster on click
+        map.value.on('click', 'clusters', (e) => {
+          const features = map.value.queryRenderedFeatures(e.point, {
+            layers: ['clusters'],
+          })
+          const clusterId = features[0].properties.cluster_id
+          map.value
+            .getSource('cities')
+            .getClusterExpansionZoom(clusterId, (err, zoom) => {
+              if (err) return
+
+              map.value.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom,
               })
             })
-          })
-        }
-      )
+        })
+
+        // Open a popup with the city name on unclustered point click
+        map.value.on('click', 'unclustered-point', (e) => {
+          const coordinates = e.features[0].geometry.coordinates.slice()
+          const city = e.features[0].properties.city
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(`City: ${city}`)
+            .addTo(map.value)
+        })
+
+        // Cursor pointer on clusters
+        map.value.on('mouseenter', 'clusters', () => {
+          map.value.getCanvas().style.cursor = 'pointer'
+        })
+        map.value.on('mouseleave', 'clusters', () => {
+          map.value.getCanvas().style.cursor = ''
+        })
+      })
     })
     .catch((error) => {
       console.error('An error occurred while loading the models:', error)
