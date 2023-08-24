@@ -61,7 +61,7 @@ const resetZoom = () => {
 
 const generateTourPath = (waviness = 2, granularity = 50) => {
   // Get the coordinates of Dresden.
-  const dresdenCoordinates = [13.7, 51.1]
+  const dresdenCoordinates = [13.737262, 51.050407]
   let currentPoint = dresdenCoordinates
 
   // Create an array to hold the coordinates of the tour path.
