@@ -67,7 +67,7 @@
       </div>
     </div>
     <!-- Debug text -->
-    <!-- <pre>{{ page }}</pre> -->
+    <pre>{{ page }}</pre>
   </div>
 </template>
 
@@ -92,8 +92,15 @@ const { data } = await useKql({
         image: true,
       },
     },
+    categories: {
+      query: 'page.categories.toStructure',
+      select: {
+        name: true,
+        layout: 'structureItem.layout.toLayouts',
+      },
+    },
     team: {
-      query: 'page.children',
+      query: 'page.team.toStructure', // Adjusted to reflect structure
       select: {
         name: true,
         description: true,
@@ -103,7 +110,7 @@ const { data } = await useKql({
         phone: true,
         contact: true,
         image: {
-          query: 'page.image',
+          query: 'structureItem.image.toFile', // Followed the pattern in technology.yml
           select: {
             url: true,
           },
