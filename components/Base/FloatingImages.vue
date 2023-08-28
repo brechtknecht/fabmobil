@@ -67,10 +67,18 @@ export default {
   methods: {
     initImages() {
       const numberOfImages = 6
+      // Prepare a temporary array with image sizes
+      const tempImages = Array.from({ length: numberOfImages }, (_, i) => {
+        const size = (Math.random() * 100 + 50) * this.scale
+        return { id: i, size }
+      })
+
+      // Sort the temporary images array by size (largest to smallest)
+      tempImages.sort((a, b) => b.size - a.size)
+
       // Divide the screen into grid
-      // Divide the screen into grid
-      const rows = 5 // Number of rows
-      const cols = 5 // Number of columns
+      const rows = 5
+      const cols = 5
       const cellWidth = this.screenWidth / cols
       const cellHeight = this.screenHeight / rows
 
@@ -93,12 +101,12 @@ export default {
         const cell = cells[i]
 
         // Compute the position based on the cell, with optional offset within the cell
-        const offsetX = cellWidth * 0.1 // Optional offset for more centered placement
+        const offsetX = cellWidth * 0.1
         const offsetY = cellHeight * 0.1
         const x = cell.col * cellWidth + offsetX
         const y = cell.row * cellHeight + offsetY
 
-        const size = (Math.random() * 100 + 50) * this.scale // Apply scale factor
+        const size = tempImages[i].size // Get size from sorted tempImages array
 
         const url = `/assets/img/background-items/${String(i + 1).padStart(
           2,
@@ -106,7 +114,7 @@ export default {
         )}.png`
 
         this.images.push({
-          id: i,
+          id: tempImages[i].id, // Get id from sorted tempImages array
           url: url,
           style: `left:${x}px;top:${y}px;width:${size}px;`,
           x,

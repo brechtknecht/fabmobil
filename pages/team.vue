@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="bg-secondary">
     <!-- Hero modules -->
-    <div
-      v-if="page.modules && page.modules.length > 0"
-      class="app-hero-wrapper"
+    <BaseFloatingImages
+      :speed="0.000000000000000001"
+      :scale="5"
+      backgroundcolor="#1A1A1A"
     >
-      <BaseFloatingImages
-        :speed="0.000000000000000001"
-        :scale="5"
-        backgroundcolor="#1A1A1A"
+      <div
+        v-if="page.modules && page.modules.length > 0"
+        class="app-hero-wrapper"
       >
         <AppHero
           v-for="(module, index) in page.modules"
@@ -20,39 +20,39 @@
           :foreground-color="module.foregroundColor"
           :image="module.image"
         />
-      </BaseFloatingImages>
-    </div>
+      </div>
 
-    <div class="bg-secondary">
-      <!-- Team Categories -->
-      <div v-for="category in page.categories" :key="category.name">
-        <div
-          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto py-16"
-        >
-          <KirbyLayouts :layouts="category.layouts" />
+      <div>
+        <!-- Team Categories -->
+        <div v-for="category in page.categories" :key="category.name">
+          <div
+            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto py-16"
+          >
+            <KirbyLayouts :layouts="category.layouts" />
+          </div>
+          <div
+            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+          >
+            <BaseTeamMember
+              v-for="member in team.filter((m) => m.category === category.name)"
+              :key="member.name"
+              :member="member"
+            />
+          </div>
         </div>
+
+        <!-- Unassigned Team Members -->
         <div
           class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
         >
           <BaseTeamMember
-            v-for="member in team.filter((m) => m.category === category.name)"
+            v-for="member in team.filter((m) => !m.category)"
             :key="member.name"
             :member="member"
           />
         </div>
       </div>
-
-      <!-- Unassigned Team Members -->
-      <div
-        class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
-      >
-        <BaseTeamMember
-          v-for="member in team.filter((m) => !m.category)"
-          :key="member.name"
-          :member="member"
-        />
-      </div>
-    </div>
+    </BaseFloatingImages>
   </div>
 </template>
 

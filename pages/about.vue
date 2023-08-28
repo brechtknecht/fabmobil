@@ -89,8 +89,4 @@ setPage(page)
 .grid > .column {
   grid-column: span var(--columns);
 }
-
-#about {
-  background: #000000;
-}
 </style>
