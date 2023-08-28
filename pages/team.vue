@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Hero modules -->
     <div
       v-if="page.modules && page.modules.length > 0"
       class="app-hero-wrapper"
@@ -17,57 +18,35 @@
     </div>
 
     <div class="bg-secondary">
+      <!-- Team Categories -->
+      <div v-for="category in page.categories" :key="category.name">
+        <div
+          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+        >
+          <KirbyLayouts :layouts="category.layouts" />
+        </div>
+        <div
+          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+        >
+          <BaseTeamMember
+            v-for="member in team.filter((m) => m.category === category.name)"
+            :key="member.name"
+            :member="member"
+          />
+        </div>
+      </div>
+
+      <!-- Unassigned Team Members -->
       <div
         class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
       >
-        <div
-          v-for="(member, index) in team"
-          :key="index"
-          class="team-member flex flex-col justify-between"
-        >
-          <div
-            class="aspect-w-1 aspect-h-1 mb-4 relative flex flex-col h-full justify-between"
-          >
-            <div class="image-wrapper">
-              <img
-                v-if="member.image?.url"
-                :src="member.image.url"
-                :alt="member.name"
-                class="object-cover"
-              />
-            </div>
-            <div
-              class="info-overlay"
-              :style="{
-                backdropFilter: 'blur(5px)',
-              }"
-              @mouseover="showInfo[index] = true"
-              @mouseleave="showInfo[index] = false"
-            >
-              <div v-if="showInfo[index]" class="info-details">
-                <p class="font-body text-body">{{ member.description }}</p>
-                <p v-if="member.contact == 'true'" class="font-body text-body">
-                  Email:
-                  <a :href="'mailto:' + member.email">{{ member.email }}</a>
-                </p>
-                <p v-if="member.contact == 'true'" class="font-body text-body">
-                  Phone: <a :href="'tel:' + member.phone">{{ member.phone }}</a>
-                </p>
-              </div>
-            </div>
-            <p class="font-body text-body font-bold">
-              {{ member.name }} <span> {{ member.pronoun }}</span
-              ><span
-                ><br />
-                {{ member.category }}</span
-              >
-            </p>
-          </div>
-        </div>
+        <BaseTeamMember
+          v-for="member in team.filter((m) => !m.category)"
+          :key="member.name"
+          :member="member"
+        />
       </div>
     </div>
-    <!-- Debug text -->
-    <pre>{{ page }}</pre>
   </div>
 </template>
 
@@ -96,7 +75,16 @@ const { data } = await useKql({
       query: 'page.categories.toStructure',
       select: {
         name: true,
-        layout: 'structureItem.layout.toLayouts',
+        layouts: {
+          query: 'structureItem.layout.toLayouts',
+          select: {
+            content: 'layout',
+            attrs: 'layout.attrs',
+            image: {
+              query: 'layout.attrs.image.toFile',
+            },
+          },
+        },
       },
     },
     team: {
@@ -120,9 +108,23 @@ const { data } = await useKql({
   },
 })
 
-const { title, description, team } = data.value.result
+const { title, description, team, categories } = data.value.result
+
+const categorizedTeam = reactive({})
+const unassignedTeam = ref([])
+
+team.forEach((member) => {
+  if (member.category) {
+    if (!categorizedTeam[member.category]) {
+      categorizedTeam[member.category] = []
+    }
+    categorizedTeam[member.category].push(member)
+  } else {
+    unassignedTeam.value.push(member)
+  }
+})
+
 const page = data.value?.result
-setPage(page)
 </script>
 
 <style scoped>
