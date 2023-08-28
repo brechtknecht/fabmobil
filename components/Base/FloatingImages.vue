@@ -1,21 +1,23 @@
 <template>
-  <div
-    class="floating-images"
-    :style="{ '--background-color': backgroundcolor }"
-    @mousemove="handleMouseMove"
-  >
+  <div class="floating-images-wrapper">
     <div
-      v-for="image in images"
-      :key="image.id"
-      :style="image.style"
-      class="floating-image"
+      class="floating-images"
+      :style="{ '--background-color': backgroundcolor }"
+      @mousemove="handleMouseMove"
     >
-      <img :src="image.url" alt="Floating Image" />
-    </div>
-    <div class="slot-content">
-      <!-- Wrapper for slot with higher z-index -->
-      <slot></slot>
-      <!-- Slot to insert any content -->
+      <div
+        v-for="image in images"
+        :key="image.id"
+        :style="image.style"
+        class="floating-image"
+      >
+        <img :src="image.url" alt="Floating Image" />
+      </div>
+      <div class="slot-content">
+        <!-- Wrapper for slot with higher z-index -->
+        <slot></slot>
+        <!-- Slot to insert any content -->
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +57,12 @@ export default {
     this.mouseX = this.screenWidth / 2
     this.mouseY = this.screenHeight / 2
     this.initImages()
+
+    // Set the CSS variable
+    document.documentElement.style.setProperty(
+      '--background-color',
+      this.backgroundcolor
+    )
   },
   methods: {
     initImages() {
@@ -162,6 +170,16 @@ export default {
   z-index: 10;
 }
 
+.floating-images-wrapper:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--background-color);
+  z-index: -10;
+}
+
 .floating-images::after {
   content: '';
   position: absolute;
@@ -169,11 +187,14 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background: radial-gradient(
+
+  mask-image: radial-gradient(
     circle at center,
-    transparent 1%,
-    var(--background-color)
+    transparent 10%,
+    var(--background-color) 100%
   );
+  mask-size: 100% 100%;
+  background-color: var(--background-color);
   pointer-events: none; /* So it doesn't interfere with mouse events */
   z-index: 12; /* Make sure it's above the images */
 }

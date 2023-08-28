@@ -16,7 +16,7 @@
           :y="dimensions.height / 2 + padding"
           :width="dimensions.width + padding"
           :height="dimensions.height + padding"
-          stroke="#DCB9FB"
+          :stroke="color"
           :stroke-width="6"
           :roughness="2"
         />
@@ -34,6 +34,10 @@ export default {
     padding: {
       type: Number,
       default: 10,
+    },
+    color: {
+      type: String,
+      default: '#000000',
     },
   },
   setup(props) {

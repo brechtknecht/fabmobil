@@ -19,10 +19,10 @@
         <div v-if="showInfo" class="info-details">
           <p class="font-body text-body">{{ member.description }}</p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
-            Email: <a :href="'mailto:' + member.email">{{ member.email }}</a>
+            <a :href="'mailto:' + member.email">{{ member.email }}</a>
           </p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
-            Phone: <a :href="'tel:' + member.phone">{{ member.phone }}</a>
+            <a :href="'tel:' + member.phone">{{ member.phone }}</a>
           </p>
         </div>
       </div>

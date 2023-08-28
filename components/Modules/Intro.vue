@@ -3,15 +3,17 @@
     class="container mx-auto intro-section flex flex-col bg-cover bg-no-repeat bg-purple-600 items-center justify-center h-auto sm:h-full py-8"
   >
     <div
-      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-2xl"
+      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-2xl py-[30vh]"
     >
       <h1
-        class="font-bold text-2xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left py-8 leading-8"
+        class="font-bold text-2xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left py-32 leading-8"
         style="line-height: 4rem"
       >
         Das Fabmobil ist ein fahrendes
         <span class="font-headline">Kunst-, Kultur- und Zukunftslabor</span> für
-        <BaseRuff :padding="10"><span>ganz Sachsen</span></BaseRuff>
+        <BaseRuff :padding="15" color="#FFFFFF"
+          ><span>ganz Sachsen</span></BaseRuff
+        >
       </h1>
     </div>
     <div

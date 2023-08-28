@@ -5,16 +5,22 @@
       v-if="page.modules && page.modules.length > 0"
       class="app-hero-wrapper"
     >
-      <AppHero
-        v-for="(module, index) in page.modules"
-        :key="index"
-        :title="module.title"
-        :description="module.description"
-        :intro_text="module.intro_text"
-        :background-color="module.backgroundColor"
-        :foreground-color="module.foregroundColor"
-        :image="module.image"
-      />
+      <BaseFloatingImages
+        :speed="0.000000000000000001"
+        :scale="5"
+        backgroundcolor="#1A1A1A"
+      >
+        <AppHero
+          v-for="(module, index) in page.modules"
+          :key="index"
+          :title="module.title"
+          :description="module.description"
+          :intro_text="module.intro_text"
+          :background-color="module.backgroundColor"
+          :foreground-color="module.foregroundColor"
+          :image="module.image"
+        />
+      </BaseFloatingImages>
     </div>
 
     <div class="bg-secondary">
