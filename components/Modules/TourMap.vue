@@ -26,8 +26,6 @@
       </transition>
     </div>
   </div>
-
-  <pre class="text-white bg-black">{{ data }}</pre>
 </template>
 
 <script setup>

@@ -138,9 +138,10 @@ const selectCategory = (category) => {
 // Assuming each tourDate has a category property, we can collect all unique categories this way:
 const categories = computed(() => {
   if (page && page.tourdates) {
-    const uniqueCategories = Array.from(
-      new Set(page.tourdates.map((tourDate) => tourDate.category))
+    const allCategories = page.tourdates.flatMap((tourDate) =>
+      tourDate.category.split(', ')
     )
+    const uniqueCategories = Array.from(new Set(allCategories))
     return ['All', ...uniqueCategories]
   }
   return ['All']
@@ -153,7 +154,7 @@ const filteredTourDates = computed(() => {
     return page.tourdates.filter(
       (tourDate: { enddate: string | number | Date; category: string }) =>
         selectedCategory.value === 'All' ||
-        selectedCategory.value === tourDate.category
+        tourDate.category.split(', ').includes(selectedCategory.value)
     )
   }
   return []
