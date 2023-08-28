@@ -26,6 +26,8 @@
       </transition>
     </div>
   </div>
+
+  <pre class="text-white bg-black">{{ data }}</pre>
 </template>
 
 <script setup>
@@ -69,7 +71,10 @@ const generateTourPath = (waviness = 2, granularity = 50) => {
 
   // Iterate over the tour data and add each location to the tour path.
   data.value.forEach((item, index) => {
-    const destinationCoordinates = [item.location.lon, item.location.lat]
+    const destinationCoordinates = [
+      Number(item.location.lon),
+      Number(item.location.lat),
+    ]
 
     // Generate the path from current point to destination
     const pathSegmentCoordinates = generateSplinePath(
@@ -577,7 +582,10 @@ onMounted(() => {
 })
 
 const handleGoToCoordinate = (coord, cityData) => {
-  const coordinates = [cityData.location.lon, cityData.location.lat]
+  const coordinates = [
+    parseFloat(cityData.location.lon.toFixed(8)),
+    parseFloat(cityData.location.lat.toFixed(8)),
+  ]
 
   map.value.flyTo({
     center: coordinates,
