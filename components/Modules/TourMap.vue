@@ -241,31 +241,34 @@ const setupMap = () => {
       },
     })
 
+    // Declare a variable to store the interval ID
+    let intervalId = null
+
     // Then set up an interval to gradually add more points to the line.
     let currentIndex = 1
     const pointsToAddPerInterval = 5 // Adjust this value to add more points per interval
-    const intervalDuration =
-      totalAnimationDuration / tourPath.geometry.coordinates.length
+    // Calculate the interval duration based on the number of points
+    const numPoints = tourPath.geometry.coordinates.length
+    const totalAnimationDuration = 3000 // Total duration of the animation in milliseconds
+    const intervalDuration = totalAnimationDuration / numPoints // Interval duration
 
-    const intervalId = setInterval(() => {
+    // Clear the previous interval if it exists
+    if (intervalId) {
+      clearInterval(intervalId)
+    }
+
+    intervalId = setInterval(() => {
       if (currentIndex < tourPath.geometry.coordinates.length) {
         const currentData = map.value.getSource('tour-path')._data
-        for (
-          let i = 0;
-          i < pointsToAddPerInterval &&
-          currentIndex < tourPath.geometry.coordinates.length;
-          i++
-        ) {
-          currentData.geometry.coordinates.push(
-            tourPath.geometry.coordinates[currentIndex]
-          )
-          currentIndex++
-        }
+        currentData.geometry.coordinates.push(
+          tourPath.geometry.coordinates[currentIndex]
+        )
+        currentIndex++
         map.value.getSource('tour-path').setData(currentData)
       } else {
         clearInterval(intervalId) // Stop the interval once we've added all the points.
       }
-    }, intervalDuration) // Keep the interval at 1 ms
+    }, intervalDuration) // Use the calculated interval duration
   })
 
   // map.value.scrollZoom.disable()
