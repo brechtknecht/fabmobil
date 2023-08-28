@@ -21,7 +21,7 @@
       <!-- Team Categories -->
       <div v-for="category in page.categories" :key="category.name">
         <div
-          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto py-16"
         >
           <KirbyLayouts :layouts="category.layouts" />
         </div>

@@ -26,9 +26,9 @@
           </p>
         </div>
       </div>
-      <p class="font-body text-body font-bold">
+      <p class="font-body text-body font-bold text-center pt-4">
         {{ member.name }} <span> {{ member.pronoun }}</span>
-        <span><br />{{ member.category }}</span>
+        <!-- <span><br />{{ member.category }}</span> -->
       </p>
     </div>
   </div>
@@ -63,9 +63,10 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 0.2;
   transition: opacity 0.3s;
-  backdrop-filter: 'blur(5px)';
+  cursor: pointer;
+  backdrop-filter: blur(5px); /* Removed quotes around blur(5px) */
 }
 
 .info-overlay:hover {
