@@ -131,6 +131,7 @@ const selectedCategory = ref('All')
 // Define a function to update selectedCategory
 const selectCategory = (category) => {
   selectedCategory.value = category
+  console.log('Changed Category to:', category)
 }
 
 // Assuming each tourDate has a category property, we can collect all unique categories this way:
@@ -147,6 +148,7 @@ const categories = computed(() => {
 // Computed property for filteredTourDates
 const filteredTourDates = computed(() => {
   if (page && page.tourdates) {
+    console.log('Update filteredTourDates')
     return page.tourdates.filter(
       (tourDate: { enddate: string | number | Date; category: string }) =>
         selectedCategory.value === 'All' ||
