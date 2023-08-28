@@ -46,6 +46,9 @@ const props = defineProps({
   },
 })
 
+// Declare a variable to store the interval ID
+let intervalId = null
+
 const data = toRef(props, 'tourData')
 
 watch(data, (newVal, oldVal) => {
@@ -240,9 +243,6 @@ const setupMap = () => {
         'line-color': '#353535', // Change this to the desired color of the line.
       },
     })
-
-    // Declare a variable to store the interval ID
-    let intervalId = null
 
     // Then set up an interval to gradually add more points to the line.
     let currentIndex = 1
@@ -600,6 +600,19 @@ watch(data, (newVal, oldVal) => {
 // Call setupMap in onMounted to set up the map when the component is first created
 onMounted(() => {
   setupMap(data.value)
+})
+
+onBeforeUnmount(() => {
+  // Clear the interval
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
+
+  // Remove the map
+  if (map.value) {
+    map.value.remove()
+    map.value = null
+  }
 })
 
 const handleGoToCoordinate = (coord, cityData) => {
