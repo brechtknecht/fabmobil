@@ -29,6 +29,7 @@
         <button
           v-for="(category, index) in categories"
           :key="index"
+          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           @click="selectCategory(category)"
         >
           {{ category }}
@@ -156,6 +157,10 @@ const filteredTourDates = computed(() => {
     )
   }
   return []
+})
+
+watch(filteredTourDates, (newVal, oldVal) => {
+  console.log('filteredTourDates changed:', newVal)
 })
 </script>
 

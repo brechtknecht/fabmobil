@@ -48,6 +48,10 @@ const props = defineProps({
 
 const data = toRef(props, 'tourData')
 
+watch(data, (newVal, oldVal) => {
+  console.log('tourData changed:', newVal)
+})
+
 console.log('DATA', data)
 
 const map = ref(null)
@@ -181,7 +185,7 @@ onBeforeUnmount(() => {
   }
 })
 
-onMounted(() => {
+const setupMap = () => {
   mapboxgl.accessToken =
     'pk.eyJ1IjoiYnJlY2h0a25lY2h0IiwiYSI6ImNqZ2lkOHM1MDBidGkyeW84aXJwbmc2ZWoifQ.C4Qv0LupRWQ2b1ZamWqqUA'
 
@@ -579,6 +583,20 @@ onMounted(() => {
     .catch((error) => {
       console.error('An error occurred while loading the models:', error)
     })
+}
+
+// Watch tourData and update the map when it changes
+watch(data, (newVal, oldVal) => {
+  // Generate the new tour path
+  const newTourPath = generateTourPath(newVal)
+
+  // Update the map with the new tour path
+  setupMap(newTourPath)
+})
+
+// Call setupMap in onMounted to set up the map when the component is first created
+onMounted(() => {
+  setupMap(data.value)
 })
 
 const handleGoToCoordinate = (coord, cityData) => {
