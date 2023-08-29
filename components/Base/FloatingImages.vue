@@ -63,6 +63,15 @@ export default {
       '--background-color',
       this.backgroundcolor
     )
+
+    // Add keydown and keyup event listeners
+    window.addEventListener('keydown', this.handleKeyDown)
+    window.addEventListener('keyup', this.handleKeyUp)
+  },
+  beforeUnmount() {
+    // Remove event listeners when component is unmounted
+    window.removeEventListener('keydown', this.handleKeyDown)
+    window.removeEventListener('keyup', this.handleKeyUp)
   },
   methods: {
     initImages() {
@@ -128,6 +137,16 @@ export default {
     handleMouseMove(event) {
       this.mouseX = event.clientX
       this.mouseY = event.clientY
+    },
+    handleKeyDown(event) {
+      if (event.key === 'f') {
+        this.$emit('update:speed', 100)
+      }
+    },
+    handleKeyUp(event) {
+      if (event.key === 'f') {
+        this.$emit('update:speed', 0.000001)
+      }
     },
     animateImages() {
       requestAnimationFrame(this.animateImages)
