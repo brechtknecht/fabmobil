@@ -45,10 +45,13 @@ const breadcrumbs = computed(() => {
   if (pathArray.length !== breadcrumbDepth.value) return []
 
   const breadcrumbs = pathArray.reduce((breadcrumbArray, path, i) => {
+    const prevPath = i !== 0 ? breadcrumbArray[i - 1].path : ''
+    const newPath = prevPath ? `/${prevPath}/${path}` : `/${path}`
+
     return [
       ...breadcrumbArray,
       {
-        path: '/' + (i !== 0 ? breadcrumbArray[i - 1].path : '') + '/' + path,
+        path: newPath,
         name: path
           .split('-')
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
