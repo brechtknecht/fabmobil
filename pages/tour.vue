@@ -24,16 +24,18 @@
         Wo wir schon waren (2017 – 2023)
       </h2>
       <!-- Add Selector here -->
-      <div>
-        <h3>Select Category</h3>
-        <button
-          v-for="(category, index) in categories"
-          :key="index"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-          @click="selectCategory(category)"
-        >
-          {{ category }}
-        </button>
+      <div class="sticky top-16 z-50 px-8">
+        <!-- <h3 class="font-headline text-white">Select Category</h3> -->
+        <div class="toggle-wrapper flex gap-4 py-4">
+          <button
+            v-for="(category, index) in categories"
+            :key="index"
+            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            @click="selectCategory(category)"
+          >
+            {{ category }}
+          </button>
+        </div>
       </div>
       <div class="h-[100vh] text-primary">
         <!-- Pass the tourdates as locations to the Map component -->
