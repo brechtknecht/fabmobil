@@ -15,6 +15,7 @@ module.exports = {
         accent: '#00FF00',
         tertiary: '#FF6700',
         purple: '#DDBBFC',
+        green: '#00FF00',
       },
       fontFamily: {
         headline: [
@@ -133,14 +134,14 @@ module.exports = {
         ],
       },
       fontWeight: {
-        extralight: 200,
-        light: 300,
-        regular: 400,
-        medium: 500,
-        semibold: 600,
-        bold: 700,
-        extrabold: 800,
-        black: 900,
+        extralight: 100,
+        light: 200,
+        regular: 300,
+        medium: 400,
+        semibold: 500,
+        bold: 600,
+        extrabold: 700,
+        black: 800,
       },
       lineHeight: {
         tight: [

@@ -89,6 +89,9 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+}
 .py-2 {
   padding: 2rem 0;
 }

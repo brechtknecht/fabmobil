@@ -26,12 +26,12 @@
         <!-- Team Categories -->
         <div v-for="category in page.categories" :key="category.name">
           <div
-            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto py-16"
+            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto sm:px-8 mt-16"
           >
             <KirbyLayouts :layouts="category.layouts" />
           </div>
           <div
-            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+            class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto px-16 sm:px-8"
           >
             <BaseTeamMember
               v-for="member in team.filter((m) => m.category === category.name)"
@@ -43,7 +43,7 @@
 
         <!-- Unassigned Team Members -->
         <div
-          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto"
+          class="team-members grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-primary container mx-auto sm:px-8"
         >
           <BaseTeamMember
             v-for="member in team.filter((m) => !m.category)"

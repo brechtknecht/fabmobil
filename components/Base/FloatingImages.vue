@@ -185,7 +185,7 @@ export default {
   z-index: -1;
   img {
     mix-blend-mode: overlay;
-    opacity: 0.3;
+    opacity: 0.2;
   }
 }
 

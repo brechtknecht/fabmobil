@@ -12,7 +12,7 @@
         />
       </div>
       <div
-        class="info-overlay"
+        class="info-overlay text-center px-8 text-green"
         @mouseover="showInfo = true"
         @mouseleave="showInfo = false"
       >
