@@ -8,7 +8,7 @@
       'transition-opacity': true,
       'duration-500': true,
     }"
-    class="absolute z-50 w-full h-full top-0"
+    class="absolute z-40 w-full h-full top-0"
   >
     <!-- Absolute container for slot content -->
     <div

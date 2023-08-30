@@ -538,9 +538,14 @@ const setupMap = () => {
           const coordinates = e.features[0].geometry.coordinates.slice()
           const city = e.features[0].properties.city
 
-          popup = new mapboxgl.Popup({ closeOnClick: false })
+          popup = new mapboxgl.Popup({
+            closeOnClick: false,
+            closeButton: false,
+          })
             .setLngLat(coordinates)
-            .setHTML(`<h1 class="text-black">${city}</h1>`)
+            .setHTML(
+              `<h1 class="font-headline text-xl text-black">${city}</h1>`
+            )
             .addTo(map.value)
         }
 

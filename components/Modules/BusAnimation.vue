@@ -46,7 +46,7 @@ onBeforeUnmount(() => {
 
         <!-- Pass scrollPercentage to VideoOverlay -->
         <BaseBusOverlays
-          class="appe w-full h-full relative z-50"
+          class="appe w-full h-full relative z-40"
           :scroll-percentage="scrollPercentage"
         />
 
