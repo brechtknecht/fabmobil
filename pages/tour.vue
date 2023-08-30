@@ -24,7 +24,7 @@
         Wo wir schon waren (2017 – 2023)
       </h2>
       <!-- Add Selector here -->
-      <div class="sticky top-16 z-50 px-8">
+      <div class="sticky top-16 z-10 px-8">
         <!-- <h3 class="font-headline text-white">Select Category</h3> -->
         <div class="toggle-wrapper flex gap-4 py-4">
           <button

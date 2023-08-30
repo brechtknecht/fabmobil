@@ -238,7 +238,7 @@ const setupMap = () => {
       source: 'tour-path',
       paint: {
         'line-width': 3,
-        'line-color': '#353535', // Change this to the desired color of the line.
+        'line-color': '#312F34', // Change this to the desired color of the line.
       },
     })
 
@@ -414,12 +414,14 @@ const setupMap = () => {
           source: 'cities',
           filter: ['has', 'point_count'],
           paint: {
+            'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
+            'circle-stroke-color': '#fff',
             'circle-color': [
               'step',
               ['get', 'point_count'],
-              '#51bbd6',
+              '#6E31F0',
               100,
-              '#f1f075',
+              '#6E31F0',
               750,
               '#f28cb1',
             ],
@@ -459,7 +461,7 @@ const setupMap = () => {
           source: 'cities',
           filter: ['!', ['has', 'point_count']],
           paint: {
-            'circle-color': '#11b4da',
+            'circle-color': '#6E31F0',
             'circle-radius': 10, // Increase the radius for a larger hitbox
             'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
             'circle-stroke-color': '#fff',
@@ -488,7 +490,7 @@ const setupMap = () => {
           source: 'cities',
           filter: ['!', ['has', 'point_count']],
           paint: {
-            'circle-color': '#11b4da',
+            'circle-color': '#000000',
             'circle-radius': 4,
             'circle-stroke-width': 1,
             'circle-stroke-color': '#fff',

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col bg-secondary items-center justify-center h-auto py-20"
+    class="flex flex-col bg-secondary items-center justify-center h-auto py-32"
   >
     <!-- <h1 class="font-headline text-large-title text-primary w-full text-center">
       In
