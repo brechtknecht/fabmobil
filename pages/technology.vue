@@ -60,6 +60,16 @@
                     :blocks="tech.description ?? []"
                     class="note text text-primary"
                   />
+
+                  <a
+                    v-if="tech.link"
+                    :href="tech.link"
+                    target="_blank"
+                    class="text-white border border-white rounded p-2 w-fit"
+                  >
+                    Link →
+                  </a>
+
                   <button
                     class="text-accent rounded-md flex flex-row mt-4 mb-8"
                     @click="tech.showDevices = !tech.showDevices"
@@ -93,7 +103,11 @@
                   v-show="tech.showDevices"
                   class="devices pt-20 pb-20 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4"
                 >
-                  <div v-for="(device, index) in tech.devices" :key="index">
+                  <div
+                    v-for="(device, index) in tech.devices"
+                    :key="index"
+                    class="flex flex-col justify-center align-start"
+                  >
                     <h2
                       class="font-headline text-primary text-title-1 text-center"
                     >
@@ -106,6 +120,14 @@
                       :alt="device.name"
                       class="w-54"
                     />
+                    <a
+                      v-if="device.link"
+                      :href="device.link"
+                      target="_blank"
+                      class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                    >
+                      Link zum Produkt →
+                    </a>
                   </div>
                 </div>
               </transition>
@@ -115,7 +137,7 @@
       </div>
 
       <!-- DEBUG -->
-      <!-- <pre>{{ technologyData }}</pre> -->
+      <!-- <pre class="text-white">{{ technologyData }}</pre> -->
       <!-- <pre>{{ categoryData }}</pre> -->
     </div>
   </section>
@@ -143,6 +165,7 @@ const { data: technologyData } = await useKql({
       select: {
         name: true,
         description: 'structureItem.description.toBlocks',
+        link: true,
         image: {
           query: 'structureItem.image.toFile',
           select: {

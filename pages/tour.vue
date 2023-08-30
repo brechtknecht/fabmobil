@@ -30,7 +30,10 @@
           <button
             v-for="(category, index) in categories"
             :key="index"
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            :class="[
+              'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow',
+              { 'bg-black': selectedCategory.value === category },
+            ]"
             @click="selectCategory(category)"
           >
             {{ category }}
