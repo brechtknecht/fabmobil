@@ -3,6 +3,10 @@
     <div
       class="aspect-w-1 aspect-h-1 mb-4 relative flex flex-col h-full justify-between"
     >
+      <p class="font-body text-body font-bold text-center pt-4">
+        {{ member.description }}
+        <!-- <span><br />{{ member.category }}</span> -->
+      </p>
       <div class="image-wrapper">
         <img
           v-if="member.image?.url"
@@ -17,7 +21,6 @@
         @mouseleave="showInfo = false"
       >
         <div v-if="showInfo" class="info-details">
-          <p class="font-body text-body">{{ member.description }}</p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'mailto:' + member.email">{{ member.email }}</a>
           </p>
