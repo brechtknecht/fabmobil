@@ -8,6 +8,10 @@ const { data } = await useKql({
     intendedTemplate: true,
     // description: true,
     subheading: true,
+    uploads: {
+      query: 'page.uploads.toFiles',
+    },
+    files: true,
     video: {
       query: 'page.video_url',
     },
@@ -43,6 +47,13 @@ setPage(page)
 const coverUrl = page?.cover?.url || page?.images?.[0]?.url
 const parentRoute = computed(() => route.path.split('/').slice(0, -1).join('/'))
 
+const nonImageFiles = page?.files?.filter((file) => {
+  const extension = file.split('.').pop()
+  return !['jpg', 'jpeg', 'png', 'gif'].includes(extension)
+})
+
+console.log('Non Image Files:', nonImageFiles)
+
 function formatDateShort(date: Date) {
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
@@ -61,7 +72,7 @@ function formatDateShort(date: Date) {
     >
       <!-- <img :src="coverUrl" class="blur-xl scale-[180%] origin-center" alt="" /> -->
       <div
-        class="relative flex flex-col w-full h-full items-center justify-center module py-32 md:py-64 px-4 sm:px-0"
+        class="relative flex flex-col w-full items-center justify-center module h-[70vh] py-32 md:py-64 px-4 sm:px-0"
         :style="{ '--coverUrl': `url(${coverUrl})` }"
       >
         <div class="module-inside w-full px-2 md:px-32">
@@ -72,12 +83,36 @@ function formatDateShort(date: Date) {
           </h1>
           <div class="hero-wrapper w-full mx-auto">
             <img
-              v-if="!page.video"
+              v-if="!page.video && nonImageFiles.length == 0"
               :src="coverUrl"
               alt=""
               class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
             />
-            <BaseVideo v-else class="w-full" :url="page.video" />
+            <BaseVideo
+              v-else-if="page.video"
+              class="w-full"
+              :url="page.video"
+            />
+            <div
+              v-else-if="nonImageFiles.length > 0"
+              class="downloads text-white"
+            >
+              <img
+                :src="coverUrl"
+                alt=""
+                class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
+              />
+              <div class="download-text text-center text-black my-12">
+                <a
+                  :href="nonImageFiles[0]"
+                  target="_blank"
+                  class="text-black border border-black rounded p-2 w-fit mx-auto my-4"
+                  download
+                >
+                  PDF DOWNLOAD →
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,6 +145,8 @@ function formatDateShort(date: Date) {
 
       <LazyAppPrevNextMaterial />
     </article>
+
+    <pre class="text-white bg-black">{{ page }}</pre>
   </div>
 </template>
 
