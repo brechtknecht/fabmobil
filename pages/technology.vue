@@ -5,7 +5,7 @@
         <div class="flex flex-row pb-32">
           <div class="category-list sticky top-0 w-4/12 hidden md:block">
             <h1
-              class="font-headline text-primary text-large-title font-bold leading-tight py-4"
+              class="font-headline text-primary text-large-title font-bold leading-tight py-4 px-4"
             >
               {{ page.title }}
             </h1>
@@ -53,7 +53,9 @@
                   <img :src="tech.image.url" :alt="tech.name" class="w-72" />
                 </div>
                 <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
-                  <h2 class="font-headline text-primary text-large-title">
+                  <h2
+                    class="font-headline text-primary text-large-title px-8 md:px-0"
+                  >
                     {{ tech.name }}
                   </h2>
                   <KirbyBlocks
@@ -65,13 +67,13 @@
                     v-if="tech.link"
                     :href="tech.link"
                     target="_blank"
-                    class="text-white border border-white rounded p-2 w-fit"
+                    class="text-white border border-white rounded p-2 px-4 w-fit mx-8 md:mx-0"
                   >
                     Link →
                   </a>
 
                   <button
-                    class="text-accent rounded-md flex flex-row mt-4 mb-8"
+                    class="text-accent rounded-md flex flex-row mt-4 mb-8 px-8 md:px-0"
                     @click="tech.showDevices = !tech.showDevices"
                   >
                     Unsere Empfehlungen
