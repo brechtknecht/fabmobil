@@ -53,7 +53,7 @@ onBeforeUnmount(() => {
         <!-- ScrollyVideo component -->
         <ScrollyVideo
           ref="scrollyVideo"
-          class="relative p-4 md:p-12 scale-75 flex justify-center items-center h-full"
+          class="relative scale-75 flex justify-center items-center h-full scrolly-video"
           src="/assets/video/sequence-compressed.mp4"
           transition-speed="0.0001"
           :cover="false"
@@ -77,9 +77,14 @@ onBeforeUnmount(() => {
   canvas,
   video {
     width: 100% !important; /* This will make the width equal to the full width of its container */
+    // height: 100% !important;
     height: auto !important;
     aspect-ratio: 1192 / 1080 !important;
   }
+}
+
+.scrolly-video {
+  overflow: visible !important;
 }
 
 .scrolly-video-container {

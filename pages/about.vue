@@ -70,10 +70,10 @@ setPage(page)
         />
       </BaseFloatingImages>
     </div>
-    <KirbyLayouts :layouts="page.layouts ?? []" />
+    <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
     <ModulesLokallaboreTeaser />
     <!-- Debug text -->
-    <pre>{{ page }}</pre>
+    <!-- <pre>{{ page }}</pre> -->
   </div>
 </template>
 

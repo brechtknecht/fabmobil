@@ -64,7 +64,7 @@ onMounted(async () => {
     :class="[layout.attrs.verticalspace]"
   >
     <section
-      class="container grid padding-xl mx-auto"
+      class="container grid sm:padding-xl mx-auto px-8"
       :class="[
         { 'text-white': layout.attrs.darkmode == 'true' },
         getLayoutClass(layout.attrs.layoutposition),
