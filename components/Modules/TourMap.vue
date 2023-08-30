@@ -462,7 +462,7 @@ const setupMap = () => {
           filter: ['!', ['has', 'point_count']],
           paint: {
             'circle-color': '#6E31F0',
-            'circle-radius': 10, // Increase the radius for a larger hitbox
+            'circle-radius': 5, // Increase the radius for a larger hitbox
             'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
             'circle-stroke-color': '#fff',
           },
@@ -476,7 +476,7 @@ const setupMap = () => {
             source: 'cities',
             filter: ['!', ['has', 'point_count']],
             paint: {
-              'circle-radius': 20, // Increase the radius for a larger hitbox
+              'circle-radius': 30, // Increase the radius for a larger hitbox
               'circle-opacity': 0, // Make the circle invisible
             },
           },
@@ -538,9 +538,9 @@ const setupMap = () => {
           const coordinates = e.features[0].geometry.coordinates.slice()
           const city = e.features[0].properties.city
 
-          popup = new mapboxgl.Popup()
+          popup = new mapboxgl.Popup({ closeOnClick: false })
             .setLngLat(coordinates)
-            .setHTML(`City: ${city}`)
+            .setHTML(`<h1 class="text-black">${city}</h1>`)
             .addTo(map.value)
         }
 

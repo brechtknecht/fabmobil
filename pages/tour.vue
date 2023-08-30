@@ -19,12 +19,12 @@
       class="section-tour bg-secondary h-fit border-t border-b border-black py-4"
     >
       <h2
-        class="font-headline text-xl sm:text-5xl leading-relaxed text-primary text-large-title font-bold mb-4 sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-4 pb-2 px-4"
+        class="font-headline text-xl sm:text-5xl leading-relaxed text-primary text-large-title font-bold sticky top-0 left-0 z-10 bg-secondary border-b border-black pt-4 pb-2 px-4"
       >
         Wo wir schon waren (2017 – 2023)
       </h2>
       <!-- Add Selector here -->
-      <div class="sticky top-16 z-10 px-8">
+      <div class="sticky top-16 z-10 px-8 bg-black">
         <!-- <h3 class="font-headline text-white">Select Category</h3> -->
         <div class="toggle-wrapper flex gap-4 py-4">
           <button
