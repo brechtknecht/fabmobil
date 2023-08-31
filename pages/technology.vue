@@ -129,14 +129,20 @@
                       :alt="device.name"
                       class="w-54"
                     />
-                    <a
-                      v-if="device.link"
-                      :href="device.link"
-                      target="_blank"
-                      class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                    <div
+                      v-for="(link, linkIndex) in device.links"
+                      :key="linkIndex"
+                      class="mx-auto py-4"
                     >
-                      Link zum Produkt →
-                    </a>
+                      <a
+                        v-if="link.url"
+                        :href="link.url"
+                        target="_blank"
+                        class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                      >
+                        {{ link.linkname || 'Link zum Produkt' }} →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </transition>
@@ -146,7 +152,7 @@
       </div>
 
       <!-- DEBUG -->
-      <!-- <pre class="text-white">{{ technologyData }}</pre> -->
+      <pre class="text-white">{{ technologyData }}</pre>
       <!-- <pre>{{ categoryData }}</pre> -->
     </div>
   </section>
@@ -193,7 +199,7 @@ const { data: technologyData } = await useKql({
                 srcset: 'file.srcset([300, 800, 1024])',
               },
             },
-            link: true,
+            links: 'structureItem.links.toStructure',
           },
         },
       },
