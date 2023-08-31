@@ -9,11 +9,17 @@
             >
               {{ page.title }}
             </h1>
-            <ul>
-              <li
+            <ul class="pr-8 w-full">
+              <BaseAnimatedNuxtLink
                 v-for="(category, index) in categoryData?.result.categories"
                 :key="index"
-                class="category-item font-headline text-title-3 text-primary cursor-pointer flex justify-between items-center hover:bg-primary hover:text-white transition-colors duration-300 pr-40"
+                class="category-item font-body text-title-3 text-white cursor-pointer flex justify-between items-center hover:bg-primary hover:text-black transition-colors duration-300 px-4 py-2 my-1 w-full"
+                :title-a="category.name"
+                :title-b="category.name"
+                font-a-color="text-black"
+                font-b-color="text-black"
+                border-radius="rounded-lg"
+                hover-bg-color="hover:bg-green-500"
                 @click="scrollToTechnology(index)"
                 @mouseover="hoveredIndex = index"
                 @mouseleave="hoveredIndex = null"
@@ -37,7 +43,7 @@
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </li>
+              </BaseAnimatedNuxtLink>
             </ul>
           </div>
 
@@ -229,6 +235,7 @@ onMounted(() => {
   height: calc(100vh - 9rem);
   padding-bottom: 4rem;
   overflow-y: auto;
+  max-width: 18rem;
 }
 
 .slide-fade-enter-active,

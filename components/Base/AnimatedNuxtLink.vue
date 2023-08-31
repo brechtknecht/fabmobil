@@ -1,17 +1,25 @@
 <template>
-  <div class="clipped-box">
+  <div class="clipped-box" :class="[bgColor, borderRadius, hoverBgColor]">
     <NuxtLink :to="to" @mouseenter="animateLink" @mouseleave="resetLink">
       <div class="animation-container">
         <div
-          :class="{ 'animate-out': isHovered, 'animate-back': !isHovered }"
-          class="animate-content text-headline weight-medium text-body font-medium text-black"
+          :class="{
+            'animate-out': isHovered,
+            'animate-back': !isHovered,
+            fontAColor,
+          }"
+          class="animate-content text-headline weight-medium text-body font-medium"
           :aria-current="ariaCurrent"
         >
           {{ titleA }}
         </div>
         <div
-          :class="{ 'animate-in': isHovered, 'animate-back-in': !isHovered }"
-          class="animate-content text-headline weight-medium text-body font-medium text-black"
+          :class="{
+            'animate-in': isHovered,
+            'animate-back-in': !isHovered,
+            fontBColor,
+          }"
+          class="animate-content text-headline weight-medium text-body font-medium"
         >
           {{ titleB }}
         </div>
@@ -28,6 +36,11 @@ const props = defineProps({
   titleA: String,
   titleB: String,
   ariaCurrent: String,
+  fontAColor: String, // new prop for font A color
+  fontBColor: String, // new prop for font B color
+  bgColor: String, // new prop for background color
+  borderRadius: String, // new prop for corner radius
+  hoverBgColor: String,
 })
 
 const isHovered = ref(false)
