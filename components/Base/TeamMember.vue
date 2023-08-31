@@ -21,7 +21,10 @@
         @mouseleave="showInfo = false"
       >
         <div v-if="showInfo" class="info-details overflow-visible">
-          <p v-if="member.description" class="font-body text-body text-purple">
+          <p
+            v-if="member.description"
+            class="font-callout text-body text-purple"
+          >
             <span>{{ member.description }}</span>
           </p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
