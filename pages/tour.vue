@@ -24,15 +24,18 @@
         Wo wir schon waren (2017 – 2023)
       </h2>
       <!-- Add Selector here -->
-      <div class="sticky top-16 z-10 px-8 bg-black">
+      <div class="sticky top-16 z-10 px-8 bg-[#1a1a1a] border-b border-black">
         <!-- <h3 class="font-headline text-white">Select Category</h3> -->
-        <div class="toggle-wrapper flex gap-4 py-4">
+        <div class="flex gap-4 py-4">
           <button
             v-for="(category, index) in categories"
             :key="index"
             :class="[
-              'bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow',
-              { 'bg-black': selectedCategory.value === category },
+              ' hover:bg-gray-100 hover:text-black text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow',
+              {
+                'bg-white text-black selected-category':
+                  selectedCategory === category,
+              },
             ]"
             @click="selectCategory(category)"
           >
@@ -171,6 +174,10 @@ watch(filteredTourDates, (newVal, oldVal) => {
 </script>
 
 <style scoped>
+.selected-category {
+  background-color: white;
+  color: black !important;
+}
 .info-overlay {
   position: absolute;
   top: 0;
