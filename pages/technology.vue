@@ -69,14 +69,20 @@
                     class="note text text-primary"
                   />
 
-                  <a
-                    v-if="tech.link"
-                    :href="tech.link"
-                    target="_blank"
-                    class="text-white border border-white rounded p-2 px-4 w-fit mx-8 md:mx-0"
+                  <div
+                    v-for="(link, linkIndex) in tech.links"
+                    :key="linkIndex"
+                    class="py-4"
                   >
-                    Link →
-                  </a>
+                    <a
+                      v-if="link.url"
+                      :href="link.url"
+                      target="_blank"
+                      class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                    >
+                      {{ link.linkname || 'Link zum Produkt' }} →
+                    </a>
+                  </div>
 
                   <button
                     v-if="tech.devices.length > 0"
@@ -180,7 +186,7 @@ const { data: technologyData } = await useKql({
       select: {
         name: true,
         description: 'structureItem.description.toBlocks',
-        link: true,
+        links: 'structureItem.links.toStructure',
         image: {
           query: 'structureItem.image.toFile',
           select: {
