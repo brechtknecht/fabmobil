@@ -16,15 +16,16 @@
       />
     </div>
 
-    <div class="w-full max-w-xs mx-auto my-4">
-      <select
-        v-model="selectedCategory"
-        class="w-full p-2 text-sm border rounded"
+    <div class="w-fit mx-auto my-4 px-8">
+      <button
+        v-for="category in categories"
+        :key="category"
+        :class="{ 'bg-purple text-black': selectedCategory === category }"
+        class="p-2 m-1 text-sm sm:text-base md:text-lg lg:text-xl border rounded"
+        @click="selectedCategory = category"
       >
-        <option v-for="category in categories" :key="category">
-          {{ category }}
-        </option>
-      </select>
+        {{ category }}
+      </button>
     </div>
 
     <transition-group
@@ -77,15 +78,15 @@ const categories = computed(() => {
   const allCategories = new Set(
     tutorials.value.flatMap((tutorial) => tutorial.category)
   )
-  return ['All Categories', ...Array.from(allCategories)]
+  return ['Alle', ...Array.from(allCategories)]
 })
 
 // Add a reactive data property for the selected category
-const selectedCategory = ref('All Categories')
+const selectedCategory = ref('Alle')
 
 // Create a filtered list of tutorials based on the selected category
 const filteredTutorials = computed(() => {
-  if (selectedCategory.value === 'All Categories') {
+  if (selectedCategory.value === 'Alle') {
     return tutorials.value
   }
   return tutorials.value.filter((tutorial) =>
