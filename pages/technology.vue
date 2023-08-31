@@ -5,7 +5,7 @@
         <div class="flex flex-row pb-32">
           <div class="category-list sticky top-0 w-4/12 hidden md:block">
             <h1
-              class="font-headline text-primary text-large-title font-bold leading-tight py-4 px-4"
+              class="font-headline text-primary text-large-title font-bold leading-tight py-4"
             >
               {{ page.title }}
             </h1>
@@ -13,7 +13,7 @@
               <li
                 v-for="(category, index) in categoryData?.result.categories"
                 :key="index"
-                class="font-headline text-title-3 text-primary cursor-pointer flex justify-between items-center hover:bg-primary hover:text-white transition-colors duration-300 pr-40"
+                class="category-item font-headline text-title-3 text-primary cursor-pointer flex justify-between items-center hover:bg-primary hover:text-white transition-colors duration-300 pr-40"
                 @click="scrollToTechnology(index)"
                 @mouseover="hoveredIndex = index"
                 @mouseleave="hoveredIndex = null"
@@ -226,7 +226,8 @@ onMounted(() => {
 .category-list {
   position: sticky;
   top: 9rem;
-  height: 100vh;
+  height: calc(100vh - 9rem);
+  padding-bottom: 4rem;
   overflow-y: auto;
 }
 
