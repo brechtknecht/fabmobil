@@ -5,6 +5,7 @@ import type { KirbyLayout } from '#nuxt-kql'
 
 defineProps<{
   layouts: KirbyLayout[]
+  maxWidth: string // new prop
 }>()
 
 /** Returns the number of columns this column spans */
@@ -65,6 +66,7 @@ onMounted(async () => {
   >
     <section
       class="container grid sm:padding-xl mx-auto px-8"
+      :style="`max-width: ${maxWidth};`"
       :class="[
         { 'text-white': layout.attrs.darkmode == 'true' },
         getLayoutClass(layout.attrs.layoutposition),

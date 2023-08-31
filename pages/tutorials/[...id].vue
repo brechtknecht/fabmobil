@@ -121,6 +121,7 @@ function formatDateShort(date: Date) {
     <article class="note py-8">
       <KirbyLayouts
         :layouts="page.layouts ?? []"
+        :max-width="'400px'"
         class="mx-auto flex justify-center items-center"
       />
 

@@ -35,7 +35,9 @@ onUnmounted(() => {
   <article
     ref="el"
     class="tutorial-excerpt drop-shadow-3 rounded-md"
-    :class="{ 'outline outline-offset-2 drop-shadow-5 outline-2': isHovered }"
+    :class="{
+      'outline drop-shadow-5 outline-2 outline-green': isHovered,
+    }"
     :style="{
       transform: isHovered ? `translate(${x}px, ${y}px) scale(1.0)` : '',
     }"
