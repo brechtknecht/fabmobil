@@ -1,7 +1,7 @@
 <template>
   <div class="absolute w-full" style="position: absolute">
     <BaseVideoOverlay
-      class="overlay-item text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="overlay-item text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(20)"
       :position-y="getPositionY(20)"
@@ -22,7 +22,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="overlay-item text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="overlay-item text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(50)"
       :position-y="getPositionY(80)"
@@ -40,7 +40,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(40)"
       :position-y="getPositionY(60)"
@@ -62,7 +62,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(50)"
       :position-y="getPositionY(65)"
@@ -84,7 +84,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(33)"
       :position-y="getPositionY(80)"
@@ -106,7 +106,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(60)"
       :position-y="getPositionY(60)"
@@ -132,7 +132,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(66)"
       :position-y="getPositionY(25)"
@@ -149,7 +149,7 @@
     </BaseVideoOverlay>
 
     <BaseVideoOverlay
-      class="text-primary bottom-0 sm:absolute z-50 w-full sm:w-auto"
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(22)"
       :position-y="getPositionY(20)"

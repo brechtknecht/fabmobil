@@ -50,7 +50,7 @@
             >
               <div class="flex flex-col md:flex-row">
                 <div class="left-side w-full md:w-1/2">
-                  <img :src="tech.image.url" :alt="tech.name" class="w-72" />
+                  <img :src="tech.image?.url" :alt="tech.name" class="w-72" />
                 </div>
                 <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
                   <h2
