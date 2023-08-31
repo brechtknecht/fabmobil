@@ -79,6 +79,7 @@
                   </a>
 
                   <button
+                    v-if="tech.devices.length > 0"
                     class="text-accent rounded-md flex flex-row mt-4 mb-8 px-8 md:px-0"
                     @click="tech.showDevices = !tech.showDevices"
                   >

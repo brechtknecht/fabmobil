@@ -27,6 +27,9 @@
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'mailto:' + member.email">{{ member.email }}</a>
           </p>
+          <p v-if="member.website" class="font-body text-body">
+            <a :href="member.website">{{ member.website }}</a>
+          </p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'tel:' + member.phone">{{ member.phone }}</a>
           </p>
@@ -53,6 +56,7 @@ const props = defineProps<{
     pronoun: string
     category: string
     email: string
+    website: string
     phone: string
     contact: boolean
     image: { url: string }
