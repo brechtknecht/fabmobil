@@ -98,6 +98,7 @@ const { data } = await useKql({
       select: {
         name: true,
         description: true,
+        jobtitle: true,
         pronoun: true,
         category: true,
         email: true,
