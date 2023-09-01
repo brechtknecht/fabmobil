@@ -39,8 +39,8 @@ dependencies:
     specifier: ^4.0.9
     version: 4.0.9
   scrolly-video:
-    specifier: ^0.0.15
-    version: 0.0.15
+    specifier: ^0.0.16
+    version: 0.0.16
   three:
     specifier: ^0.154.0
     version: 0.154.0
@@ -5733,8 +5733,8 @@ packages:
       tealight: 0.3.6
     dev: false
 
-  /scrolly-video@0.0.15:
-    resolution: {integrity: sha512-PyV4gcWvJcsd3dqpoLfZ6uKtCi0DxZfrP4LySpi88VgiZiVvHZdxsifAfrLNN0Qb+JmwBi4B5n1aQOMEs1Q8lg==}
+  /scrolly-video@0.0.16:
+    resolution: {integrity: sha512-3NE+V0z8HbMuafyWcqPHbg/5+rzwrmqS8+mAYUTb7Cgiea8EALFadaYvlRLrEVR8Fg7Rn6Q8M9tqWib++WfQ0A==}
     dependencies:
       mp4box: 0.4.9
       ua-parser-js: 1.0.35
