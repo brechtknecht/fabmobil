@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   modules: ['@vueuse/nuxt', 'nuxt-kql'],
   css: ['@/assets/css/main.css'],
 
+  publicRuntimeConfig: {
+    ENV: process.env.ENV,
+  },
+
   postcss: {
     plugins: {
       tailwindcss: {},
