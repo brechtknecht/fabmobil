@@ -389,7 +389,13 @@ const setupMap = () => {
         type: 'FeatureCollection',
         features: sortedOrigins.map((origin) => ({
           type: 'Feature',
-          properties: { city: origin.city },
+          properties: {
+            city: origin.city,
+            startDate: origin.startdate, // assuming the date is stored in a property named 'startdate'
+            endDate: origin.enddate,
+            school: origin.venuename, // assuming the school name is stored in a property named 'venuename'
+            category: origin.category,
+          },
           geometry: {
             type: 'Point',
             coordinates: origin.coordinates,
@@ -403,7 +409,7 @@ const setupMap = () => {
           type: 'geojson',
           data: geoJsonData,
           cluster: true,
-          clusterMaxZoom: 8,
+          clusterMaxZoom: 7,
           clusterRadius: 50,
         })
 
@@ -537,6 +543,15 @@ const setupMap = () => {
         function handleMouseOver(e) {
           const coordinates = e.features[0].geometry.coordinates.slice()
           const city = e.features[0].properties.city
+          const startDate = new Date(
+            e.features[0].properties.startDate
+          ).toLocaleDateString('de-DE')
+
+          const endDate = new Date(
+            e.features[0].properties.endDate
+          ).toLocaleDateString('de-DE')
+          const school = e.features[0].properties.school
+          const category = e.features[0].properties.category
 
           popup = new mapboxgl.Popup({
             closeOnClick: false,
@@ -544,7 +559,11 @@ const setupMap = () => {
           })
             .setLngLat(coordinates)
             .setHTML(
-              `<h1 class="font-headline text-xl text-black">${city}</h1>`
+              `<h1 class="font-headline text-xl text-black">${category}</h1>
+              <p class="font-body text-xl text-black">${school}</p>
+              <p class="font-body text-xl text-black">${startDate}${
+                endDate ? ' — ' + endDate : ''
+              }</p>`
             )
             .addTo(map.value)
         }
