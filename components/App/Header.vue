@@ -32,7 +32,7 @@
           :to="`#`"
           class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
         >
-          Spenden
+          Anfragen
         </NuxtLink>
       </div>
 

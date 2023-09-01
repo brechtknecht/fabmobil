@@ -3,7 +3,7 @@
     <div class="container mx-auto py-8">
       <h1 class="text-4xl font-bold mb-6">FAQ</h1>
       <div
-        v-for="item in faqs"
+        v-for="item in limitedFaqs"
         :key="item.question"
         class="faq-item border-b border-gray-600 mb-4 last:border-b-0"
       >
@@ -15,6 +15,13 @@
           {{ item.answer }}
         </div>
       </div>
+      <router-link
+        v-if="faqs.length > displayLimit"
+        to="/faq"
+        class="text-base py-2"
+      >
+        More
+      </router-link>
     </div>
   </div>
 </template>
@@ -23,6 +30,7 @@
 export default {
   data() {
     return {
+      displayLimit: 7,
       faqs: [
         {
           question: 'What is Vue.js?',
