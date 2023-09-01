@@ -1,5 +1,5 @@
 <template>
-  <div class="section bg-black text-white">
+  <div class="section section-faq bg-black text-black">
     <div class="container mx-auto p-8">
       <h1 class="text-4xl font-bold mb-6">FAQ</h1>
       <div
@@ -9,7 +9,7 @@
       >
         <div class="cursor-pointer py-2" @click="toggle(item)">
           <div class="text-xl font-semibold">{{ item.question }}</div>
-          <div class="text-sm text-gray-400">Click to expand</div>
+          <div class="text-sm text-gray-700">Click to expand</div>
         </div>
         <div v-if="item.showAnswer" class="text-base py-2">
           {{ item.answer }}
@@ -55,5 +55,12 @@ setPage(page)
 <style scoped>
 .faq-item:last-child {
   border-bottom: none;
+}
+
+.section-faq {
+  background: url('/assets/img/frontpage/faqbackground.png');
+  background-size: 200% auto;
+  background-position: center center;
+  transition: all 450ms ease-out;
 }
 </style>

@@ -184,6 +184,7 @@ module.exports = {
         xl: '1280px',
         '2xl': '1536px',
         '3xl': '1600px',
+        'header-breakpoint': '1495px',
       },
     },
   },

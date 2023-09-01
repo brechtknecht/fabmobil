@@ -12,8 +12,8 @@
         v-for="item in listedChildren"
         :key="item.id"
         :to="`/${item.id}`"
-        :title-a="item.title"
-        :title-b="item.title"
+        :title-a="item.title.replace(/ /g, '\u00A0')"
+        :title-b="item.title.replace(/ /g, '\u00A0')"
         :aria-current="
           route.path.startsWith(`/${item.id}`) ? 'page' : undefined
         "
@@ -26,7 +26,7 @@
           class="logo flex-shrink-0 flex items-center"
           target="_blank"
         >
-          <img class="h-12" src="/assets/img/insta-icon.svg" alt="Instagram" />
+          <img class="h-8" src="/assets/img/insta-icon.svg" alt="Instagram" />
         </NuxtLink>
         <NuxtLink
           :to="`#`"
@@ -36,7 +36,7 @@
         </NuxtLink>
       </div>
 
-      <div class="-mr-2 flex items-center xl:hidden">
+      <div class="-mr-2 flex items-center header-breakpoint:hidden">
         <button
           class="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           @click="open = !open"
@@ -82,7 +82,7 @@
 
     <div
       v-if="open"
-      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right xl:hidden z-50"
+      class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right header-breakpoint z-50"
     >
       <div
         class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
@@ -159,7 +159,7 @@ const isScrolledDown = ref(false)
 const lastScrollPosition = ref(0)
 
 const listedChildren = computed(() =>
-  (site.value?.children ?? []).filter((i) => i.isListed)
+  (site.value?.children ?? []).filter((i) => i.isListed && i.id !== 'faq')
 )
 
 onMounted(() => {
