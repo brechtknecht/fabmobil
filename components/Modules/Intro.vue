@@ -3,9 +3,9 @@
     class="container mx-auto intro-section flex flex-col bg-cover bg-no-repeat bg-purple-600 items-center justify-center h-auto sm:h-full py-8"
   >
     <div
-      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-2xl py-[30vh]"
+      class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full max-w-3xl py-[30vh]"
     >
-      <h1
+      <!-- <h1
         class="font-bold text-2xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left py-32 leading-8"
         style="line-height: 4rem"
       >
@@ -14,7 +14,12 @@
         <BaseRuff :padding="15" color="#FFFFFF"
           ><span>ganz Sachsen</span></BaseRuff
         >
-      </h1>
+      </h1> -->
+      <img
+        class="w-full align-start"
+        src="/assets/img/frontpage/intro.svg"
+        alt="Intro"
+      />
     </div>
     <div
       class="flex flex-col sm:flex-row w-full justify-center items-center h-auto sm:h-full py-32 max-w-2xl"
@@ -30,11 +35,16 @@
     <div
       class="flex flex-col sm:flex-row h-auto sm:h-full justify-center items-center py-32 max-w-5xl"
     >
-      <h1
+      <!-- <h1
         class="font-bold font-headline text-3xl sm:text-5xl text-[#1a1a1a] w-full text-center sm:text-left"
       >
         Kostenlose Workshops
-      </h1>
+      </h1> -->
+      <img
+        class="w-full max-w-xs align-start"
+        src="/assets/img/frontpage/freeworkshops.svg"
+        alt="Intro"
+      />
       <p
         class="font-normal text-xl sm:text-2xl leading-relaxed text-black w-full text-left p-16"
       >

@@ -19,63 +19,65 @@
         "
       />
     </div>
-    <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
-      <NuxtLink
-        to="https://www.instagram.com/fabmobil/"
-        class="logo flex-shrink-0 flex items-center"
-        target="_blank"
-      >
-        <img class="h-12" src="/assets/img/insta-icon.svg" alt="Instagram" />
-      </NuxtLink>
-      <NuxtLink
-        :to="`#`"
-        class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
-      >
-        Spenden
-      </NuxtLink>
-    </div>
+    <div class="flex gap-8">
+      <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
+        <NuxtLink
+          to="https://www.instagram.com/fabmobil/"
+          class="logo flex-shrink-0 flex items-center"
+          target="_blank"
+        >
+          <img class="h-12" src="/assets/img/insta-icon.svg" alt="Instagram" />
+        </NuxtLink>
+        <NuxtLink
+          :to="`#`"
+          class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
+        >
+          Spenden
+        </NuxtLink>
+      </div>
 
-    <div class="-mr-2 flex items-center xl:hidden">
-      <button
-        class="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-        @click="open = !open"
-      >
-        <span class="sr-only">Open main menu</span>
-        <!-- Icon when menu is closed. -->
-        <svg
-          v-if="!open"
-          class="h-6 w-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
+      <div class="-mr-2 flex items-center xl:hidden">
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          @click="open = !open"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-        <!-- Icon when menu is open. -->
-        <svg
-          v-else
-          class="h-6 w-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <svg
+            v-if="!open"
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <svg
+            v-else
+            class="h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div
