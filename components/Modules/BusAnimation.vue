@@ -56,6 +56,7 @@ onBeforeUnmount(() => {
           class="relative scale-75 flex justify-center items-center h-full scrolly-video"
           src="/assets/video/sequence-compressed.mp4"
           transition-speed="0.0001"
+          debug="true"
           :cover="false"
           :track-scroll="true"
           :style="{
