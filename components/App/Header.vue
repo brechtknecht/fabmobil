@@ -129,12 +129,13 @@
             {{ item.title }}
           </NuxtLink>
 
-          <NuxtLink
+          <Button
             to="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-accent"
+            @click="openModal"
           >
-            Spenden
-          </NuxtLink>
+            Anfragen
+          </Button>
         </div>
       </div>
     </div>
@@ -143,7 +144,7 @@
   <div class="h-16 md:h-20"></div>
   <!-- Remaining content of the page goes here -->
   <BaseBreadcrumb />
-  <ModulesContact v-model:is-modal-open="isModalOpen" />
+  <ModalsContact v-model:is-modal-open="isModalOpen" />
 </template>
 
 <script setup lang="ts">

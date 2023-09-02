@@ -1,10 +1,3 @@
-<script setup>
-const site = useSite()
-const listedChildren = computed(() =>
-  (site.value?.children ?? []).filter((i) => i.isListed)
-)
-</script>
-
 <template>
   <footer class="footer bg-secondary py-24 border-t border-white">
     <div
@@ -126,14 +119,30 @@ const listedChildren = computed(() =>
           >LOKALLABORE</NuxtLink
         >
       </div>
-      <div
+      <button
         class="text-center text-xl font-body text-accent text-medium relative w-full h-full"
+        @click="openModal"
       >
         UNTERSTÜTZE UNS
-      </div>
+      </button>
     </div>
   </footer>
+  <ModalsSupport v-model:is-modal-open="isModalOpen" />
 </template>
+
+<script setup>
+const site = useSite()
+const listedChildren = computed(() =>
+  (site.value?.children ?? []).filter((i) => i.isListed)
+)
+
+const isModalOpen = ref(false)
+
+const openModal = () => {
+  console.log('Open Modal')
+  isModalOpen.value = true
+}
+</script>
 
 <script>
 import axios from 'axios'
