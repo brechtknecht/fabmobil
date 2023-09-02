@@ -105,12 +105,16 @@ const listedChildren = computed(() =>
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        CODE OF CONDUCT
+        <NuxtLink to="/codeofconduct" class="footer-link-dark hover:text-white"
+          >CODE OF CONDUCT</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        IMPRESSUM & DATENSCHUTZ
+        <NuxtLink to="/impress" class="footer-link-dark"
+          >IMPRESSUM & DATENSCHUTZ</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
@@ -185,8 +189,5 @@ export default {
 }
 .footer p {
   max-width: 15rem;
-}
-.footer a:hover {
-  color: var(--color-text);
 }
 </style>
