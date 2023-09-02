@@ -14,6 +14,9 @@ const loadingState = ref(false) // Ref for loading state
 const progressPercentage = ref(0) // Ref for progress percentage
 const scrollPercentage = ref(0)
 
+let observer
+const isInViewport = ref(false)
+
 const handleScroll = () => {
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
   let totalDuration = 0
@@ -30,10 +33,23 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
+  const scrollyVideoElement = scrollyVideo.value.$el
+
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      isInViewport.value = true
+    } else {
+      isInViewport.value = false
+    }
+  })
+
+  observer.observe(scrollyVideoElement)
+
   window.addEventListener('scroll', handleScroll)
 })
 
 onBeforeUnmount(() => {
+  observer.disconnect()
   window.removeEventListener('scroll', handleScroll)
 })
 </script>
@@ -46,6 +62,7 @@ onBeforeUnmount(() => {
 
         <!-- Pass scrollPercentage to VideoOverlay -->
         <BaseBusOverlays
+          v-if="isInViewport"
           class="appe w-full h-full relative z-40"
           :scroll-percentage="scrollPercentage"
         />
