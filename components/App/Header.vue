@@ -28,12 +28,12 @@
         >
           <img class="h-8" src="/assets/img/insta-icon.svg" alt="Instagram" />
         </NuxtLink>
-        <NuxtLink
-          :to="`#`"
+        <button
           class="text-headline weight-medium text-body font-medium text-black hover:text-white hover:underline"
+          @click="openModal"
         >
           Anfragen
-        </NuxtLink>
+        </button>
       </div>
 
       <div class="-mr-2 flex items-center header-breakpoint:hidden">
@@ -143,6 +143,7 @@
   <div class="h-16 md:h-20"></div>
   <!-- Remaining content of the page goes here -->
   <BaseBreadcrumb />
+  <ModulesContact v-model:is-modal-open="isModalOpen" />
 </template>
 
 <script setup lang="ts">
@@ -157,10 +158,17 @@ const open = ref(false)
 const isScrolledUp = ref(false)
 const isScrolledDown = ref(false)
 const lastScrollPosition = ref(0)
+const isModalOpen = ref(false)
 
 const listedChildren = computed(() =>
-  (site.value?.children ?? []).filter((i) => i.isListed && i.id !== 'faq')
+  (site.value?.children ?? []).filter(
+    (i) => i.isListed && !['faq', 'impress', 'codeofconduct'].includes(i.id)
+  )
 )
+
+const openModal = () => {
+  isModalOpen.value = true
+}
 
 onMounted(() => {
   const checkScroll = () => {
