@@ -36,6 +36,7 @@ const listedChildren = computed(() =>
             class="flex flex-col justify-start mr-2 relative w-full min-h-12 items-center py-2 rounded-lg"
           >
             <input
+              v-model="email"
               class="text-center text-lg font-sans font-bold text-secondary relative w-full bg-primary rounded-lg min-h-12 h-12"
               type="email"
               placeholder="E-Mail"
@@ -46,6 +47,7 @@ const listedChildren = computed(() =>
           >
             <button
               class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full min-h-10"
+              @click="subscribe"
             >
               Gib Fabo-Abo!
             </button>
@@ -65,51 +67,60 @@ const listedChildren = computed(() =>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        ÜBER UNS
+        <NuxtLink to="/about-us" class="footer-link-dark">ÜBER UNS</NuxtLink>
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        AUSSTATTUNG
+        <NuxtLink to="/technology" class="footer-link-dark"
+          >AUSSTATTUNG</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        LEHREN & LERNEN
+        <NuxtLink to="/material" class="footer-link-dark"
+          >LEHREN & LERNEN</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        TOURPLAN
+        <NuxtLink to="/tour" class="footer-link-dark">TOURPLAN</NuxtLink>
       </div>
       <div
-        class="text-center text-xl font-body text-primary relative w-full h-full"
+        class="text-center text-xl font-body text-primary relative w-full h-ful"
       >
-        TEAM & KONTAKT
+        <NuxtLink to="/team" class="footer-link-dark">TEAM & KONTAKT</NuxtLink>
       </div>
     </div>
     <div
       class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 justify-start mb-6 gap-16 relative w-full sm:w-full items-center py-4 px-8"
     >
       <div
-        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        FAQs
+        <NuxtLink to="/faq" class="footer-link-dark">FAQs</NuxtLink>
       </div>
       <div
-        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
         CODE OF CONDUCT
       </div>
       <div
-        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
         IMPRESSUM & DATENSCHUTZ
       </div>
       <div
-        class="text-center text-xl font-body text-slate-500 relative w-full h-full"
+        class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        LOKALLABORE
+        <NuxtLink
+          to="https://lokallabore.de"
+          target="_blank"
+          class="footer-link-dark"
+          >LOKALLABORE</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-accent text-medium relative w-full h-full"
@@ -121,16 +132,49 @@ const listedChildren = computed(() =>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  data() {
+    return {
+      email: '',
+    }
+  },
   methods: {
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
+    },
+    async subscribe() {
+      try {
+        const response = await axios.post(
+          'https://<YOUR-MAILCHIMP-API-ENDPOINT>',
+          {
+            email: this.email,
+          }
+        )
+        if (response.data.status === 'subscribed') {
+          alert('Subscribed successfully')
+        }
+      } catch (error) {
+        console.error(error)
+      }
     },
   },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.footer-link-dark {
+  &:hover {
+    color: white;
+  }
+}
+
+.footer-link-light {
+  &:hover {
+    color: white;
+  }
+}
 .footer h2 {
   font-weight: 600;
   margin-bottom: 0.75rem;
