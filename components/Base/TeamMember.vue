@@ -30,8 +30,8 @@
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'mailto:' + member.email">{{ member.email }}</a>
           </p>
-          <p v-if="member.website" class="font-body text-body">
-            <a :href="member.website">{{ member.website }}</a>
+          <p class="font-body text-body">
+            <a :href="member.website" target="_blank">{{ member.website }}</a>
           </p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'tel:' + member.phone">{{ member.phone }}</a>
