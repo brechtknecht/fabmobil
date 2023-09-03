@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isModalOpen"
-    class="fixed z-50 inset-0 overflow-y-auto"
+    class="fixed z-50 inset-0 overflow-y-auto text-primary"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -20,56 +20,61 @@
         >&#8203;</span
       >
       <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        class="inline-block align-bottom bg-secondary text-primary rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
       >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="bg-secondary px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
-            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2">
-              <h3
+            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 p-4">
+              <h1
                 id="modal-title"
-                class="text-lg leading-6 font-medium text-gray-900"
+                class="text-large-title font-headline leading-6 font-medium text-primary leading-tight"
               >
                 Unverbindliche Anfrage
-              </h3>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
+              </h1>
+              <div class="mt-2 flex gap-8 flex-col pr-8">
+                <p class="text-lg text-green mt-4">
                   Hier können sie ganz easy einen Besuch des Fabmobils in ihrer
-                  Einrichtung anfragen. Aufgrund hoher Nachfrage kann es
-                  manchmal ein paar Tage dauern mit der Antwort.
+                  Einrichtung anfragen.
+                </p>
+                <p class="text-lg text-green">
+                  Aufgrund hoher Nachfrage kann es manchmal ein paar Tage dauern
+                  mit der Antwort.
                 </p>
               </div>
             </div>
-            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2">
+            <div
+              class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 flex flex-col"
+            >
               <input
                 v-model="name"
-                class="block w-full px-3 py-2 rounded-md border border-gray-300"
+                class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary"
                 type="text"
                 placeholder="Name"
               />
               <input
                 v-model="location"
-                class="block w-full px-3 py-2 rounded-md border border-gray-300 mt-4"
+                class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary mt-4"
                 type="text"
                 placeholder="Veranstaltungsort"
               />
               <textarea
                 v-model="request"
-                class="block w-full px-3 py-2 rounded-md border border-gray-300 mt-4"
+                class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary mt-4 flex-grow min-h-[250px]"
                 placeholder="Anfrage"
               ></textarea>
             </div>
           </div>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div class="bg-secondary px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <button
             type="button"
-            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green text-base font-medium text-black hover:bg-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-dark sm:ml-3 sm:w-auto sm:text-sm"
           >
             Absenden
           </button>
           <button
             type="button"
-            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-secondary text-primary hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
             @click="closeModal"
           >
             Abbrechen
