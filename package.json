@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@nuxtjs/sentry": "^7.5.0",
+    "@sentry/browser": "^7.66.0",
     "@sentry/tracing": "^7.66.0",
     "@sentry/vue": "^7.66.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
