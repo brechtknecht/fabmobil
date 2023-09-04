@@ -20,9 +20,9 @@
         >&#8203;</span
       >
       <div
-        class="inline-block align-bottom bg-secondary text-primary rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
+        class="support-modal bg-secondary inline-block align-bottom text-primary rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full support-modal"
       >
-        <div class="bg-secondary px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
             <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 p-4">
               <h1
@@ -33,12 +33,14 @@
               </h1>
               <div class="mt-2 flex gap-8 flex-col pr-8">
                 <p class="text-lg text-green mt-4">
-                  Hier können sie ganz easy einen Besuch des Fabmobils in ihrer
-                  Einrichtung anfragen.
+                  Für die Terminfindung achten wir darauf, dass das Fabmobil
+                  nicht unnötige Strecken zurücklegen muss. Damit sparen wir
+                  Sprit und Zeit und sind möglichst umweltschonend unterwegs.
+                  Deswegen suchen wir gemeinsam nach einem Termin.
                 </p>
                 <p class="text-lg text-green">
-                  Aufgrund hoher Nachfrage kann es manchmal ein paar Tage dauern
-                  mit der Antwort.
+                  Wir werden uns nach dem Erhalt deiner Anfrage zeitnah bei dir
+                  melden.
                 </p>
               </div>
             </div>
@@ -49,18 +51,18 @@
                 v-model="name"
                 class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary"
                 type="text"
-                placeholder="Name"
+                placeholder="Name Institution (Schule/soziokultureller Ort o.ä.)"
               />
               <input
-                v-model="location"
+                v-model="contactperson"
                 class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary mt-4"
                 type="text"
-                placeholder="Veranstaltungsort"
+                placeholder="Angabe Kontaktperson mit Kontaktdaten (Telefon und/oder E-Mail)"
               />
               <textarea
                 v-model="request"
                 class="block w-full px-3 py-2 rounded-md border border-gray-300 bg-secondary text-primary mt-4 flex-grow min-h-[250px]"
-                placeholder="Anfrage"
+                placeholder="Feld für Notizen"
               ></textarea>
             </div>
           </div>
@@ -96,9 +98,18 @@ export default {
   data() {
     return {
       name: '',
-      location: '',
+      contactperson: '',
       request: '',
     }
+  },
+  watch: {
+    isModalOpen(newVal) {
+      if (newVal) {
+        document.body.classList.add('no-scroll')
+      } else {
+        document.body.classList.remove('no-scroll')
+      }
+    },
   },
   methods: {
     submitForm() {
@@ -110,3 +121,19 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.support-modal {
+  background-image: url('@/assets/img/figur.png');
+  background-blend-mode: multiply;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+</style>
+
+<style lang="scss">
+.no-scroll {
+  overflow: hidden;
+}
+</style>
