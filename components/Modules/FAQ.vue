@@ -7,11 +7,21 @@
         :key="item.question"
         class="faq-item border-b border-gray-600 mb-4 last:border-b-0"
       >
-        <div class="cursor-pointer py-2" @click="toggle(item)">
+        <div
+          class="cursor-pointer py-2 flex justify-between"
+          @click="toggle(item)"
+        >
           <div class="text-xl font-semibold">{{ item.question }}</div>
-          <div class="text-sm text-gray-700">Click to expand</div>
+          <div v-if="!item.showAnswer" class="text-sm text-gray-700">
+            &#8594;
+            <!-- Unicode for right arrow -->
+          </div>
+          <div v-else class="text-sm text-gray-700">
+            &#10005;
+            <!-- Unicode for "x" symbol -->
+          </div>
         </div>
-        <div v-if="item.showAnswer" class="text-base py-2">
+        <div v-if="item.showAnswer" class="text-lg py-2">
           {{ item.answer }}
         </div>
       </div>
