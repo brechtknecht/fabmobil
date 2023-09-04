@@ -158,7 +158,7 @@
       </div>
 
       <!-- DEBUG -->
-      <pre class="text-white">{{ technologyData }}</pre>
+      <!-- <pre class="text-white">{{ technologyData }}</pre> -->
       <!-- <pre>{{ categoryData }}</pre> -->
     </div>
   </section>

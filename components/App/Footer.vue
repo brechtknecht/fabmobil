@@ -60,7 +60,7 @@
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        <NuxtLink to="/about-us" class="footer-link-dark">ÜBER UNS</NuxtLink>
+        <NuxtLink to="/about" class="footer-link-dark">ÜBER UNS</NuxtLink>
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"

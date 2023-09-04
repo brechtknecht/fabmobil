@@ -31,7 +31,7 @@ export default {
     },
     mouseEffectIntensity: {
       type: Number,
-      default: 0.000000001,
+      default: 0.000001,
     },
     scale: {
       type: Number,
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     initImages() {
-      const numberOfImages = 6
+      const numberOfImages = 8
       // Prepare a temporary array with image sizes
       const tempImages = Array.from({ length: numberOfImages }, (_, i) => {
         const size = (Math.random() * 100 + 50) * this.scale
@@ -140,12 +140,13 @@ export default {
     },
     handleKeyDown(event) {
       if (event.key === 'f') {
-        this.$emit('update:speed', 100)
+        console.log('f')
+        this.$emit('updateSpeed', 100)
       }
     },
     handleKeyUp(event) {
       if (event.key === 'f') {
-        this.$emit('update:speed', 0.000001)
+        this.$emit('updateSpeed', 0.000001)
       }
     },
     animateImages() {

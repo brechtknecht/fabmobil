@@ -1,7 +1,7 @@
 <template>
   <div class="team-member flex flex-col justify-between">
     <div
-      class="aspect-w-1 aspect-h-1 mb-4 relative flex flex-col h-full justify-between"
+      class="aspect-w-1 aspect-h-1 mb-4 relative flex flex-col h-full justify-between py-4 px-2"
     >
       <p class="font-body text-body font-bold text-center pt-4">
         {{ member.jobtitle }}
@@ -30,8 +30,13 @@
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'mailto:' + member.email">{{ member.email }}</a>
           </p>
-          <p class="font-body text-body">
-            <a :href="member.website" target="_blank">{{ member.website }}</a>
+
+          <p
+            v-for="(link, linkIndex) in member.links"
+            :key="linkIndex"
+            class="font-body text-body"
+          >
+            <a :href="link.url" target="_blank">{{ link.linkname }} →</a>
           </p>
           <p v-if="member.contact === 'true'" class="font-body text-body">
             <a :href="'tel:' + member.phone">{{ member.phone }}</a>
@@ -59,7 +64,7 @@ const props = defineProps<{
     pronoun: string
     category: string
     email: string
-    website: string
+    links: string
     phone: string
     contact: boolean
     image: { url: string }

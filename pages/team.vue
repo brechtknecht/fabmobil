@@ -1,10 +1,11 @@
 <template>
-  <div class="bg-secondary">
+  <div class="bg-secondary py-32">
     <!-- Hero modules -->
     <BaseFloatingImages
-      :speed="0.000000000000000001"
+      :speed="speed"
       :scale="5"
       backgroundcolor="#1A1A1A"
+      @update-speed="updateSpeed"
     >
       <div
         v-if="page.modules && page.modules.length > 0"
@@ -100,7 +101,7 @@ const { data } = await useKql({
         description: true,
         jobtitle: true,
         pronoun: true,
-        website: true,
+        links: 'structureItem.links.toStructure',
         category: true,
         email: true,
         phone: true,
