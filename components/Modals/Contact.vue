@@ -171,7 +171,7 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post('/path/to/your/php/script.php', {
+        .post('http://95.143.172.245/public/scripts/sendMail.php', {
           name: this.name,
           contactperson: this.contactperson,
           request: this.request,
