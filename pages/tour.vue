@@ -28,7 +28,7 @@
         class="sticky top-12 sm:top-16 z-10 px-8 bg-[#1a1a1a] border-b border-black"
       >
         <!-- <h3 class="font-headline text-white">Select Category</h3> -->
-        <div class="flex gap-4 py-4 overflow-x-scroll whitespace-nowrap">
+        <div class="flex gap-4 py-4 overflow-x-auto whitespace-nowrap">
           <button
             v-for="(category, index) in categories"
             :key="index"
