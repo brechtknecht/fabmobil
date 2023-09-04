@@ -49,6 +49,8 @@ export default {
       screenWidth: 0,
       screenHeight: 0,
       trottle: false,
+      animationFrameId: null,
+      timeoutId: null,
     }
   },
   mounted() {
@@ -72,10 +74,20 @@ export default {
     })
   },
   beforeUnmount() {
-    // Remove event listeners when component is unmounted
+    // Remove event listeners
     window.removeEventListener('keydown', this.handleKeyDown)
     window.removeEventListener('keyup', this.handleKeyUp)
     window.removeEventListener('mousemove', this.handleMouseMove)
+
+    // Cancel any ongoing animations
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId)
+    }
+
+    // Clear any timeouts
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId)
+    }
   },
   methods: {
     initImages() {
@@ -143,7 +155,7 @@ export default {
         this.mouseX = event.clientX
         this.mouseY = event.clientY
         this.throttle = true
-        setTimeout(() => {
+        this.timeoutId = setTimeout(() => {
           this.throttle = false
         }, 200) // Adjust this value to change the throttle time
       }
@@ -160,7 +172,7 @@ export default {
       }
     },
     animateImages() {
-      requestAnimationFrame(this.animateImages)
+      this.animationFrameId = requestAnimationFrame(this.animateImages)
 
       this.images.forEach((image, index) => {
         // Calculate parallax shift based on mouse position relative to the center

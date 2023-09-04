@@ -60,9 +60,7 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
-    <LazyClientOnly>
-      <ModulesBusAnimation />
-    </LazyClientOnly>
+    <LazyClientOnly><ModulesBusAnimation /></LazyClientOnly>
     <ModulesMapTeaser />
     <ModulesSponsors :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
