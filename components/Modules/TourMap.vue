@@ -483,20 +483,13 @@ const setupMap = () => {
         })
 
         map.value.addLayer({
-          id: 'unclustered-point',
+          id: 'unclustered-point-hit-area',
           type: 'circle',
           source: 'cities',
           filter: ['!', ['has', 'point_count']],
           paint: {
-            'circle-color': [
-              'case',
-              ['in', 'Lokallabor', ['get', 'category']],
-              '#FFFFFF', // replace with the color for 'Lokallabor'
-              '#6E31F0', // existing color
-            ],
-            'circle-radius': 5, // Increase the radius for a larger hitbox
-            'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
-            'circle-stroke-color': '#fff',
+            'circle-radius': 15, // Increase the radius for a larger hitbox
+            'circle-opacity': 0, // Make the circle invisible
           },
         })
 
