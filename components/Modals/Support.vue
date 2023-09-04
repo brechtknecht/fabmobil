@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isModalOpen"
-    class="fixed z-50 inset-0 overflow-y-auto"
+    class="fixed z-50 inset-0 overflow-y-auto text-primary"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -20,27 +20,60 @@
         >&#8203;</span
       >
       <div
-        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full support-modal"
+        class="support-modal bg-secondary inline-block align-bottom text-primary rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full"
       >
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
-            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2">
+            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 p-4">
               <h3
                 id="modal-title"
-                class="text-lg leading-6 font-medium text-gray-900"
+                class="text-large-title font-headline leading-6 font-medium text-primary leading-tight"
               >
                 Du willst uns Unterstützen?
               </h3>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  Du hast Lust bei unserem Verein mitzuwirken?
+              <div class="mt-2 flex gap-8 flex-col pr-8">
+                <p class="text-lg text-green mt-4">
+                  Du hast Lust bei uns im Verein mitzuwirken und vielleicht auch
+                  ehrenamtliche Aufgaben zu übernehmen?
+                </p>
+              </div>
+              <div class="mt-2 flex gap-8 flex-col pr-8">
+                <p class="text-lg text-green mt-4">
+                  Dann schreib uns eine Mail an
+                  <a
+                    class="font-headline underline"
+                    href="mailto:mail@fabmobil.org"
+                    >mail@fabmobil.org</a
+                  >
+                  und komm mit uns ins Gespräch. Wir freuen uns drauf dich
+                  kennenzulernen.
                 </p>
               </div>
             </div>
-            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2">
-              <p class="text-sm text-gray-500">Text</p>
+            <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 p-4">
+              <p class="text-lg text-white mt-4">
+                Für unsere Vereinsarbeit sind wir auch auf finanzielle Spenden
+                angewiesen. Auch so könnt ihr uns unterstützen!
+              </p>
+              <p class="text-lg text-white mt-4">
+                Spenden an: <br />
+                Fabmobil e.V. <br />IBAN: DE53 4306 0967 1263 4334 00 <br />
+                BIC: GENODEM1GLS <br />GLS GEMEINSCHAFTSBANK GAA <br /><br />
+                <a class="text-green hover:text-white" href="" target="_blank"
+                  >oder per PayPal →</a
+                >
+              </p>
             </div>
           </div>
+        </div>
+        <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button
+            type="button"
+            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-secondary text-primary hover:bg-gray-50 hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            @click="closeModal"
+          >
+            Schließen
+          </button>
         </div>
       </div>
     </div>
@@ -55,6 +88,15 @@ export default {
       required: true,
     },
   },
+  watch: {
+    isModalOpen(newVal) {
+      if (newVal) {
+        document.body.classList.add('no-scroll')
+      } else {
+        document.body.classList.remove('no-scroll')
+      }
+    },
+  },
   methods: {
     closeModal() {
       this.$emit('update:isModalOpen', false)
@@ -65,6 +107,16 @@ export default {
 
 <style lang="scss" scoped>
 .support-modal {
-  background-image: url('/assets/img/bus.png');
+  background-image: url('@/assets/img/figur.png');
+  background-blend-mode: multiply;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+</style>
+
+<style lang="scss">
+.no-scroll {
+  overflow: hidden;
 }
 </style>
