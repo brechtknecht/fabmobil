@@ -92,6 +92,8 @@ export default {
   methods: {
     initImages() {
       const numberOfImages = 8
+      const numberOfImagesToUse = 5 // Number of images to use
+
       // Prepare a temporary array with image sizes
       const tempImages = Array.from({ length: numberOfImages }, (_, i) => {
         const size = (Math.random() * 100 + 50) * this.scale
@@ -100,6 +102,15 @@ export default {
 
       // Sort the temporary images array by size (largest to smallest)
       tempImages.sort((a, b) => b.size - a.size)
+
+      // Randomly select 5 images from the sorted array
+      const selectedImages = []
+      const indices = Array.from({ length: numberOfImages }, (_, i) => i)
+      while (selectedImages.length < numberOfImagesToUse) {
+        const randomIndex = Math.floor(Math.random() * indices.length)
+        const index = indices.splice(randomIndex, 1)[0]
+        selectedImages.push(tempImages[index])
+      }
 
       // Divide the screen into grid
       const rows = 5
@@ -122,7 +133,7 @@ export default {
       }
 
       // Place each image in a cell from the shuffled array
-      for (let i = 0; i < numberOfImages; i++) {
+      for (let i = 0; i < numberOfImagesToUse; i++) {
         const cell = cells[i]
 
         // Compute the position based on the cell, with optional offset within the cell
@@ -131,7 +142,7 @@ export default {
         const x = cell.col * cellWidth + offsetX
         const y = cell.row * cellHeight + offsetY
 
-        const size = tempImages[i].size // Get size from sorted tempImages array
+        const size = selectedImages[i].size // Get size from sorted selectedImages array
 
         const url = `/assets/img/background-items/${String(i + 1).padStart(
           2,
@@ -139,7 +150,7 @@ export default {
         )}.png`
 
         this.images.push({
-          id: tempImages[i].id, // Get id from sorted tempImages array
+          id: selectedImages[i].id, // Get id from sorted selectedImages array
           url: url,
           style: `left:${x}px;top:${y}px;width:${size}px;`,
           x,

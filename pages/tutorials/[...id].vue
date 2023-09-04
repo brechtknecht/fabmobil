@@ -72,12 +72,12 @@ function formatDateShort(date: Date) {
     >
       <!-- <img :src="coverUrl" class="blur-xl scale-[180%] origin-center" alt="" /> -->
       <div
-        class="relative flex flex-col w-full items-center justify-center module h-[70vh] py-32 md:py-64 px-4 sm:px-0"
+        class="relative flex flex-col w-full items-center justify-center module py-32 md:py-64 px-4 sm:px-0"
         :style="{ '--coverUrl': `url(${coverUrl})` }"
       >
         <div class="module-inside w-full px-2 md:px-32">
           <h1
-            class="font-headline leading-tight text-center text-large-title font-bold pb-4"
+            class="tutorial-title font-headline leading-tight text-center text-large-title font-bold pb-4"
           >
             {{ page?.title }}
           </h1>
@@ -86,13 +86,9 @@ function formatDateShort(date: Date) {
               v-if="!page.video && nonImageFiles.length == 0"
               :src="coverUrl"
               alt=""
-              class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
+              class="teaser-image w-auto h-auto rounded-xl border mx-auto"
             />
-            <BaseVideo
-              v-else-if="page.video"
-              class="w-full"
-              :url="page.video"
-            />
+            <BaseVideo v-else-if="page.video" :url="page.video" />
             <div
               v-else-if="nonImageFiles.length > 0"
               class="downloads text-white"
@@ -102,11 +98,11 @@ function formatDateShort(date: Date) {
                 alt=""
                 class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
               />
-              <div class="download-text text-center text-black my-12">
+              <div class="download-text text-center my-12">
                 <a
                   :href="nonImageFiles[0]"
                   target="_blank"
-                  class="text-black border border-black rounded p-2 w-fit mx-auto my-4"
+                  class="download-text border rounded p-2 w-fit mx-auto my-4"
                   download
                 >
                   PDF DOWNLOAD →
@@ -152,6 +148,12 @@ function formatDateShort(date: Date) {
 </template>
 
 <style scoped>
+.tutorial-title,
+download-text {
+  color: rgba(255, 255, 255, 0.9);
+  mix-blend-mode: lighten;
+}
+
 .teaser-image {
   box-shadow: 0px 7.0074076652526855px 7.935121059417725px 0px
       rgba(0, 0, 0, 0.03),
@@ -202,7 +204,7 @@ function formatDateShort(date: Date) {
   background-image: var(--coverUrl);
   background-size: 150% 150%;
   background-position: center center;
-  filter: blur(24px) hue-rotate(90deg) brightness(0.9) contrast(140%); /* Set this to the amount of blur you want */
+  filter: blur(24px) brightness(0.9) grayscale(50%) contrast(140%); /* Set this to the amount of blur you want */
   z-index: -1;
 }
 

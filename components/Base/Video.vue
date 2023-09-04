@@ -1,6 +1,6 @@
 <template>
   <div
-    class="video-container relative w-full items-center justify-center p-24 rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray"
+    class="video-container relative w-full items-center justify-center p-24 rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray h-fill"
   >
     <iframe
       id="youtube"
