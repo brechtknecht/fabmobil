@@ -26,6 +26,7 @@
       </transition>
     </div>
   </div>
+  <pre class="text-black">{{ data }}</pre>
 </template>
 
 <script setup>
@@ -488,20 +489,6 @@ const setupMap = () => {
           },
           'unclustered-point'
         ) // Add this layer before the actual unclustered-point layer
-
-        // Unclustered point layer remains the same
-        map.value.addLayer({
-          id: 'unclustered-point',
-          type: 'circle',
-          source: 'cities',
-          filter: ['!', ['has', 'point_count']],
-          paint: {
-            'circle-color': '#000000',
-            'circle-radius': 4,
-            'circle-stroke-width': 1,
-            'circle-stroke-color': '#fff',
-          },
-        })
 
         // Add a layer for the city names (unclustered)
         map.value.addLayer({
