@@ -1,17 +1,39 @@
 <script setup>
+// const { data } = await useKql({
+//   query: 'page("home/modules").children',
+//   select: {
+//     id: true,
+//     title: true,
+//     intendedTemplate: true,
+//     images: true,
+//     layout: {
+//       query: 'page.layout.toLayouts',
+//       select: {
+//         content: 'layout',
+//         attrs: 'layout.attrs',
+//         image: {
+//           query: 'layout.attrs.image.toFile',
+//         },
+//       },
+//     },
+//   },
+// })
+
 const { data } = await useKql({
-  query: 'page("home/modules").children',
+  query: 'page("home")',
   select: {
     id: true,
     title: true,
-    intendedTemplate: true,
-    layout: {
-      query: 'page.layout.toLayouts',
+    sponsors: {
+      query: 'page.sponsors.toStructure',
       select: {
-        content: 'layout',
-        attrs: 'layout.attrs',
+        linkName: true,
+        url: true,
         image: {
-          query: 'layout.attrs.image.toFile',
+          query: 'structureItem.image.toFile', // Followed the pattern in technology.yml
+          select: {
+            url: true,
+          },
         },
       },
     },
@@ -40,6 +62,7 @@ setPage(page)
     </BaseFloatingImages>
     <ModulesBusAnimation />
     <ModulesMapTeaser />
+    <ModulesSponsors :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
     <ModulesFAQ />
   </div>

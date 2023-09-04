@@ -147,7 +147,7 @@ function formatDateShort(date: Date) {
       <LazyAppPrevNextMaterial />
     </article>
 
-    <pre class="text-white bg-black">{{ page }}</pre>
+    <!-- <pre class="text-white bg-black">{{ page }}</pre> -->
   </div>
 </template>
 
