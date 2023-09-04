@@ -26,7 +26,7 @@
       </transition>
     </div>
   </div>
-  <pre class="text-black">{{ data }}</pre>
+  <!-- <pre class="text-black">{{ data }}</pre> -->
 </template>
 
 <script setup>
@@ -392,10 +392,11 @@ const setupMap = () => {
           type: 'Feature',
           properties: {
             city: origin.city,
-            startDate: origin.startdate, // assuming the date is stored in a property named 'startdate'
+            startDate: origin.startdate,
             endDate: origin.enddate,
-            school: origin.venuename, // assuming the school name is stored in a property named 'venuename'
+            school: origin.venuename,
             category: origin.category,
+            isLokallabor: origin.category.includes('Lokallabor') ? 1 : 0, // Add new property
           },
           geometry: {
             type: 'Point',
@@ -468,27 +469,36 @@ const setupMap = () => {
           source: 'cities',
           filter: ['!', ['has', 'point_count']],
           paint: {
-            'circle-color': '#6E31F0',
+            'circle-color': [
+              'match',
+              ['get', 'isLokallabor'],
+              1,
+              '#FF6700', // replace with the color for 'Lokallabor'
+              '#6E31F0', // existing color
+            ],
+            'circle-radius': 5,
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#fff',
+          },
+        })
+
+        map.value.addLayer({
+          id: 'unclustered-point',
+          type: 'circle',
+          source: 'cities',
+          filter: ['!', ['has', 'point_count']],
+          paint: {
+            'circle-color': [
+              'case',
+              ['in', 'Lokallabor', ['get', 'category']],
+              '#FFFFFF', // replace with the color for 'Lokallabor'
+              '#6E31F0', // existing color
+            ],
             'circle-radius': 5, // Increase the radius for a larger hitbox
             'circle-stroke-width': 2, // Increase the stroke width for a larger visual circle
             'circle-stroke-color': '#fff',
           },
         })
-
-        // Add an invisible larger circle for the hit area
-        map.value.addLayer(
-          {
-            id: 'unclustered-point-hit-area',
-            type: 'circle',
-            source: 'cities',
-            filter: ['!', ['has', 'point_count']],
-            paint: {
-              'circle-radius': 30, // Increase the radius for a larger hitbox
-              'circle-opacity': 0, // Make the circle invisible
-            },
-          },
-          'unclustered-point'
-        ) // Add this layer before the actual unclustered-point layer
 
         // Add a layer for the city names (unclustered)
         map.value.addLayer({
