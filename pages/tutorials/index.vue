@@ -1,56 +1,63 @@
 <template>
-  <div class="bg-[#F2F2F2]">
-    <div
-      v-if="page.modules && page.modules.length > 0"
-      class="app-hero-wrapper"
-    >
-      <AppHero
-        v-for="(module, index) in page.modules"
-        :key="index"
-        :title="module.title"
-        :description="module.description"
-        :intro_text="module.intro_text"
-        :background-color="module.backgroundColor"
-        :foreground-color="module.foregroundColor"
-        :image="module.image"
-      />
-    </div>
-
-    <div class="w-fit mx-auto my-4 px-8">
-      <button
-        v-for="category in categories"
-        :key="category"
-        :class="{ 'bg-purple text-black': selectedCategory === category }"
-        class="p-2 m-1 text-sm sm:text-base md:text-lg lg:text-xl border rounded"
-        @click="selectedCategory = category"
+  <BaseFloatingImages
+    :speed="speed"
+    :scale="5"
+    backgroundcolor="#F2F2F2"
+    @update-speed="updateSpeed"
+  >
+    <div class="z-50">
+      <div
+        v-if="page.modules && page.modules.length > 0"
+        class="app-hero-wrapper"
       >
-        {{ category }}
-      </button>
-    </div>
+        <AppHero
+          v-for="(module, index) in page.modules"
+          :key="index"
+          :title="module.title"
+          :description="module.description"
+          :intro_text="module.intro_text"
+          :background-color="module.backgroundColor"
+          :foreground-color="module.foregroundColor"
+          :image="module.image"
+        />
+      </div>
 
-    <transition-group
-      name="fade"
-      tag="ul"
-      class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 max-w-[1920px] mx-auto px-4 py-16"
-    >
-      <li
-        v-for="(item, index) in filteredTutorials"
-        :key="index"
-        class="column"
+      <div class="w-fit mx-auto my-4 px-8">
+        <button
+          v-for="category in categories"
+          :key="category"
+          :class="{ 'bg-purple text-black': selectedCategory === category }"
+          class="p-2 m-1 text-sm sm:text-base md:text-lg lg:text-xl border rounded"
+          @click="selectedCategory = category"
+        >
+          {{ category }}
+        </button>
+      </div>
+
+      <transition-group
+        name="fade"
+        tag="ul"
+        class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-4 max-w-[1920px] mx-auto px-4 py-16"
       >
-        <AppTutorial :note="item" :excerpt="true" />
-      </li>
-    </transition-group>
+        <li
+          v-for="(item, index) in filteredTutorials"
+          :key="index"
+          class="column"
+        >
+          <AppTutorial :note="item" :excerpt="true" />
+        </li>
+      </transition-group>
 
-    <div
-      v-if="filteredTutorials.length === 0"
-      class="w-full p-8 text-center text-gray-600"
-    >
-      <p>No tutorials available in this category.</p>
+      <div
+        v-if="filteredTutorials.length === 0"
+        class="w-full p-8 text-center text-gray-600"
+      >
+        <p>No tutorials available in this category.</p>
+      </div>
+      <!-- Debug text -->
+      <!-- <pre>{{ page }}</pre> -->
     </div>
-    <!-- Debug text -->
-    <!-- <pre>{{ page }}</pre> -->
-  </div>
+  </BaseFloatingImages>
 </template>
 
 <script setup lang="ts">

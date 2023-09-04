@@ -10,20 +10,27 @@ const el = ref(null)
 const x = ref(0)
 const y = ref(0)
 const isHovered = ref(false)
+let throttle = false
 
 const updateMouse = (e) => {
-  if (isHovered.value) {
-    const rect = el.value.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
+  if (!throttle) {
+    if (isHovered.value) {
+      const rect = el.value.getBoundingClientRect()
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
 
-    x.value = (e.clientX - centerX) / 20
-    y.value = (e.clientY - centerY) / 20
+      x.value = (e.clientX - centerX) / 20
+      y.value = (e.clientY - centerY) / 20
+    }
+    throttle = true
+    setTimeout(() => {
+      throttle = false
+    }, 50) // Adjust this value to change the throttle time
   }
 }
 
 onMounted(() => {
-  window.addEventListener('mousemove', updateMouse)
+  window.addEventListener('mousemove', updateMouse, { passive: true })
 })
 
 onUnmounted(() => {

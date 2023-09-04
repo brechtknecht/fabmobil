@@ -3,7 +3,6 @@
     <div
       class="floating-images"
       :style="{ '--background-color': backgroundcolor }"
-      @mousemove="handleMouseMove"
     >
       <div
         v-for="image in images"
@@ -49,6 +48,7 @@ export default {
       mouseY: 0,
       screenWidth: 0,
       screenHeight: 0,
+      trottle: false,
     }
   },
   mounted() {
@@ -67,11 +67,15 @@ export default {
     // Add keydown and keyup event listeners
     window.addEventListener('keydown', this.handleKeyDown)
     window.addEventListener('keyup', this.handleKeyUp)
+    window.addEventListener('mousemove', this.handleMouseMove, {
+      passive: true,
+    })
   },
   beforeUnmount() {
     // Remove event listeners when component is unmounted
     window.removeEventListener('keydown', this.handleKeyDown)
     window.removeEventListener('keyup', this.handleKeyUp)
+    window.removeEventListener('mousemove', this.handleMouseMove)
   },
   methods: {
     initImages() {
@@ -135,8 +139,14 @@ export default {
       this.animateImages()
     },
     handleMouseMove(event) {
-      this.mouseX = event.clientX
-      this.mouseY = event.clientY
+      if (!this.throttle) {
+        this.mouseX = event.clientX
+        this.mouseY = event.clientY
+        this.throttle = true
+        setTimeout(() => {
+          this.throttle = false
+        }, 200) // Adjust this value to change the throttle time
+      }
     },
     handleKeyDown(event) {
       if (event.key === 'f') {
