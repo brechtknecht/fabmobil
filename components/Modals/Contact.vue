@@ -171,7 +171,7 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post('http://95.143.172.245/public/scripts/sendMail.php', {
+        .post('https://fiete.uber.space/scripts/sendMail.php', {
           name: this.name,
           contactperson: this.contactperson,
           request: this.request,
