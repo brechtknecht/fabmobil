@@ -7,7 +7,9 @@
       <img class="h-12" src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
 
-    <div class="hidden xl:ml-16 xl:flex xl:items-center xl:space-x-12">
+    <div
+      class="hidden xl:ml-16 header-breakpoint:flex xl:items-center xl:space-x-12"
+    >
       <BaseAnimatedNuxtLink
         v-for="item in listedChildren"
         :key="item.id"
