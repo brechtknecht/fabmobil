@@ -57,9 +57,42 @@
               </p>
               <p class="text-lg text-white mt-4">
                 Spenden an: <br />
-                Fabmobil e.V. <br />IBAN: DE53 4306 0967 1263 4334 00 <br />
-                BIC: GENODEM1GLS <br />GLS GEMEINSCHAFTSBANK GAA <br /><br />
-                <a class="text-green hover:text-white" href="" target="_blank"
+                Fabmobil e.V. <br />IBAN:
+                <span class="bg-white text-black rounded-md px-2 py-1"
+                  >DE53 4306 0967 1263 4334 00</span
+                >
+                <button
+                  class="text-green mx-4"
+                  @click="
+                    copyToClipboard('iban', 'DE53 4306 0967 1263 4334 00')
+                  "
+                >
+                  {{
+                    copyStatus.iban === 'success'
+                      ? ' IBAN in Zwischenablage kopiert'
+                      : 'Kopieren'
+                  }}
+                </button>
+                <br />
+                BIC:
+                <span class="bg-white text-black rounded-md px-2 py-1"
+                  >GENODEM1GLS</span
+                >
+                <button
+                  class="text-green mx-4"
+                  @click="copyToClipboard('bic', 'GENODEM1GLS')"
+                >
+                  {{
+                    copyStatus.bic === 'success'
+                      ? 'BIC in Zwischenablage kopiert'
+                      : 'Kopieren'
+                  }}
+                </button>
+                <br />GLS GEMEINSCHAFTSBANK GAA <br /><br />
+                <a
+                  class="text-green hover:text-white"
+                  href="https://www.paypal.com/donate?token=2-5AhOJUI47iq79o85c9mBJIuyLhWyKO5iz3gPy1l1PCRp46Mo6aYwBA4KNI7S3n0Ial2oAQd4ot3o6O"
+                  target="_blank"
                   >oder per PayPal →</a
                 >
               </p>
@@ -88,6 +121,14 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      copyStatus: {
+        iban: '',
+        bic: '',
+      },
+    }
+  },
   watch: {
     isModalOpen(newVal) {
       if (newVal) {
@@ -98,6 +139,14 @@ export default {
     },
   },
   methods: {
+    async copyToClipboard(type, text) {
+      try {
+        await navigator.clipboard.writeText(text)
+        this.copyStatus[type] = 'success'
+      } catch (err) {
+        this.copyStatus[type] = 'failed'
+      }
+    },
     closeModal() {
       this.$emit('update:isModalOpen', false)
     },
