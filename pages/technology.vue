@@ -10,8 +10,15 @@
               {{ page.title }}
             </h1>
             <ul class="pr-8 w-full">
+              <h2
+                class="text-lg text-white border border-white rounded-md px-4 my-2"
+              >
+                Hardware
+              </h2>
               <BaseAnimatedNuxtLink
-                v-for="(category, index) in categoryData?.result.categories"
+                v-for="(
+                  category, index
+                ) in categoryData?.result.categories.slice(0, 12)"
                 :key="index"
                 class="category-item font-body text-title-3 text-white cursor-pointer flex justify-between items-center hover:bg-primary hover:text-black transition-colors duration-300 px-4 py-2 my-1 w-full"
                 :title-a="category.name"
@@ -22,6 +29,47 @@
                 hover-bg-color="hover:bg-green-500"
                 @click="scrollToTechnology(index)"
                 @mouseover="hoveredIndex = index"
+                @mouseleave="hoveredIndex = null"
+              >
+                {{ category.name }}
+                <svg
+                  v-if="hoveredIndex === index"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-5 h-5 inline-block ml-1 transition-all ease-in-out duration-300 transform translate-x-0 opacity-0"
+                  :class="{
+                    'translate-x-2 opacity-100': hoveredIndex === index,
+                  }"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </BaseAnimatedNuxtLink>
+              <h2
+                class="text-lg text-white border border-white rounded-md px-4 my-2"
+              >
+                Software
+              </h2>
+              <BaseAnimatedNuxtLink
+                v-for="(
+                  category, index
+                ) in categoryData?.result.categories.slice(12)"
+                :key="index"
+                class="category-item font-body text-title-3 text-white cursor-pointer flex justify-between items-center hover:bg-primary hover:text-black transition-colors duration-300 px-4 py-2 my-1 w-full"
+                :title-a="category.name"
+                :title-b="category.name"
+                font-a-color="text-black"
+                font-b-color="text-black"
+                border-radius="rounded-lg"
+                hover-bg-color="hover:bg-green-500"
+                @click="scrollToTechnology(index, 12)"
+                @mouseover="hoveredIndex = index + 12"
                 @mouseleave="hoveredIndex = null"
               >
                 {{ category.name }}
@@ -229,8 +277,8 @@ const { data: categoryData } = await useKql({
 const technologies = ref(null)
 const hoveredIndex = ref(null)
 
-function scrollToTechnology(index) {
-  technologies.value[index].scrollIntoView({
+function scrollToTechnology(index, offset = 0) {
+  technologies.value[index + offset].scrollIntoView({
     behavior: 'smooth',
   })
 }
