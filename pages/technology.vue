@@ -181,6 +181,7 @@ const { data: technologyData } = await useKql({
   select: {
     name: true,
     category: true,
+    type: true,
     technologies: {
       query: 'page.technologies.toStructure',
       select: {
