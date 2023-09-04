@@ -52,11 +52,11 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             Lasercutter
           </h2>
-          <button
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-          >
-            Zu den Tutorials
-          </button>
+          <!-- <button
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            >
+              Zu den Tutorials
+            </button> -->
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -74,11 +74,11 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             3D-Drucker
           </h2>
-          <button
+          <!-- <button
             class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           >
             Zu den Tutorials
-          </button>
+          </button> -->
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -96,11 +96,11 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             Virtual Reality
           </h2>
-          <button
+          <!-- <button
             class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
           >
             Zu den Tutorials
-          </button>
+          </button> -->
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -122,11 +122,13 @@
             Mit unseren Video-Tutorials bist du immer auf dem neuesten Stand.
             Schau mal rein!
           </p>
-          <button
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-4"
-          >
-            Zu den Tutorials
-          </button>
+          <NuxtLink to="/tutorials">
+            <button
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-4"
+            >
+              Zu den Tutorials
+            </button>
+          </NuxtLink>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
