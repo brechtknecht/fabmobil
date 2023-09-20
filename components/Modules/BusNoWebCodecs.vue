@@ -3,6 +3,7 @@
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
         <video-player
+          ref="videoPlayer"
           class="video-player-box"
           src="/assets/video/sequence-compressed.mp4"
           poster="/your-path/poster.jpg"
@@ -10,20 +11,34 @@
           :loop="true"
           :volume="0.6"
         />
+        <pre class="sticky top-32 text-white">{{ progressPercentage }}</pre>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
 import { VideoPlayer } from '@videojs-player/vue'
 
-export default defineComponent({
+export default {
   components: {
     VideoPlayer,
   },
-})
+  data() {
+    return {
+      progressPercentage: 0,
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const videoElement = this.$refs.videoPlayer.$el.querySelector('video')
+      videoElement.addEventListener('timeupdate', () => {
+        this.progressPercentage =
+          (videoElement.currentTime / videoElement.duration) * 100
+      })
+    })
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -35,7 +50,6 @@ export default defineComponent({
   width: 100% !important;
   height: 70vh !important;
 }
-
 #vjs_video_3_html5_api {
   width: 100% !important;
   height: 70vh !important;
