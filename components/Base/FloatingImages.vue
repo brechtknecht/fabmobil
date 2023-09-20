@@ -51,6 +51,7 @@ export default {
       trottle: false,
       animationFrameId: null,
       timeoutId: null,
+      lastMoveTime: 0,
     }
   },
   mounted() {
@@ -66,13 +67,13 @@ export default {
       this.backgroundcolor
     )
 
-    window.addEventListener('mousemove', this.handleMouseMove, {
+    window.addEventListener('mousemove', this.throttledMouseMove, {
       passive: true,
     })
   },
   beforeUnmount() {
     // Remove event listeners
-    window.removeEventListener('mousemove', this.handleMouseMove)
+    window.removeEventListener('mousemove', this.throttledMouseMove)
 
     // Cancel any ongoing animations
     if (this.animationFrameId) {
@@ -156,16 +157,22 @@ export default {
 
       this.animateImages()
     },
-    handleMouseMove(event) {
-      if (!this.throttle) {
-        this.mouseX = event.clientX
-        this.mouseY = event.clientY
-        this.throttle = true
-        this.timeoutId = setTimeout(() => {
-          this.throttle = false
-        }, 2000) // Adjust this value to change the throttle time
+
+    throttledMouseMove(event) {
+      const now = Date.now()
+      if (now - this.lastMoveTime > 200) {
+        this.handleMouseMove(event)
+        this.lastMoveTime = now
       }
     },
+
+    handleMouseMove(event) {
+      this.mouseX = event.clientX
+      this.mouseY = event.clientY
+      // Instead of updating the UI here, we just update the state.
+      // The actual UI (DOM) update will happen in the animation loop.
+    },
+
     animateImages() {
       const halfScreenWidth = this.screenWidth / 2
       const halfScreenHeight = this.screenHeight / 2
@@ -201,10 +208,8 @@ export default {
 <style lang="scss" scoped>
 .floating-image {
   position: absolute;
-  mix-blend-mode: overlay;
   z-index: -1;
   img {
-    mix-blend-mode: overlay;
     opacity: 0.2;
   }
 }
@@ -234,14 +239,6 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-
-  mask-image: radial-gradient(
-    circle at center,
-    transparent 10%,
-    var(--background-color) 100%
-  );
-  mask-size: 100% 100%;
-  background-color: var(--background-color);
   pointer-events: none; /* So it doesn't interfere with mouse events */
   z-index: 12; /* Make sure it's above the images */
 }
