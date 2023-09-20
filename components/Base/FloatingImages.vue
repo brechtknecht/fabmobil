@@ -66,17 +66,12 @@ export default {
       this.backgroundcolor
     )
 
-    // Add keydown and keyup event listeners
-    window.addEventListener('keydown', this.handleKeyDown)
-    window.addEventListener('keyup', this.handleKeyUp)
     window.addEventListener('mousemove', this.handleMouseMove, {
       passive: true,
     })
   },
   beforeUnmount() {
     // Remove event listeners
-    window.removeEventListener('keydown', this.handleKeyDown)
-    window.removeEventListener('keyup', this.handleKeyUp)
     window.removeEventListener('mousemove', this.handleMouseMove)
 
     // Cancel any ongoing animations
@@ -168,29 +163,20 @@ export default {
         this.throttle = true
         this.timeoutId = setTimeout(() => {
           this.throttle = false
-        }, 200) // Adjust this value to change the throttle time
-      }
-    },
-    handleKeyDown(event) {
-      if (event.key === 'f') {
-        console.log('f')
-        this.$emit('updateSpeed', 100)
-      }
-    },
-    handleKeyUp(event) {
-      if (event.key === 'f') {
-        this.$emit('updateSpeed', 0.000001)
+        }, 2000) // Adjust this value to change the throttle time
       }
     },
     animateImages() {
-      this.animationFrameId = requestAnimationFrame(this.animateImages)
+      const halfScreenWidth = this.screenWidth / 2
+      const halfScreenHeight = this.screenHeight / 2
 
-      this.images.forEach((image, index) => {
+      for (let i = 0; i < this.images.length; i++) {
+        const image = this.images[i]
+
         // Calculate parallax shift based on mouse position relative to the center
-        const shiftX =
-          (this.mouseX - this.screenWidth / 2) * (image.size * 0.000001)
+        const shiftX = (this.mouseX - halfScreenWidth) * (image.size * 0.000001)
         const shiftY =
-          (this.mouseY - this.screenHeight / 2) * (image.size * 0.000001)
+          (this.mouseY - halfScreenHeight) * (image.size * 0.000001)
 
         let x = image.x + this.speed + image.size * 0.0002 + shiftX // Move right with parallax effect
         let y = image.y + shiftY
@@ -201,12 +187,12 @@ export default {
         if (y < -image.size) y = this.screenHeight
         if (y > this.screenHeight) y = -image.size
 
-        this.images[
-          index
-        ].style = `left:${x}px;top:${y}px;width:${image.size}px;`
-        this.images[index].x = x
-        this.images[index].y = y
-      })
+        image.x = x
+        image.y = y
+        image.style = `transform: translate(${x}px, ${y}px); width:${image.size}px;`
+      }
+
+      this.animationFrameId = requestAnimationFrame(this.animateImages)
     },
   },
 }

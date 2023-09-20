@@ -1,7 +1,7 @@
 import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
-  modules: ['@vueuse/nuxt', 'nuxt-kql'],
+  modules: ['@vueuse/nuxt', 'nuxt-kql', 'nuxt-lodash'],
   css: ['@/assets/css/main.css'],
 
   publicRuntimeConfig: {

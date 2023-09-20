@@ -29,6 +29,7 @@
     "medium-zoom": "^1.0.8",
     "nuxt": "^3.3.3",
     "nuxt-kql": "^0.26.3",
+    "nuxt-lodash": "^2.5.0",
     "postcss": "^8.4.23",
     "prettier": "^2.8.7",
     "sass": "^1.63.6",
