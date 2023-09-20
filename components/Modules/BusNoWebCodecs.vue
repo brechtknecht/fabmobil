@@ -78,7 +78,7 @@ export default {
 }
 .video-player-box {
   width: 100% !important;
-  height: 70vh !important;
+  height: 100vh !important;
 }
 #vjs_video_3_html5_api {
   width: 100% !important;
