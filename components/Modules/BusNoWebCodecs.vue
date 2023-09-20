@@ -2,82 +2,35 @@
   <div class="section bg-black">
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
-        <button style="color: white; background-color: red" @click="playVideo">
-          Play
-        </button>
-        <button style="color: white; background-color: red" @click="pauseVideo">
-          Pause
-        </button>
-        <div class="text-white">Video progress: {{ videoProgress }}</div>
-        <input
-          v-model="videoPercentage"
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          @input="setVideoPercentage"
-        />
-
-        <video
-          ref="video"
-          class="relative scale-75 flex justify-center items-center h-full"
+        <video-player
           src="/assets/video/sequence-compressed.mp4"
-          :style="{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }"
+          poster="/your-path/poster.jpg"
+          controls
+          :loop="true"
+          :volume="0.6"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
+<script>
+import { defineComponent } from 'vue'
+import { VideoPlayer } from '@videojs-player/vue'
+import 'video.js/dist/video-js.css'
 
-const Component = defineComponent({})
-
-const video = ref(null)
-const videoProgress = ref(0)
-const playing = ref(false)
-const videoPercentage = ref(0)
-
-const playVideo = async () => {
-  try {
-    await video.value.play()
-    playing.value = true
-  } catch (err) {
-    console.error('Failed to play the video:', err)
-  }
-}
-
-const pauseVideo = () => {
-  video.value.pause()
-  playing.value = false
-}
-
-const setVideoPercentage = () => {
-  video.value.currentTime = video.value.duration * videoPercentage.value
-}
-
-const updateVideoProgress = () => {
-  videoProgress.value = video.value.currentTime / video.value.duration
-}
-
-onMounted(() => {
-  video.value.addEventListener('loadedmetadata', updateVideoProgress, {
-    once: true,
-  })
-  video.value.addEventListener('timeupdate', updateVideoProgress)
-})
-
-onUnmounted(() => {
-  video.value.removeEventListener('timeupdate', updateVideoProgress)
+export default defineComponent({
+  components: {
+    VideoPlayer,
+  },
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.nowebcodecs-video {
+  max-width: 1000px;
+  margin: 0 auto;
+}
 .scrolly-video-container {
   height: 100vh;
   background: black;

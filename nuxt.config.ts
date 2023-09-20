@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     ENV: process.env.ENV,
   },
 
+  plugins: [{ src: '~/plugins/vue-video-player.ts', ssr: false }],
   postcss: {
     plugins: {
       tailwindcss: {},
