@@ -3,7 +3,6 @@
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
         <BaseBusOverlays
-          v-if="isInViewport"
           class="appe w-full h-full relative z-40"
           :scroll-percentage="progressPercentage"
         />
@@ -13,6 +12,7 @@
           src="/assets/video/sequence-compressed.mp4"
           poster="/your-path/poster.jpg"
           controls
+          :autoplay="true"
           :loop="true"
           :volume="0.6"
         />
