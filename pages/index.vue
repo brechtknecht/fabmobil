@@ -41,7 +41,11 @@ const { data } = await useKql({
 })
 
 // console.log(data)
+const isFirefoxUser = ref(false)
 
+onMounted(() => {
+  isFirefoxUser.value = navigator.userAgent.toLowerCase().includes('firefox')
+})
 // Set the current page data for the global page context
 const page = data.value?.result
 setPage(page)
@@ -60,7 +64,9 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
-    <LazyClientOnly><ModulesBusAnimation /></LazyClientOnly>
+    <LazyClientOnly v-if="!isFirefoxUser"
+      ><ModulesBusAnimation
+    /></LazyClientOnly>
     <ModulesMapTeaser />
     <ModulesSponsors :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
