@@ -2,6 +2,11 @@
   <div class="section bg-black">
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
+        <BaseBusOverlays
+          v-if="isInViewport"
+          class="appe w-full h-full relative z-40"
+          :scroll-percentage="progressPercentage"
+        />
         <video-player
           ref="videoPlayer"
           class="video-player-box"
