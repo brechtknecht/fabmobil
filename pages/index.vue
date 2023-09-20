@@ -67,6 +67,9 @@ setPage(page)
     <LazyClientOnly v-if="!isFirefoxUser"
       ><ModulesBusAnimation
     /></LazyClientOnly>
+    <LazyClientOnly v-else>
+      <ModulesBusNoWebCodecs />
+    </LazyClientOnly>
     <ModulesMapTeaser />
     <ModulesSponsors :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
