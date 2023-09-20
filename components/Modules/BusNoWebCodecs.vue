@@ -3,6 +3,7 @@
     <div class="container mx-auto">
       <div class="scrolly-video-container relative">
         <video-player
+          class="video-player-box"
           src="/assets/video/sequence-compressed.mp4"
           poster="/your-path/poster.jpg"
           controls
@@ -17,7 +18,6 @@
 <script>
 import { defineComponent } from 'vue'
 import { VideoPlayer } from '@videojs-player/vue'
-import 'video.js/dist/video-js.css'
 
 export default defineComponent({
   components: {
@@ -27,18 +27,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.nowebcodecs-video {
-  max-width: 1000px;
-  margin: 0 auto;
-}
 .scrolly-video-container {
   height: 100vh;
   background: black;
+}
+.video-player-box {
+  width: 100% !important;
+  height: 70vh !important;
+}
 
-  video {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 1192 / 1080 !important;
-  }
+#vjs_video_3_html5_api {
+  width: 100% !important;
+  height: 70vh !important;
+}
+.video-player-box > div,
+.video-player-box > video {
+  width: 100% !important;
+  height: 70vh !important;
 }
 </style>

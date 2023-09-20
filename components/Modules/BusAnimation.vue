@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .scrolly-video-container {
   height: 600vh;
   background: black;
