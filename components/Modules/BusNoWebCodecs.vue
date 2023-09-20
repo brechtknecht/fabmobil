@@ -1,7 +1,7 @@
 <template>
   <div class="section bg-black">
     <div class="container mx-auto">
-      <div class="scrolly-video-container relative">
+      <div class="no-scrolly-video-container relative">
         <BaseBusOverlays
           v-show="isInViewport"
           class="sticky w-full h-full z-40"
@@ -40,7 +40,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       const containerElement = this.$el.querySelector(
-        '.scrolly-video-container'
+        '.no-scrolly-video-container'
       )
       const videoElement = this.$refs.videoPlayer.$el.querySelector('video')
 
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scrolly-video-container {
+.no-scrolly-video-container {
   height: 100vh;
   background: black;
 }
