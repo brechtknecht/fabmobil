@@ -50,6 +50,9 @@ dependencies:
   scrolly-video:
     specifier: ^0.0.16
     version: 0.0.16
+  scrolly-video-mod:
+    specifier: ^0.0.1
+    version: 0.0.1
   three:
     specifier: ^0.154.0
     version: 0.154.0
@@ -301,7 +304,6 @@ packages:
   /@babel/helper-module-transforms@7.22.9(@babel/core@7.22.11):
     resolution: {integrity: sha512-t+WA2Xn5K+rTeGtC8jCsdAH52bjggG5TKRuRrAGNM/mjIbO4GxvlLMFOEz9wXY5I2XQ60PMFsAG2WIcG82dQMQ==}
     engines: {node: '>=6.9.0'}
-    requiresBuild: true
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -5760,6 +5762,13 @@ packages:
       miniraf: 1.0.0
       rematrix: 0.3.0
       tealight: 0.3.6
+    dev: false
+
+  /scrolly-video-mod@0.0.1:
+    resolution: {integrity: sha512-qMrWnDpoTTZnAvOOL+XBbszFuAFwmkwTSsEjBca+3r/DHFCXvwgrVy0JWg0ZBDgKevBD8jhZKloqsvxQwLG4Sw==}
+    dependencies:
+      mp4box: 0.4.9
+      ua-parser-js: 1.0.35
     dev: false
 
   /scrolly-video@0.0.16:

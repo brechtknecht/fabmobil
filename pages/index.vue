@@ -71,7 +71,7 @@ setPage(page)
       <ModulesBusNoWebCodecs />
     </LazyClientOnly>
     <ModulesMapTeaser />
-    <ModulesSponsors :sponsors="page.sponsors" />
+    <ModulesSponsors v-if="page.sponsors" :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
     <ModulesFAQ />
   </div>
