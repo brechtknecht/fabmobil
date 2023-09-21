@@ -23,18 +23,18 @@ let intervalId = null
 const handleScroll = () => {
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
 
-  framesLength.value = scrollyVideoRef.frames.length
-
-  if (framesLength.value === 376) {
-    if (intervalId) {
-      clearInterval(intervalId)
-    }
-    console.log('ass', hasLoaded.value)
-    hasLoaded.value = true // Set hasLoaded to true
-  }
-
   let totalDuration = 0
   if (!scrollyVideoRef.isSafari) {
+    framesLength.value = scrollyVideoRef.frames.length
+
+    if (framesLength.value === 376) {
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+      console.log('ass', hasLoaded.value)
+      hasLoaded.value = true // Set hasLoaded to true
+    }
+
     totalDuration = scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
   } else {
     totalDuration = scrollyVideoRef.video.duration
@@ -49,6 +49,7 @@ const handleScroll = () => {
 
 onMounted(() => {
   const scrollyVideoElement = scrollyVideo.value.$el
+  const scrollyVideoRef = scrollyVideo.value.scrollyVideo
 
   observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
@@ -57,6 +58,12 @@ onMounted(() => {
       isInViewport.value = false
     }
   })
+
+  // Apply styles to video element
+  const videoElement = scrollyVideoElement.querySelector('video')
+  if (videoElement && !scrollyVideoRef.isSafari) {
+    videoElement.style.display = 'none'
+  }
 
   observer.observe(scrollyVideoElement)
 
@@ -154,9 +161,9 @@ onBeforeUnmount(() => {
   overflow: visible !important;
 }
 
-.scrolly-video > video {
-  display: none;
-}
+// .scrolly-video > video {
+//   display: none;
+// }
 
 .scrolly-video-container {
   canvas {
