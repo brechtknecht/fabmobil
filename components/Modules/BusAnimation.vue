@@ -154,7 +154,7 @@ onBeforeUnmount(() => {
   overflow: visible !important;
 }
 
-video {
+.scrolly-video > video {
   display: none;
 }
 
