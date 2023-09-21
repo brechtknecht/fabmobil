@@ -38,6 +38,7 @@ const handleScroll = () => {
     totalDuration = scrollyVideoRef.frames.length / scrollyVideoRef.frameRate
   } else {
     totalDuration = scrollyVideoRef.video.duration
+    hasLoaded.value = true
   }
 
   // Update the scroll percentage ref
@@ -119,7 +120,7 @@ onBeforeUnmount(() => {
         <!-- ScrollyVideo component -->
         <ScrollyVideo
           ref="scrollyVideo"
-          class="relative scale-75 flex justify-center items-center h-full scrolly-video"
+          class="relative scale-[0.6] flex justify-center items-center h-full scrolly-video"
           src="/assets/video/output-new.mp4"
           transition-speed="0.0001"
           debug="true"
