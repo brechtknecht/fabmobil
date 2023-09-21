@@ -25,7 +25,7 @@ const handleScroll = () => {
 
   framesLength.value = scrollyVideoRef.frames.length
 
-  if (framesLength.value === 902) {
+  if (framesLength.value === 376) {
     if (intervalId) {
       clearInterval(intervalId)
     }
@@ -96,10 +96,10 @@ onBeforeUnmount(() => {
           v-if="!hasLoaded"
           class="absolute top-0 left-0 w-full h-screen flex items-center justify-center bg-black opacity-75 z-40"
         >
-          <div role="status">
+          <div role="status flex items-center justify-center">
             <svg
               aria-hidden="true"
-              class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+              class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-green"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,6 @@ onBeforeUnmount(() => {
                 fill="currentFill"
               />
             </svg>
-            <span class="sr-only">Loading...</span>
           </div>
         </div>
 
@@ -121,7 +120,7 @@ onBeforeUnmount(() => {
         <ScrollyVideo
           ref="scrollyVideo"
           class="relative scale-75 flex justify-center items-center h-full scrolly-video"
-          src="/assets/video/output.mp4"
+          src="/assets/video/output-new.mp4"
           transition-speed="0.0001"
           debug="true"
           :cover="false"
