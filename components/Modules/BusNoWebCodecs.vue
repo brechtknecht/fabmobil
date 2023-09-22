@@ -4,8 +4,9 @@
       <div class="no-scrolly-video-container relative">
         <BaseBusOverlays
           v-show="isInViewport"
-          class="sticky w-full h-full z-40"
+          class="sticky w-full h-screen z-40 bus-overlays"
           :scroll-percentage="progressPercentage"
+          mode="relative"
         />
 
         <video-player
@@ -88,5 +89,9 @@ export default {
 .video-player-box > video {
   width: 100% !important;
   height: 70vh !important;
+}
+
+.affepenner {
+  position: relative !important;
 }
 </style>

@@ -7,6 +7,7 @@
       :position-y="getPositionY(20)"
       :trigger-start="5"
       :trigger-end="10"
+      :mode="mode"
     >
       <AppVideoOverlay class="relative left-0">
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -28,6 +29,7 @@
       :position-y="getPositionY(80)"
       :trigger-start="10"
       :trigger-end="20"
+      :mode="mode"
     >
       <AppVideoOverlay class="relative left-0">
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -46,6 +48,7 @@
       :position-y="getPositionY(60)"
       :trigger-start="22"
       :trigger-end="27"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -68,6 +71,7 @@
       :position-y="getPositionY(65)"
       :trigger-start="28"
       :trigger-end="35"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -90,6 +94,7 @@
       :position-y="getPositionY(80)"
       :trigger-start="36"
       :trigger-end="45"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -112,6 +117,7 @@
       :position-y="getPositionY(60)"
       :trigger-start="42"
       :trigger-end="48"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -140,6 +146,7 @@
       :position-y="getPositionY(25)"
       :trigger-start="54"
       :trigger-end="65"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -157,6 +164,7 @@
       :position-y="getPositionY(20)"
       :trigger-start="60"
       :trigger-end="65"
+      :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
@@ -174,6 +182,10 @@ export default {
     scrollPercentage: {
       type: Number,
       required: true,
+    },
+    mode: {
+      type: String,
+      default: 'fixed',
     },
   },
   data() {

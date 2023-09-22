@@ -89,8 +89,8 @@ onBeforeUnmount(() => {
         class="scrolly-video-container relative"
         :style="{ height: hasLoaded == false ? '100vh' : '600vh' }"
       >
-        <pre class="sticky top-32 text-white">{{ scrollPercentage }}</pre>
-        <pre class="sticky top-36 text-white">{{ hasLoaded }}</pre>
+        <!-- <pre class="sticky top-32 text-white">{{ scrollPercentage }}</pre>
+        <pre class="sticky top-36 text-white">{{ hasLoaded }}</pre> -->
 
         <!-- Pass scrollPercentage to VideoOverlay -->
         <BaseBusOverlays

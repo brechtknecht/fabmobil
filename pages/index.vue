@@ -1,24 +1,4 @@
 <script setup>
-// const { data } = await useKql({
-//   query: 'page("home/modules").children',
-//   select: {
-//     id: true,
-//     title: true,
-//     intendedTemplate: true,
-//     images: true,
-//     layout: {
-//       query: 'page.layout.toLayouts',
-//       select: {
-//         content: 'layout',
-//         attrs: 'layout.attrs',
-//         image: {
-//           query: 'layout.attrs.image.toFile',
-//         },
-//       },
-//     },
-//   },
-// })
-
 const { data } = await useKql({
   query: 'page("home")',
   select: {
@@ -52,7 +32,7 @@ setPage(page)
 </script>
 
 <template>
-  <div class="bg-[#DDBBFC]">
+  <div class="bg-[#DDBBFC] py-4">
     <div
       class="px-0 pb-0 3xl:px-24 3xl:pb-[19em] 3xl:pt-12 max-w-screen-2xl mx-auto"
     >
