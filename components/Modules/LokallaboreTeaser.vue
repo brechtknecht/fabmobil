@@ -16,11 +16,13 @@
         class="flex flex-col-reverse sm:flex-row-reverse justify-center items-center space-x-4 relative w-full h-full"
       >
         <div class="flex flex-row">
-          <BaseButton
-            class="bg-white relative lg:absolute z-10 lg:top-0 lg:right-[15%]"
-            label="Erfahre Mehr!"
-            text-color="text-black"
-          />
+          <div class="flex flex-row scale-75 z-40">
+            <BaseButton
+              class="bg-white relative lg:absolute z-10 lg:top-0 lg:right-[15%]"
+              label="Erfahre Mehr!"
+              text-color="text-black"
+            />
+          </div>
         </div>
         <div
           class="px-4 pb-4 lg:px-24 lg:pb-24 pt-12 w-full h-full max-w-screen-2xl mx-auto"
