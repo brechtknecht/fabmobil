@@ -1,11 +1,11 @@
 <template>
   <section class="bg-secondary">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full my-4">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full mt-4">
       <div>
         <div class="flex flex-row pb-32">
           <div class="category-list sticky top-0 max-w-sm hidden md:block">
             <h1
-              class="font-headline text-primary text-large-title font-bold leading-tight py-4"
+              class="font-headline text-primary text-large-title leading-tight py-4"
             >
               {{ page.title }}
             </h1>
@@ -95,7 +95,7 @@
             </ul>
           </div>
 
-          <div class="tech-grid w-full pt-16">
+          <div class="tech-grid w-full pt-10">
             <div
               v-for="(tech, index) in technologyData?.result.technologies"
               :key="index"
@@ -104,22 +104,24 @@
             >
               <div class="flex flex-col md:flex-row">
                 <div
-                  class="left-side w-full md:w-1/2 flex justify-center items-center"
+                  class="left-side w-full md:w-1/2 flex flex-col justify-center items-start"
                 >
-                  <img
-                    :src="tech.image?.url"
-                    :alt="tech.name"
-                    style="max-width: 32rem"
-                    class="object-contain p-12"
-                  />
-                </div>
-
-                <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
                   <h2
-                    class="font-headline text-primary text-large-title px-8 md:px-0"
+                    class="font-headline text-primary text-large-title px-4 md:px-12"
                   >
                     {{ tech.name }}
                   </h2>
+                  <div class="flex w-full h-full justify-center align-center">
+                    <img
+                      :src="tech.image?.url"
+                      :alt="tech.name"
+                      style="max-width: 32rem"
+                      class="object-contain p-12"
+                    />
+                  </div>
+                </div>
+
+                <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
                   <KirbyBlocks
                     :blocks="tech.description ?? []"
                     class="note text text-primary"
