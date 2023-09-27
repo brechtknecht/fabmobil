@@ -23,17 +23,6 @@
     </div>
     <div class="flex gap-8">
       <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
-        <BaseAnimatedNuxtLink
-          to="#"
-          :title-a="'Anfragen'.replace(/ /g, '\u00A0')"
-          :title-b="'Anfragen'.replace(/ /g, '\u00A0')"
-          :aria-current="
-            route.path.startsWith('/your-desired-path') ? 'page' : undefined
-          "
-          @click="openModal"
-        >
-          Anfragen
-        </BaseAnimatedNuxtLink>
         <NuxtLink
           to="https://www.instagram.com/fabmobil/"
           class="logo flex-shrink-0 flex items-center"
@@ -41,6 +30,18 @@
         >
           <img class="h-8" src="/assets/img/insta-icon.svg" alt="Instagram" />
         </NuxtLink>
+        <BaseAnimatedNuxtLink
+          to="#"
+          :title-a="'Anfragen'.replace(/ /g, '\u00A0')"
+          :title-b="'Anfragen'.replace(/ /g, '\u00A0')"
+          :aria-current="
+            route.path.startsWith('/your-desired-path') ? 'page' : undefined
+          "
+          class="bg-black text-purple py-2 px-4 rounded-md"
+          @click="openModal"
+        >
+          Anfragen
+        </BaseAnimatedNuxtLink>
       </div>
 
       <div class="-mr-2 flex items-center header-breakpoint:hidden">
