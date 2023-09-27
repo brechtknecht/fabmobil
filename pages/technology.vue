@@ -1,9 +1,9 @@
 <template>
   <section class="bg-secondary">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full my-4">
       <div>
         <div class="flex flex-row pb-32">
-          <div class="category-list sticky top-0 w-4/12 hidden md:block">
+          <div class="category-list sticky top-0 max-w-sm hidden md:block">
             <h1
               class="font-headline text-primary text-large-title font-bold leading-tight py-4"
             >
@@ -95,17 +95,25 @@
             </ul>
           </div>
 
-          <div class="tech-grid w-full md:w-8/12 pt-16">
+          <div class="tech-grid w-full pt-16">
             <div
               v-for="(tech, index) in technologyData?.result.technologies"
               :key="index"
               ref="technologies"
-              class="tech-item border-b border-white py-8"
+              class="tech-item border-b border-white border-opacity-30 py-8"
             >
               <div class="flex flex-col md:flex-row">
-                <div class="left-side w-full md:w-1/2">
-                  <img :src="tech.image?.url" :alt="tech.name" class="w-72" />
+                <div
+                  class="left-side w-full md:w-1/2 flex justify-center items-center"
+                >
+                  <img
+                    :src="tech.image?.url"
+                    :alt="tech.name"
+                    style="max-width: 32rem"
+                    class="object-contain p-12"
+                  />
                 </div>
+
                 <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
                   <h2
                     class="font-headline text-primary text-large-title px-8 md:px-0"
@@ -293,11 +301,11 @@ onMounted(() => {
 <style scoped>
 .category-list {
   position: sticky;
-  top: 9rem;
-  height: calc(100vh - 9rem);
+  top: 6rem;
+  height: calc(100vh - 6rem);
+  padding-top: 4rem;
   padding-bottom: 4rem;
   overflow-y: auto;
-  max-width: 18rem;
 }
 
 .slide-fade-enter-active,
