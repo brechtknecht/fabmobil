@@ -74,6 +74,7 @@ onBeforeUnmount(() => {
           src="/assets/video/sequence-compressed.mp4"
           transition-speed="0.0001"
           debug="true"
+          use-web-codecs="false"
           :cover="false"
           :track-scroll="true"
           :style="{
