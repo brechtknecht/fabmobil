@@ -12,8 +12,12 @@
   >
     <!-- Absolute container for slot content -->
     <div
-      :style="{ top: `${positionY}%`, left: `${positionX}%` }"
-      class="flex fixed top-0 affepenner"
+      :style="{
+        top: `${positionY}%`,
+        left: `${positionX}%`,
+        position: `${mode}`,
+      }"
+      class="flex top-0 affepenner"
     >
       <!-- Slot for overlay content -->
       <slot></slot>
@@ -48,6 +52,10 @@ export default {
     triggerEnd: {
       type: Number,
       required: true,
+    },
+    mode: {
+      type: String,
+      default: 'fixed',
     },
   },
   computed: {

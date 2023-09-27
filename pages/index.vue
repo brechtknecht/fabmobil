@@ -1,24 +1,4 @@
 <script setup>
-// const { data } = await useKql({
-//   query: 'page("home/modules").children',
-//   select: {
-//     id: true,
-//     title: true,
-//     intendedTemplate: true,
-//     images: true,
-//     layout: {
-//       query: 'page.layout.toLayouts',
-//       select: {
-//         content: 'layout',
-//         attrs: 'layout.attrs',
-//         image: {
-//           query: 'layout.attrs.image.toFile',
-//         },
-//       },
-//     },
-//   },
-// })
-
 const { data } = await useKql({
   query: 'page("home")',
   select: {
@@ -41,14 +21,18 @@ const { data } = await useKql({
 })
 
 // console.log(data)
+const isFirefoxUser = ref(false)
 
+onMounted(() => {
+  isFirefoxUser.value = navigator.userAgent.toLowerCase().includes('firefox')
+})
 // Set the current page data for the global page context
 const page = data.value?.result
 setPage(page)
 </script>
 
 <template>
-  <div class="bg-[#DDBBFC]">
+  <div class="bg-[#DDBBFC] py-4">
     <div
       class="px-0 pb-0 3xl:px-24 3xl:pb-[19em] 3xl:pt-12 max-w-screen-2xl mx-auto"
     >
@@ -60,9 +44,14 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
-    <LazyClientOnly><ModulesBusAnimation /></LazyClientOnly>
+    <LazyClientOnly v-if="!isFirefoxUser"
+      ><ModulesBusAnimation
+    /></LazyClientOnly>
+    <LazyClientOnly v-else>
+      <ModulesBusNoWebCodecs />
+    </LazyClientOnly>
     <ModulesMapTeaser />
-    <ModulesSponsors :sponsors="page.sponsors" />
+    <ModulesSponsors v-if="page.sponsors" :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
     <ModulesFAQ />
   </div>

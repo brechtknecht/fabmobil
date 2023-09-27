@@ -51,6 +51,7 @@ export default {
       trottle: false,
       animationFrameId: null,
       timeoutId: null,
+      lastMoveTime: 0,
     }
   },
   mounted() {
@@ -66,18 +67,13 @@ export default {
       this.backgroundcolor
     )
 
-    // Add keydown and keyup event listeners
-    window.addEventListener('keydown', this.handleKeyDown)
-    window.addEventListener('keyup', this.handleKeyUp)
-    window.addEventListener('mousemove', this.handleMouseMove, {
+    window.addEventListener('mousemove', this.throttledMouseMove, {
       passive: true,
     })
   },
   beforeUnmount() {
     // Remove event listeners
-    window.removeEventListener('keydown', this.handleKeyDown)
-    window.removeEventListener('keyup', this.handleKeyUp)
-    window.removeEventListener('mousemove', this.handleMouseMove)
+    window.removeEventListener('mousemove', this.throttledMouseMove)
 
     // Cancel any ongoing animations
     if (this.animationFrameId) {
@@ -161,36 +157,33 @@ export default {
 
       this.animateImages()
     },
-    handleMouseMove(event) {
-      if (!this.throttle) {
-        this.mouseX = event.clientX
-        this.mouseY = event.clientY
-        this.throttle = true
-        this.timeoutId = setTimeout(() => {
-          this.throttle = false
-        }, 200) // Adjust this value to change the throttle time
-      }
-    },
-    handleKeyDown(event) {
-      if (event.key === 'f') {
-        console.log('f')
-        this.$emit('updateSpeed', 100)
-      }
-    },
-    handleKeyUp(event) {
-      if (event.key === 'f') {
-        this.$emit('updateSpeed', 0.000001)
-      }
-    },
-    animateImages() {
-      this.animationFrameId = requestAnimationFrame(this.animateImages)
 
-      this.images.forEach((image, index) => {
+    throttledMouseMove(event) {
+      const now = Date.now()
+      if (now - this.lastMoveTime > 200) {
+        this.handleMouseMove(event)
+        this.lastMoveTime = now
+      }
+    },
+
+    handleMouseMove(event) {
+      this.mouseX = event.clientX
+      this.mouseY = event.clientY
+      // Instead of updating the UI here, we just update the state.
+      // The actual UI (DOM) update will happen in the animation loop.
+    },
+
+    animateImages() {
+      const halfScreenWidth = this.screenWidth / 2
+      const halfScreenHeight = this.screenHeight / 2
+
+      for (let i = 0; i < this.images.length; i++) {
+        const image = this.images[i]
+
         // Calculate parallax shift based on mouse position relative to the center
-        const shiftX =
-          (this.mouseX - this.screenWidth / 2) * (image.size * 0.000001)
+        const shiftX = (this.mouseX - halfScreenWidth) * (image.size * 0.000001)
         const shiftY =
-          (this.mouseY - this.screenHeight / 2) * (image.size * 0.000001)
+          (this.mouseY - halfScreenHeight) * (image.size * 0.000001)
 
         let x = image.x + this.speed + image.size * 0.0002 + shiftX // Move right with parallax effect
         let y = image.y + shiftY
@@ -201,12 +194,12 @@ export default {
         if (y < -image.size) y = this.screenHeight
         if (y > this.screenHeight) y = -image.size
 
-        this.images[
-          index
-        ].style = `left:${x}px;top:${y}px;width:${image.size}px;`
-        this.images[index].x = x
-        this.images[index].y = y
-      })
+        image.x = x
+        image.y = y
+        image.style = `transform: translate(${x}px, ${y}px); width:${image.size}px;`
+      }
+
+      this.animationFrameId = requestAnimationFrame(this.animateImages)
     },
   },
 }
@@ -215,10 +208,8 @@ export default {
 <style lang="scss" scoped>
 .floating-image {
   position: absolute;
-  mix-blend-mode: overlay;
   z-index: -1;
   img {
-    mix-blend-mode: overlay;
     opacity: 0.2;
   }
 }
@@ -248,14 +239,6 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-
-  mask-image: radial-gradient(
-    circle at center,
-    transparent 10%,
-    var(--background-color) 100%
-  );
-  mask-size: 100% 100%;
-  background-color: var(--background-color);
   pointer-events: none; /* So it doesn't interfere with mouse events */
   z-index: 12; /* Make sure it's above the images */
 }

@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: ['@nuxt/eslint-config', 'prettier'],
+  ignorePatterns: ['public/assets/**', 'assets/**'],
   rules: {
     'sort-imports': [
       'error',
