@@ -21,6 +21,7 @@
               class="bg-white relative lg:absolute z-10 lg:top-0 lg:right-[15%]"
               label="Erfahre Mehr!"
               text-color="text-black"
+              to="https://lokallabore.de"
             />
           </div>
         </div>
