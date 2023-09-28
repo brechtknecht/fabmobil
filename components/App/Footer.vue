@@ -16,12 +16,13 @@
         <div
           class="text-lg font-sans font-bold text-accent justify-start relative sm:w-1/3 w-full h-full pb-8 sm:pb-0"
         >
-          Dann abonniere unser
-          <div class="text-lg font-headline text-headline contents">
-            Fabo-Abo
-          </div>
+          Du willst auf dem Laufenden bleiben und nichts mehr vom Fabmobil
+          verpassen?
           <div class="text-lg font-sans font-bold text-accent contents">
-            , um keine Aktionen und News zu verpassen!
+            Dann abonniere unseren.
+          </div>
+          <div class="text-lg font-headline text-headline contents">
+            Newsletter
           </div>
         </div>
         <div class="flex flex-col sm:flex-row w-full sm:w-fit items-center">
@@ -42,7 +43,7 @@
               class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full min-h-10"
               @click="subscribe"
             >
-              Gib Fabo-Abo!
+              Abonieren!
             </button>
           </div>
           <img

@@ -44,6 +44,15 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
+    <ModulesImageSlider>
+      <img
+        v-for="n in 10"
+        :key="n"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Example_image.svg/600px-Example_image.svg.png"
+        alt="Repeated Image"
+        class="h-full gap-8"
+      />
+    </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"
       ><ModulesBusAnimation
     /></LazyClientOnly>
