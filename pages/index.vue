@@ -44,13 +44,13 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
-    <ModulesImageSlider>
+    <ModulesImageSlider class="py-16">
       <img
-        v-for="n in 15"
+        v-for="n in 7"
         :key="n"
         src="https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-blurred-lights-on-a-road.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         alt="Repeated Image"
-        class="h-full max-h-[60vh]"
+        class="h-full max-h-[60vh] px-16"
       />
     </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"

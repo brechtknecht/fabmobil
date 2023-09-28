@@ -40,8 +40,9 @@ export default {
 
     const totalImagesWidth = computed(() => {
       if (!overflow.value) return 0
-      return Array.from(overflow.value.children).reduce((totalWidth, img) => {
-        return totalWidth + img.offsetWidth
+      return Array.from(overflow.value.children).reduce((totalWidth, child) => {
+        const rect = child.getBoundingClientRect()
+        return totalWidth + rect.width
       }, 0)
     })
 
@@ -71,13 +72,15 @@ export default {
       const end =
         wrapper.value.offsetTop +
         wrapper.value.offsetHeight -
-        window.innerHeight
+        window.innerHeight -
+        400
 
       let progress = mapRange(start, end, scrollY, 0, 1)
+
       progress = Math.max(0, Math.min(progress, 1))
 
       // Adjusted the calculation for x
-      const x = progress * (totalImagesWidth.value - overflow.value.offsetWidth)
+      const x = progress * (totalImagesWidth.value - windowWidth.value)
 
       const cards = Array.from(overflow.value.children)
       gsap.to(cards, {
@@ -193,7 +196,7 @@ $mobile-height: 650px;
 
     @include desktop {
       position: sticky;
-      --height: #{desktop-vw(440px)};
+      --height: 60%;
       top: calc((100vh - var(--height)) / 2);
     }
 
