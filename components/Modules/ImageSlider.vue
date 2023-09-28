@@ -85,9 +85,9 @@ export default {
       const cards = Array.from(overflow.value.children)
       gsap.to(cards, {
         x: -x,
-        stagger: 0.02,
-        ease: 'ease-out',
-        duration: 0.005,
+        stagger: 0.025,
+        ease: 'none',
+        duration: 0,
       })
     }
 

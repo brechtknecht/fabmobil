@@ -44,11 +44,11 @@ setPage(page)
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
       <ModulesIntro />
     </BaseFloatingImages>
-    <ModulesImageSlider class="py-16">
+    <ModulesImageSlider class="py-32">
       <img
         v-for="n in 7"
         :key="n"
-        src="https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-blurred-lights-on-a-road.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        src="https://images.pexels.com/photos/18397478/pexels-photo-18397478/free-photo-of-retrocar.jpeg?auto=compress&cs=tinysrgb&w=360&dpr=2"
         alt="Repeated Image"
         class="h-full max-h-[60vh] px-16"
       />
