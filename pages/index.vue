@@ -46,11 +46,11 @@ setPage(page)
     </BaseFloatingImages>
     <ModulesImageSlider>
       <img
-        v-for="n in 10"
+        v-for="n in 7"
         :key="n"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Example_image.svg/600px-Example_image.svg.png"
         alt="Repeated Image"
-        class="h-full gap-8"
+        class="h-full mx-12"
       />
     </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"
