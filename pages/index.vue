@@ -48,9 +48,9 @@ setPage(page)
       <img
         v-for="n in 15"
         :key="n"
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Example_image.svg/600px-Example_image.svg.png"
+        src="https://images.pexels.com/photos/18214082/pexels-photo-18214082/free-photo-of-blurred-lights-on-a-road.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         alt="Repeated Image"
-        class="h-full"
+        class="h-full max-h-[60vh]"
       />
     </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"
