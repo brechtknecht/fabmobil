@@ -17,10 +17,15 @@ const { data } = await useKql({
         },
       },
     },
+    images: {
+      query: 'page.images',
+      select: ['id', 'uuid', 'url', 'alt'],
+    },
   },
 })
 
-// console.log(data)
+console.log('DATAH:', data.value?.result.images)
+
 const isFirefoxUser = ref(false)
 
 onMounted(() => {
@@ -47,21 +52,22 @@ setPage(page)
     </BaseFloatingImages>
     <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
       <img
-        v-for="n in 7"
-        :key="n"
-        src="https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=460&&dpr=1"
+        v-for="n in page.images"
+        :key="n.id"
+        :src="n?.url"
         alt="Repeated Image"
         style="width: 500px"
-        class="h-full max-h-[60vh] px-16"
+        class="h-full max-h-[60vh] px-16 object-cover"
       />
     </ModulesImageSlider>
+
     <ModulesImageSlider v-else class="py-32">
       <img
-        v-for="n in 7"
+        v-for="n in page.images"
         :key="n"
-        src="https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=460&&dpr=1"
+        :src="n?.url"
         alt="Repeated Image"
-        class="h-full max-h-[60vh] px-16"
+        class="h-full max-h-[60vh] px-16 object-cover"
       />
     </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"
