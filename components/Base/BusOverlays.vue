@@ -5,7 +5,7 @@
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(20)"
       :position-y="getPositionY(20)"
-      :trigger-start="5"
+      :trigger-start="2"
       :trigger-end="10"
       :mode="mode"
     >
@@ -14,10 +14,7 @@
           <h2 class="font-headline text-title-1 leading-tight pb-2">
             Willkommen im Fabmobil!
           </h2>
-          <p class="font-body text-body">
-            Workshops ab der vierten Klasse mit Digitaltechnik und viel
-            kreativen Technologien
-          </p>
+          <p class="font-body text-body">Wir machen Workshops….</p>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -33,6 +30,9 @@
     >
       <AppVideoOverlay class="relative left-0">
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
+          <h2 class="font-headline text-title-1 leading-tight pb-2">
+            Wo fahren wir hin?
+          </h2>
           <p class="font-body text-body">
             Förderschulen, Gesamtschulen, Gymnasien, Grundschule, Jugendclubs &
             more
@@ -55,11 +55,13 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             Lasercutter
           </h2>
-          <!-- <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          <NuxtLink to="/technology">
+            <button
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow z-50"
             >
-              Zu den Tutorials
-            </button> -->
+              Ausstattung ansehen
+            </button>
+          </NuxtLink>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -78,11 +80,15 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             3D-Drucker
           </h2>
-          <!-- <button
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          <NuxtLink
+            to="/tutorials/tech-cycles-nachhaltigkeit-sharing-copy-copy-copy"
           >
-            Zu den Tutorials
-          </button> -->
+            <button
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow z-50"
+            >
+              Zum Tutorial
+            </button>
+          </NuxtLink>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -101,11 +107,13 @@
           <h2 class="font-headline text-title-2 leading-tight pb-2">
             Virtual Reality
           </h2>
-          <!-- <button
-            class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-          >
-            Zu den Tutorials
-          </button> -->
+          <NuxtLink to="/technology">
+            <button
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+            >
+              Ausstattung ansehen
+            </button>
+          </NuxtLink>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
@@ -128,9 +136,10 @@
             Mit unseren Video-Tutorials bist du immer auf dem neuesten Stand.
             Schau mal rein!
           </p>
+
           <NuxtLink to="/tutorials">
             <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-4"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-8"
             >
               Zu den Tutorials
             </button>
@@ -161,14 +170,30 @@
       class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
       :scroll-percentage="scrollPercentage"
       :position-x="getPositionX(22)"
-      :position-y="getPositionY(20)"
-      :trigger-start="60"
+      :position-y="getPositionY(40)"
+      :trigger-start="55"
       :trigger-end="65"
       :mode="mode"
     >
       <AppVideoOverlay>
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
           <p class="font-body text-body">Zusammenarbeiten</p>
+        </div>
+      </AppVideoOverlay>
+    </BaseVideoOverlay>
+
+    <BaseVideoOverlay
+      class="text-primary bottom-0 sm:absolute z-40 w-full sm:w-auto"
+      :scroll-percentage="scrollPercentage"
+      :position-x="getPositionX(60)"
+      :position-y="getPositionY(55)"
+      :trigger-start="60"
+      :trigger-end="65"
+      :mode="mode"
+    >
+      <AppVideoOverlay>
+        <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
+          <p class="font-body text-body">Medienkompetenz weiterentwickeln</p>
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
