@@ -221,9 +221,8 @@
         </div>
       </AppVideoOverlay>
     </BaseVideoOverlay>
+    <ModalsContact v-model:is-modal-open="isModalOpen" />
   </div>
-
-  <ModalsContact v-model:is-modal-open="isModalOpen" />
 </template>
 
 <script>

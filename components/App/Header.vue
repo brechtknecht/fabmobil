@@ -37,7 +37,7 @@
           :aria-current="
             route.path.startsWith('/your-desired-path') ? 'page' : undefined
           "
-          class="bg-black text-purple py-2 px-4 rounded-md"
+          class="outline outline-black text-black py-2 px-4 rounded-md"
           @click="openModal"
         >
           Anfragen
