@@ -103,11 +103,13 @@ function formatDateShort(date: Date) {
                 alt=""
                 class="teaser-image w-auto h-auto max-h-[40vh] rounded-xl border mx-auto"
               />
-              <div class="download-text text-center my-12">
+              <div
+                class="download-text text-center my-12 mix-blend-exclusion text-white"
+              >
                 <a
                   :href="nonImageFiles[0]"
                   target="_blank"
-                  class="download-text border rounded p-2 w-fit mx-auto my-4"
+                  class="download-text border rounded p-2 w-fit mx-auto my-4 mix-blend-exclusion text-white"
                   download
                 >
                   PDF DOWNLOAD →
@@ -156,7 +158,7 @@ function formatDateShort(date: Date) {
 .tutorial-title,
 download-text {
   color: rgba(255, 255, 255, 0.9);
-  mix-blend-mode: lighten;
+  mix-blend-mode: exclusion;
 }
 
 .teaser-image {
@@ -209,7 +211,8 @@ download-text {
   background-image: var(--coverUrl);
   background-size: 150% 150%;
   background-position: center center;
-  filter: blur(24px) brightness(0.9) grayscale(50%) contrast(140%); /* Set this to the amount of blur you want */
+  filter: blur(24px) brightness(0.4) grayscale(100%) contrast(200%); /* Set this to the amount of blur you want */
+  transform: scale(1.1);
   z-index: -1;
 }
 
