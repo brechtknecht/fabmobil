@@ -137,13 +137,13 @@
             {{ item.title }}
           </NuxtLink>
 
-          <Button
+          <button
             to="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-accent"
             @click="openModal"
           >
             Anfragen
-          </Button>
+          </button>
         </div>
       </div>
     </div>
