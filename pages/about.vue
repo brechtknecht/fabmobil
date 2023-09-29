@@ -49,14 +49,14 @@ setPage(page)
 
 <template>
   <div id="about">
-    <div
-      v-if="page.modules && page.modules.length > 0"
-      class="app-hero-wrapper"
+    <BaseFloatingImages
+      :speed="0.000000000000000001"
+      :scale="5"
+      :backgroundcolor="'#FFFFFF'"
     >
-      <BaseFloatingImages
-        :speed="0.000000000000000001"
-        :scale="5"
-        :backgroundcolor="'#000000'"
+      <div
+        v-if="page.modules && page.modules.length > 0"
+        class="app-hero-wrapper"
       >
         <AppHero
           v-for="(module, index) in page.modules"
@@ -68,9 +68,9 @@ setPage(page)
           :foreground-color="module.foregroundColor"
           :image="module.image"
         />
-      </BaseFloatingImages>
-    </div>
-    <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
+      </div>
+      <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
+    </BaseFloatingImages>
     <ModulesLokallaboreTeaser />
     <!-- Debug text -->
     <!-- <pre>{{ page }}</pre> -->

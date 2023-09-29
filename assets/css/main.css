@@ -126,6 +126,11 @@
   font-style: normal;
 }
 
+i {
+  font-family: 'Migra-Regular';
+  font-style: normal;
+}
+
 :root {
   --padding: 1.5rem;
   --color-black: #000;
