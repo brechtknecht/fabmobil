@@ -9,6 +9,7 @@
       :src="youtubeUrl"
       frameborder="0"
       allowfullscreen
+      allow="autoplay; fullscreen"
     ></iframe>
   </div>
 </template>

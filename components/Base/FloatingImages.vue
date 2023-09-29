@@ -114,8 +114,8 @@ export default {
       }
 
       // Divide the screen into grid
-      const rows = 5
-      const cols = 5
+      const rows = 16
+      const cols = 16
 
       const cellWidth = this.componentWidth / cols
       const cellHeight = this.componentHeight / rows
