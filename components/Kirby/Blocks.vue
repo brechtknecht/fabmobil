@@ -15,6 +15,7 @@ import type { KirbyBlock } from '#nuxt-kql'
 
 defineProps<{
   blocks: KirbyBlock<string>[]
+  offset: string
 }>()
 
 type Component = abstract new (...args: any) => any
@@ -35,7 +36,11 @@ const blockComponents: Partial<Record<string, Component>> = {
 <template>
   <div v-router-links>
     <template v-for="(block, index) in blocks" :key="index">
-      <component :is="blockComponents[block.type]" :block="block" />
+      <component
+        :is="blockComponents[block.type]"
+        :block="block"
+        :offset="offset"
+      />
     </template>
   </div>
 </template>

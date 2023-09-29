@@ -82,6 +82,7 @@ onMounted(async () => {
         <!-- Wrapper with reveal class -->
         <KirbyBlocks
           :blocks="column.blocks"
+          :offset="layout.attrs.offset"
           class="text w-full"
           :style="`color:${layout.attrs.foregroundcolor}`"
         />

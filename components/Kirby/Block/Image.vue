@@ -12,6 +12,7 @@ import type { KirbyBlock } from '#nuxt-kql'
 
 const props = defineProps<{
   block: KirbyBlock<'image'>
+  offset: string
 }>()
 
 const page = usePage()
@@ -39,12 +40,13 @@ const { width } = useElementSize(figure)
       :href="block.content.link || undefined"
       :data-contain="block.content.crop === false || undefined"
       :class="[ratio === 'auto' ? 'auto' : 'img']"
-      :style="`--w: ${block}; --h: ${size.h};`"
+      :style="`--w: ${block}; --h: ${size.h}; `"
     >
       <img
         v-if="block.content.location === 'web'"
         :src="block.content.src"
         :alt="block.content.alt"
+        :class="`${props.offset}`"
       />
       <KirbyUuidResolver
         v-else
@@ -52,7 +54,12 @@ const { width } = useElementSize(figure)
         :uuid="props.block.content.image?.[0]"
         :collection="images"
       >
-        <img :src="image.url" :sizes="`${width}px`" :alt="image.alt" />
+        <img
+          :src="image.url"
+          :sizes="`${width}px`"
+          :alt="image.alt"
+          :class="`${props.offset}`"
+        />
       </KirbyUuidResolver>
     </component>
 
@@ -63,3 +70,32 @@ const { width } = useElementSize(figure)
     />
   </figure>
 </template>
+
+<style>
+.translate-y-0 {
+  transform: translateY(0);
+}
+.translate-y-8 {
+  transform: translateY(4rem);
+}
+.translate-y-24 {
+  transform: translateY(6rem);
+}
+.translate-y-32 {
+  transform: translateY(12rem);
+}
+.translate-y-42 {
+  transform: translateY(16rem);
+}
+
+/* Media query to disable transforms under 960px width */
+@media only screen and (max-width: 959px) {
+  .translate-y-0,
+  .translate-y-8,
+  .translate-y-24,
+  .translate-y-32,
+  .translate-y-42 {
+    transform: translateY(0) !important;
+  }
+}
+</style>
