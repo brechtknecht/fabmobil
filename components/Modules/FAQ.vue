@@ -76,7 +76,6 @@ console.log(data)
 
 // Set the current page data for the global page context
 const page = data.value?.result
-setPage(page)
 </script>
 
 <style scoped>
