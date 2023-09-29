@@ -48,6 +48,8 @@ export default {
       mouseY: 0,
       screenWidth: 0,
       screenHeight: 0,
+      componentWidth: 0,
+      componentHeight: 0,
       trottle: false,
       animationFrameId: null,
       timeoutId: null,
@@ -55,6 +57,9 @@ export default {
     }
   },
   mounted() {
+    const rect = this.$el.getBoundingClientRect()
+    this.componentWidth = rect.width
+    this.componentHeight = rect.height
     this.screenWidth = window.innerWidth
     this.screenHeight = window.innerHeight
     this.mouseX = this.screenWidth / 2
@@ -111,8 +116,9 @@ export default {
       // Divide the screen into grid
       const rows = 5
       const cols = 5
-      const cellWidth = this.screenWidth / cols
-      const cellHeight = this.screenHeight / rows
+
+      const cellWidth = this.componentWidth / cols
+      const cellHeight = this.componentHeight / rows
 
       // Create an array of all cells
       const cells = []
@@ -189,10 +195,10 @@ export default {
         let y = image.y + shiftY
 
         // Respawn logic for all edges
-        if (x < -image.size) x = this.screenWidth + Math.random() * 300
-        if (x > this.screenWidth) x = -image.size
-        if (y < -image.size) y = this.screenHeight
-        if (y > this.screenHeight) y = -image.size
+        if (x < -image.size) x = this.componentWidth + Math.random() * 300
+        if (x > this.componentWidth) x = -image.size
+        if (y < -image.size) y = this.componentHeight
+        if (y > this.componentHeight) y = -image.size
 
         image.x = x
         image.y = y
@@ -228,7 +234,6 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: var(--background-color);
   z-index: -10;
 }
 
