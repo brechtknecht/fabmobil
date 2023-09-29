@@ -94,109 +94,47 @@
               </BaseAnimatedNuxtLink>
             </ul>
           </div>
-
-          <div class="tech-grid w-full pt-10">
-            <div
-              v-for="(tech, index) in technologyData?.result.technologies"
-              :key="index"
-              ref="technologies"
-              class="tech-item border-b border-white border-opacity-30 py-8"
-            >
-              <div class="flex flex-col md:flex-row">
-                <div
-                  class="left-side w-full md:w-1/2 flex flex-col justify-center items-start"
-                >
-                  <h2
-                    class="font-headline text-primary text-large-title px-4 md:px-12"
-                  >
-                    {{ tech.name }}
-                  </h2>
-                  <div class="flex w-full h-full justify-center align-center">
-                    <img
-                      :src="tech.image?.url"
-                      :alt="tech.name"
-                      style="max-width: 32rem"
-                      class="object-contain p-12"
-                    />
-                  </div>
-                </div>
-
-                <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
-                  <KirbyBlocks
-                    :blocks="tech.description ?? []"
-                    class="note text text-primary"
-                  />
-
+          <BaseFloatingImages
+            :speed="0.1"
+            :scale="6"
+            :backgroundcolor="'#DDBBFC'"
+          >
+            <div class="tech-grid w-full pt-10">
+              <div
+                v-for="(tech, index) in technologyData?.result.technologies"
+                :key="index"
+                ref="technologies"
+                class="tech-item border-b border-white border-opacity-30 py-8"
+              >
+                <div class="flex flex-col md:flex-row">
                   <div
-                    v-for="(link, linkIndex) in tech.links"
-                    :key="linkIndex"
-                    class="py-4"
-                  >
-                    <a
-                      v-if="link.url"
-                      :href="link.url"
-                      target="_blank"
-                      class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
-                    >
-                      {{ link.linkname || 'Link zum Produkt' }} →
-                    </a>
-                  </div>
-
-                  <button
-                    v-if="tech.devices.length > 0"
-                    class="text-accent rounded-md flex flex-row mt-4 mb-8 px-8 md:px-0"
-                    @click="tech.showDevices = !tech.showDevices"
-                  >
-                    Unsere Empfehlungen
-                    <span
-                      class="inline-block transform transition-transform duration-200 mt-[3px] ml-1"
-                      :class="{ 'rotate-[180deg]': tech.showDevices }"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        class="w-5 h-5"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              <transition name="slide-fade" mode="in-out">
-                <div
-                  v-show="tech.showDevices"
-                  class="devices pt-20 pb-20 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4"
-                >
-                  <div
-                    v-for="(device, index) in tech.devices"
-                    :key="index"
-                    class="flex flex-col justify-center align-start"
+                    class="left-side w-full md:w-1/2 flex flex-col justify-center items-start"
                   >
                     <h2
-                      class="font-headline text-primary text-title-1 text-center"
+                      class="font-headline text-primary text-large-title px-4 md:px-12"
                     >
-                      {{ device.title }}
+                      {{ tech.name }}
                     </h2>
-                    <img
-                      v-if="device.image"
-                      :src="device.image.url"
-                      :srcset="device.image.srcset"
-                      :alt="device.name"
-                      class="w-54"
+                    <div class="flex w-full h-full justify-center align-center">
+                      <img
+                        :src="tech.image?.url"
+                        :alt="tech.name"
+                        style="max-width: 32rem"
+                        class="object-contain p-12"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="right-side w-full md:w-1/2 h-auto flex flex-col">
+                    <KirbyBlocks
+                      :blocks="tech.description ?? []"
+                      class="note text text-primary"
                     />
+
                     <div
-                      v-for="(link, linkIndex) in device.links"
+                      v-for="(link, linkIndex) in tech.links"
                       :key="linkIndex"
-                      class="mx-auto py-4"
+                      class="py-4"
                     >
                       <a
                         v-if="link.url"
@@ -207,11 +145,78 @@
                         {{ link.linkname || 'Link zum Produkt' }} →
                       </a>
                     </div>
+
+                    <button
+                      v-if="tech.devices.length > 0"
+                      class="text-accent rounded-md flex flex-row mt-4 mb-8 px-8 md:px-0"
+                      @click="tech.showDevices = !tech.showDevices"
+                    >
+                      Unsere Empfehlungen
+                      <span
+                        class="inline-block transform transition-transform duration-200 mt-[3px] ml-1"
+                        :class="{ 'rotate-[180deg]': tech.showDevices }"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          class="w-5 h-5"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </span>
+                    </button>
                   </div>
                 </div>
-              </transition>
+
+                <transition name="slide-fade" mode="in-out">
+                  <div
+                    v-show="tech.showDevices"
+                    class="devices pt-20 pb-20 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4"
+                  >
+                    <div
+                      v-for="(device, index) in tech.devices"
+                      :key="index"
+                      class="flex flex-col justify-center align-start"
+                    >
+                      <h2
+                        class="font-headline text-primary text-title-1 text-center"
+                      >
+                        {{ device.title }}
+                      </h2>
+                      <img
+                        v-if="device.image"
+                        :src="device.image.url"
+                        :srcset="device.image.srcset"
+                        :alt="device.name"
+                        class="w-54"
+                      />
+                      <div
+                        v-for="(link, linkIndex) in device.links"
+                        :key="linkIndex"
+                        class="mx-auto py-4"
+                      >
+                        <a
+                          v-if="link.url"
+                          :href="link.url"
+                          target="_blank"
+                          class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                        >
+                          {{ link.linkname || 'Link zum Produkt' }} →
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </transition>
+              </div>
             </div>
-          </div>
+          </BaseFloatingImages>
         </div>
       </div>
 
