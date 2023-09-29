@@ -53,6 +53,7 @@ setPage(page)
       :speed="0.000000000000000001"
       :scale="5"
       :backgroundcolor="'#FFFFFF'"
+      number-of-images-to-use="32"
     >
       <div
         v-if="page.modules && page.modules.length > 0"

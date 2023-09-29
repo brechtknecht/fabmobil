@@ -11,7 +11,7 @@
     >
       <AppVideoOverlay class="relative left-0">
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
-          <h2 class="font-headline text-title-1 leading-tight pb-2">
+          <h2 class="font-headline text-title-2 leading-tight pb-2">
             Willkommen im Fabmobil!
           </h2>
           <p class="font-body text-body">Wir machen Workshops….</p>
@@ -30,11 +30,11 @@
     >
       <AppVideoOverlay class="relative left-0">
         <div class="p-8 bg-white rounded-md text-secondary w-full sm:max-w-sm">
-          <h2 class="font-headline text-title-1 leading-tight pb-2">
+          <h2 class="font-headline text-title-2 leading-tight pb-2">
             Wo fahren wir hin?
           </h2>
           <p class="font-body text-body">
-            Förderschulen, Gesamtschulen, Gymnasien, Grundschule, Jugendclubs &
+            Förderschulen, Oberschulen, Gymnasien, Grundschule, Jugendclubs &
             more
           </p>
         </div>
@@ -57,7 +57,7 @@
           </h2>
           <NuxtLink to="/technology">
             <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow z-50"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 border border-gray-400 rounded shadow z-50 font-body"
             >
               Ausstattung ansehen
             </button>
@@ -84,7 +84,7 @@
             to="/tutorials/tech-cycles-nachhaltigkeit-sharing-copy-copy-copy"
           >
             <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow z-50"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 border border-gray-400 rounded shadow z-50 font-body"
             >
               Zum Tutorial
             </button>
@@ -109,7 +109,7 @@
           </h2>
           <NuxtLink to="/technology">
             <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 border border-gray-400 rounded shadow font-body"
             >
               Ausstattung ansehen
             </button>
@@ -139,7 +139,7 @@
 
           <NuxtLink to="/tutorials">
             <button
-              class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-8"
+              class="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-4 border border-gray-400 rounded shadow mt-8 font-body"
             >
               Zu den Tutorials
             </button>

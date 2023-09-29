@@ -40,6 +40,10 @@ export default {
       type: String,
       default: '#000000',
     },
+    numberOfImagesToUse: {
+      type: Number,
+      default: 14,
+    },
   },
   data() {
     return {
@@ -93,7 +97,7 @@ export default {
   methods: {
     initImages() {
       const numberOfImages = 16
-      const numberOfImagesToUse = 14 // Number of images to use
+      const numberOfImagesToUse = this.numberOfImagesToUse // Number of images to use
 
       // Prepare a temporary array with image sizes
       const tempImages = Array.from({ length: numberOfImages }, (_, i) => {
@@ -106,10 +110,8 @@ export default {
 
       // Randomly select 5 images from the sorted array
       const selectedImages = []
-      const indices = Array.from({ length: numberOfImages }, (_, i) => i)
-      while (selectedImages.length < numberOfImagesToUse) {
-        const randomIndex = Math.floor(Math.random() * indices.length)
-        const index = indices.splice(randomIndex, 1)[0]
+      for (let i = 0; i < numberOfImagesToUse; i++) {
+        const index = i % numberOfImages
         selectedImages.push(tempImages[index])
       }
 
@@ -136,7 +138,7 @@ export default {
 
       // Place each image in a cell from the shuffled array
       for (let i = 0; i < numberOfImagesToUse; i++) {
-        const cell = cells[i]
+        const cell = cells[i % cells.length]
 
         // Compute the position based on the cell, with optional offset within the cell
         const offsetX = cellWidth * 0.1
@@ -146,10 +148,10 @@ export default {
 
         const size = selectedImages[i].size // Get size from sorted selectedImages array
 
-        const url = `/assets/img/background-items/${String(i + 1).padStart(
-          2,
-          '0'
-        )}.png`
+        // Image URL needs to cycle through the available image files
+        const url = `/assets/img/background-items/${String(
+          (i % numberOfImages) + 1
+        ).padStart(2, '0')}.png`
 
         this.images.push({
           id: selectedImages[i].id, // Get id from sorted selectedImages array
