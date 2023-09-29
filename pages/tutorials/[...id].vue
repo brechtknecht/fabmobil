@@ -8,23 +8,9 @@ const { data } = await useKql({
     intendedTemplate: true,
     // description: true,
     subheading: true,
-    uploads: {
-      query: 'page.uploads.toFiles',
-    },
     files: true,
     video: {
       query: 'page.video_url',
-    },
-    tags: 'page.tags.split(",")',
-    layouts: {
-      query: 'page.layout.toLayouts',
-      select: {
-        content: 'layout',
-        attrs: 'layout.attrs',
-        image: {
-          query: 'layout.attrs.image.toFile',
-        },
-      },
     },
     published: 'page.date.toDate("c")',
     cover: {
@@ -34,6 +20,24 @@ const { data } = await useKql({
     images: {
       query: 'page.images',
       select: ['id', 'uuid', 'url', 'alt'],
+    },
+
+    uploads: {
+      query: `
+        page.files.filterBy('type', '!=', 'image')
+      `,
+      select: ['id', 'uuid', 'url', 'alt'],
+    },
+  },
+  tags: 'page.tags.split(",")',
+  layouts: {
+    query: 'page.layout.toLayouts',
+    select: {
+      content: 'layout',
+      attrs: 'layout.attrs',
+      image: {
+        query: 'layout.attrs.image.toFile',
+      },
     },
   },
 })
@@ -47,10 +51,10 @@ setPage(page)
 const coverUrl = page?.cover?.url || page?.images?.[0]?.url
 const parentRoute = computed(() => route.path.split('/').slice(0, -1).join('/'))
 
-const nonImageFiles = page?.files?.filter((file) => {
-  const extension = file.split('.').pop()
-  return !['jpg', 'jpeg', 'png', 'gif'].includes(extension)
-})
+console.log('Files:', page.files)
+console.log('Uploads:', page.uploads)
+
+const nonImageFiles = page?.uploads
 
 console.log('Non Image Files:', nonImageFiles)
 
@@ -107,7 +111,7 @@ function formatDateShort(date: Date) {
                 class="download-text text-center my-12 mix-blend-exclusion text-white"
               >
                 <a
-                  :href="nonImageFiles[0]"
+                  :href="nonImageFiles[0].url"
                   target="_blank"
                   class="download-text border rounded p-2 w-fit mx-auto my-4 mix-blend-exclusion text-white"
                   download
