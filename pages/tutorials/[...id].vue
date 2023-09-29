@@ -81,14 +81,19 @@ function formatDateShort(date: Date) {
           >
             {{ page?.title }}
           </h1>
-          <div class="hero-wrapper w-full mx-auto">
+          <div class="video-wrapper w-full h-fit mx-auto">
             <img
               v-if="!page.video && nonImageFiles.length == 0"
               :src="coverUrl"
               alt=""
               class="teaser-image w-auto h-auto rounded-xl border mx-auto"
             />
-            <BaseVideo v-else-if="page.video" :url="page.video" />
+            <div
+              v-else-if="page.video"
+              class="px-0 pb-0 3xl:px-24 3xl:pt-12 max-w-screen-2xl mx-auto"
+            >
+              <BaseVideo :url="page.video" />
+            </div>
             <div
               v-else-if="nonImageFiles.length > 0"
               class="downloads text-white"
