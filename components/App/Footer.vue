@@ -73,7 +73,7 @@
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        <NuxtLink to="/material" class="footer-link-dark"
+        <NuxtLink to="/tutorials" class="footer-link-dark"
           >LEHREN & LERNEN</NuxtLink
         >
       </div>

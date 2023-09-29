@@ -48,7 +48,7 @@ setPage(page)
       <img
         v-for="n in 7"
         :key="n"
-        src="https://images.pexels.com/photos/18397478/pexels-photo-18397478/free-photo-of-retrocar.jpeg?auto=compress&cs=tinysrgb&w=360&dpr=2"
+        src="https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=460&&dpr=1"
         alt="Repeated Image"
         class="h-full max-h-[60vh] px-16"
       />

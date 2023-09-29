@@ -87,8 +87,8 @@ export default {
   },
   methods: {
     initImages() {
-      const numberOfImages = 8
-      const numberOfImagesToUse = 5 // Number of images to use
+      const numberOfImages = 16
+      const numberOfImagesToUse = 14 // Number of images to use
 
       // Prepare a temporary array with image sizes
       const tempImages = Array.from({ length: numberOfImages }, (_, i) => {

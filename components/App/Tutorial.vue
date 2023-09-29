@@ -67,7 +67,7 @@ onUnmounted(() => {
         </figure>
 
         <h2
-          class="note-excerpt-title text-secondary text-headline font-light p-4"
+          class="note-excerpt-title text-secondary font-body font-medium text-headline leading-relaxed p-4"
         >
           {{ note?.title }}
         </h2>
