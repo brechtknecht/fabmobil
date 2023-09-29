@@ -8,7 +8,7 @@
     </NuxtLink>
 
     <div
-      class="hidden xl:ml-16 header-breakpoint:flex xl:items-center xl:space-x-12"
+      class="hidden xl:ml-4 header-breakpoint:flex xl:items-center xl:space-x-12"
     >
       <BaseAnimatedNuxtLink
         v-for="item in listedChildren"

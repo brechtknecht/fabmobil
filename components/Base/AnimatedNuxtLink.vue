@@ -8,7 +8,7 @@
             'animate-back': !isHovered,
             fontAColor,
           }"
-          class="animate-content text-headline weight-medium text-body font-medium"
+          class="animate-content text-headline weight-medium font-medium"
           :aria-current="ariaCurrent"
         >
           {{ titleA }}
@@ -19,7 +19,7 @@
             'animate-back-in': !isHovered,
             fontBColor,
           }"
-          class="animate-content text-headline weight-medium text-body font-medium"
+          class="animate-content text-headline weight-medium font-medium"
         >
           {{ titleB }}
         </div>
