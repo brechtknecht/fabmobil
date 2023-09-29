@@ -45,7 +45,17 @@ setPage(page)
 
       <ModulesIntro />
     </BaseFloatingImages>
-    <ModulesImageSlider class="py-32">
+    <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
+      <img
+        v-for="n in 7"
+        :key="n"
+        src="https://images.pexels.com/photos/4145356/pexels-photo-4145356.jpeg?auto=compress&cs=tinysrgb&w=460&&dpr=1"
+        alt="Repeated Image"
+        style="width: 500px"
+        class="h-full max-h-[60vh] px-16"
+      />
+    </ModulesImageSlider>
+    <ModulesImageSlider v-else class="py-32">
       <img
         v-for="n in 7"
         :key="n"

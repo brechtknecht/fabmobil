@@ -80,7 +80,17 @@ export default {
       progress = Math.max(0, Math.min(progress, 1))
 
       // Adjusted the calculation for x
-      const x = progress * (totalImagesWidth.value - windowWidth.value)
+      const x = (totalImagesWidth.value - windowWidth.value) * progress
+
+      console.log({
+        scrollY,
+        start,
+        end,
+        progress,
+        totalImagesWidth: totalImagesWidth.value,
+        windowWidth: windowWidth.value,
+        x,
+      })
 
       const cards = Array.from(overflow.value.children)
       gsap.to(cards, {
