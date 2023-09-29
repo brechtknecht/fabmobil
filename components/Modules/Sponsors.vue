@@ -1,6 +1,5 @@
 <template>
   <div class="grid-content bg-black">
-    {{ sponsors }}
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 mx-auto justify-center max-w-[1720px]"
     >

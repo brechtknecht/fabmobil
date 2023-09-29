@@ -67,7 +67,7 @@ setPage(page)
         :key="n"
         :src="n?.url"
         alt="Repeated Image"
-        class="h-full max-h-[60vh] px-16 object-cover"
+        class="h-full max-h-[60vh] px-4 md:px-16 object-cover"
       />
     </ModulesImageSlider>
     <LazyClientOnly v-if="!isFirefoxUser"

@@ -1,6 +1,6 @@
 <template>
   <div ref="wrapper" :class="wrapperClass" :style="wrapperStyle">
-    <div class="inner">
+    <div class="inner sticky top-[50%] translate-y-[-50%] md:translate-y-0">
       <div ref="overflow" class="overflow">
         <slot></slot>
       </div>
