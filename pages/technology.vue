@@ -98,6 +98,7 @@
             :speed="0.1"
             :scale="6"
             :backgroundcolor="'#DDBBFC'"
+            class="w-full"
           >
             <div class="tech-grid w-full pt-10">
               <div

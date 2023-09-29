@@ -22,7 +22,7 @@
       />
     </div>
     <div class="flex gap-8">
-      <div class="hidden sm:ml-16 sm:flex sm:items-center sm:space-x-12">
+      <div class="hidden sm:ml-4 sm:flex sm:items-center sm:space-x-4">
         <NuxtLink
           to="https://www.instagram.com/fabmobil/"
           class="logo flex-shrink-0 flex items-center"
