@@ -33,15 +33,16 @@ setPage(page)
 
 <template>
   <div class="bg-[#DDBBFC] py-4">
-    <div
-      class="px-0 pb-0 3xl:px-24 3xl:pb-[19em] 3xl:pt-12 max-w-screen-2xl mx-auto"
-    >
-      <BaseVideo
-        url="https://player.vimeo.com/video/746553056?autoplay=1&loop=1&muted=1"
-      />
-    </div>
-    <!--...and so on...-->
     <BaseFloatingImages :speed="0.1" :scale="6" :backgroundcolor="'#DDBBFC'">
+      <div
+        class="px-0 pb-0 3xl:px-24 3xl:pb-[19em] 3xl:pt-12 max-w-screen-2xl mx-auto"
+      >
+        <BaseVideo
+          url="https://player.vimeo.com/video/746553056?autoplay=1&loop=1&muted=1"
+        />
+      </div>
+      <!--...and so on...-->
+
       <ModulesIntro />
     </BaseFloatingImages>
     <ModulesImageSlider class="py-32">
