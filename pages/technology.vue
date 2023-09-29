@@ -187,7 +187,7 @@
                       class="flex flex-col justify-center align-start"
                     >
                       <h2
-                        class="font-headline text-primary text-title-1 text-center"
+                        class="font-headline text-primary text-title-1 text-center hyphens-auto"
                       >
                         {{ device.title }}
                       </h2>
