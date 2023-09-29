@@ -18,11 +18,11 @@
       >
         {{ title }}
       </h1>
-      <p
+      <span
         class="hero-description text-body sm:text-callout md:text-subhead lg:text-headline xl:text-title-3 2xl:text-title-2"
+        v-html="description"
       >
-        {{ description }}
-      </p>
+      </span>
       <p
         class="hero-intro-text text-callout sm:text-subhead md:text-headline lg:text-title-3 xl:text-title-2 2xl:text-title-1 col-span-full"
       >

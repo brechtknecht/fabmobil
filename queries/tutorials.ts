@@ -13,7 +13,7 @@ export const tutorialsQuery: KirbyQuerySchema = {
       select: {
         id: true,
         title: true,
-        description: true,
+        description: 'page.description.kirbytext',
         intro_text: true,
         backgroundColor: true,
         foregroundColor: true,
