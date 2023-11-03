@@ -138,7 +138,6 @@ const resetLink = () => {
 .animate-in {
   text-decoration: none;
   font-family: 'Migra-Regular'; /* Your Font B here */
-  font-size: 1.55rem;
   letter-spacing: 0.75px;
   position: relative;
   top: 3px;
