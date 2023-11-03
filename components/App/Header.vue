@@ -4,11 +4,11 @@
     :class="{ 'scrolled-up': isScrolledUp, 'scrolled-down': isScrolledDown }"
   >
     <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">
-      <img class="h-12" src="/assets/img/logo.svg" :alt="site.title" />
+      <img class="h-8 xl:h-12" src="/assets/img/logo.svg" :alt="site.title" />
     </NuxtLink>
 
     <div
-      class="hidden xl:ml-4 header-breakpoint:flex xl:items-center xl:space-x-12"
+      class="hidden header-breakpoint:ml-16 header-breakpoint:flex xl:items-center header-breakpoint:space-x-12"
     >
       <BaseAnimatedNuxtLink
         v-for="item in listedChildren"
@@ -22,14 +22,7 @@
       />
     </div>
     <div class="flex gap-8">
-      <div class="hidden sm:ml-4 sm:flex sm:items-center sm:space-x-4">
-        <NuxtLink
-          to="https://www.instagram.com/fabmobil/"
-          class="logo flex-shrink-0 flex items-center"
-          target="_blank"
-        >
-          <img class="h-8" src="/assets/img/insta-icon.svg" alt="Instagram" />
-        </NuxtLink>
+      <div class="hidden sm:ml-8 sm:flex sm:items-center sm:space-x-12">
         <BaseAnimatedNuxtLink
           to="#"
           :title-a="'Anfragen'.replace(/ /g, '\u00A0')"
@@ -37,11 +30,17 @@
           :aria-current="
             route.path.startsWith('/your-desired-path') ? 'page' : undefined
           "
-          class="outline outline-black text-black py-2 px-4 rounded-md"
           @click="openModal"
         >
           Anfragen
         </BaseAnimatedNuxtLink>
+        <NuxtLink
+          to="https://www.instagram.com/fabmobil/"
+          class="logo flex-shrink-0 flex items-center"
+          target="_blank"
+        >
+          <img class="h-8" src="/assets/img/insta-icon.svg" alt="Instagram" />
+        </NuxtLink>
       </div>
 
       <div class="-mr-2 flex items-center header-breakpoint:hidden">
@@ -137,13 +136,13 @@
             {{ item.title }}
           </NuxtLink>
 
-          <button
+          <Button
             to="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-accent"
             @click="openModal"
           >
             Anfragen
-          </button>
+          </Button>
         </div>
       </div>
     </div>
