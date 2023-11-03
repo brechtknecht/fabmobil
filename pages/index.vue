@@ -50,6 +50,13 @@ setPage(page)
 
       <ModulesIntro />
     </BaseFloatingImages>
+    <LazyClientOnly v-if="!isFirefoxUser"
+      ><ModulesBusAnimation
+    /></LazyClientOnly>
+    <LazyClientOnly v-else>
+      <ModulesBusNoWebCodecs />
+    </LazyClientOnly>
+    <ModulesMapTeaser />
     <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
       <img
         v-for="n in page.images"
@@ -70,13 +77,6 @@ setPage(page)
         class="h-full max-h-[60vh] px-4 md:px-16 object-cover"
       />
     </ModulesImageSlider>
-    <LazyClientOnly v-if="!isFirefoxUser"
-      ><ModulesBusAnimation
-    /></LazyClientOnly>
-    <LazyClientOnly v-else>
-      <ModulesBusNoWebCodecs />
-    </LazyClientOnly>
-    <ModulesMapTeaser />
     <ModulesSponsors v-if="page.sponsors" :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
     <ModulesFAQ />
