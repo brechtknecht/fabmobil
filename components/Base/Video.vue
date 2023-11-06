@@ -1,12 +1,14 @@
 <template>
   <div
+    ref="videoContainer"
     class="video-container relative w-full items-center justify-center p-24 rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray h-fill"
   >
     <iframe
-      id="youtube"
+      v-if="videoVisible"
+      id="vimeo-video"
       class="rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray bg-black absolute top-0 left-0 w-full h-full"
-      title="youtube-player"
-      :src="youtubeUrl"
+      title="vimeo-player"
+      :src="vimeoUrl"
       frameborder="0"
       allowfullscreen
       allow="autoplay; fullscreen"
@@ -15,16 +17,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 const props = defineProps<{ url?: string }>()
 
-const youtubeUrl = computed(() => {
-  if (props.url && props.url.includes('youtube.com/watch?v=')) {
-    return props.url.replace('watch?v=', 'embed/')
+const videoContainer = ref(null)
+const videoVisible = ref(false)
+
+const vimeoUrl = computed(() => {
+  if (props.url && props.url.includes('vimeo.com/')) {
+    return `https://player.vimeo.com/video/${props.url.split('/').pop()}`
   } else {
-    return props.url
+    return ''
   }
+})
+
+const checkVisibility = () => {
+  if (videoContainer.value) {
+    const rect = videoContainer.value.getBoundingClientRect()
+    const inViewport = rect.top <= window.innerHeight && rect.bottom >= 0
+    if (inViewport && !videoVisible.value) {
+      videoVisible.value = true
+      // Once the video is loaded, we can remove the event listener
+      window.removeEventListener('scroll', checkVisibility)
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', checkVisibility)
+  // Check initially if the video is in viewport, without waiting for scroll
+  checkVisibility()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkVisibility)
 })
 </script>
 
