@@ -129,12 +129,21 @@ const formatDate = (dateString) => {
 }
 
 // Filter tour dates to include only upcoming dates
-const upcomingTourDates = ref([])
-if (page && page.tourdates) {
-  upcomingTourDates.value = page.tourdates.filter(
-    (tourDate) => new Date(tourDate.enddate) > new Date()
-  )
-}
+const upcomingTourDates = computed(() => {
+  if (page.value && page.value.tourdates) {
+    // First, filter out past dates
+    const filteredDates = page.value.tourdates.filter(
+      (tourDate) => new Date(tourDate.date) > new Date()
+    )
+
+    // Then, sort the remaining dates in ascending order
+    filteredDates.sort((a, b) => new Date(a.date) - new Date(b.date))
+
+    return filteredDates
+  }
+
+  return []
+})
 
 // Initialize selectedCategory as a reactive ref, with a default value of 'All'
 const selectedCategory = ref('All')
