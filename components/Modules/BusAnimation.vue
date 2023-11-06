@@ -47,6 +47,29 @@ const handleScroll = () => {
   // console.log(scrollPercentage.value)
 }
 
+const skipComponent = () => {
+  // Make sure the ref is available and rendered
+  if (scrollyVideo.value && scrollyVideo.value.$el) {
+    // Get the ScrollyVideo component's container element
+    const scrollyVideoContainer = scrollyVideo.value.$el.parentElement
+
+    // Get the top position of the container
+    const containerTop = scrollyVideoContainer.offsetTop
+
+    // Get the height of the container
+    const containerHeight = scrollyVideoContainer.offsetHeight
+
+    // Calculate the bottom position of the container
+    const containerBottom = containerTop + containerHeight
+
+    // Scroll to the bottom of the container
+    window.scrollTo({
+      top: containerBottom,
+      behavior: 'smooth',
+    })
+  }
+}
+
 onMounted(() => {
   const scrollyVideoElement = scrollyVideo.value.$el
   const scrollyVideoRef = scrollyVideo.value.scrollyVideo
@@ -89,6 +112,12 @@ onBeforeUnmount(() => {
         class="scrolly-video-container relative"
         :style="{ height: hasLoaded == false ? '100vh' : '600vh' }"
       >
+        <button
+          class="sticky top-32 right-0 text-white font-headline hover:text-green z-50"
+          @click="skipComponent()"
+        >
+          Überspringen
+        </button>
         <!-- <pre class="sticky top-32 text-white">{{ scrollPercentage }}</pre>
         <pre class="sticky top-36 text-white">{{ hasLoaded }}</pre> -->
 

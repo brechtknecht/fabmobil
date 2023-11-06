@@ -185,15 +185,16 @@ export default {
       const halfScreenWidth = this.screenWidth / 2
       const halfScreenHeight = this.screenHeight / 2
 
-      for (let i = 0; i < this.images.length; i++) {
-        const image = this.images[i]
-
-        // Calculate parallax shift based on mouse position relative to the center
-        const shiftX = (this.mouseX - halfScreenWidth) * (image.size * 0.000001)
+      // Prepare transforms to avoid reflow in the loop.
+      const transforms = this.images.map((image) => {
+        const shiftX =
+          (this.mouseX - halfScreenWidth) *
+          (image.size * this.mouseEffectIntensity)
         const shiftY =
-          (this.mouseY - halfScreenHeight) * (image.size * 0.000001)
+          (this.mouseY - halfScreenHeight) *
+          (image.size * this.mouseEffectIntensity)
 
-        let x = image.x + this.speed + image.size * 0.0002 + shiftX // Move right with parallax effect
+        let x = image.x + this.speed + shiftX // Move right with parallax effect
         let y = image.y + shiftY
 
         // Respawn logic for all edges
@@ -202,10 +203,17 @@ export default {
         if (y < -image.size) y = this.componentHeight
         if (y > this.componentHeight) y = -image.size
 
+        // Update the image's x and y for the next frame.
         image.x = x
         image.y = y
-        image.style = `transform: translate(${x}px, ${y}px); width:${image.size}px;`
-      }
+
+        return `transform: translate(${x}px, ${y}px); width:${image.size}px;`
+      })
+
+      // Apply transforms to the DOM outside of the loop.
+      this.images.forEach((image, index) => {
+        image.style = transforms[index]
+      })
 
       this.animationFrameId = requestAnimationFrame(this.animateImages)
     },
