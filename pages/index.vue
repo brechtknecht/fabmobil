@@ -72,6 +72,7 @@ setPage(page)
         :src="n?.image.url"
         alt="Repeated Image"
         style="width: 500px"
+        loading="lazy"
         class="h-full max-h-[60vh] px-16 object-cover"
       />
     </ModulesImageSlider>
@@ -82,6 +83,7 @@ setPage(page)
         :key="n"
         :src="n?.image.url"
         alt="Repeated Image"
+        loading="lazy"
         class="h-full max-h-[60vh] px-4 md:px-16 object-cover"
       />
     </ModulesImageSlider>
