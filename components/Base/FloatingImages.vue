@@ -151,7 +151,7 @@ export default {
         // Image URL needs to cycle through the available image files
         const url = `/assets/img/background-items/${String(
           (i % numberOfImages) + 1
-        ).padStart(2, '0')}.png`
+        ).padStart(2, '0')}.webp`
 
         this.images.push({
           id: selectedImages[i].id, // Get id from sorted selectedImages array
