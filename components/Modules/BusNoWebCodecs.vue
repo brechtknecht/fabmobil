@@ -2,12 +2,12 @@
   <div class="section bg-black">
     <div class="container mx-auto">
       <div class="no-scrolly-video-container relative">
-        <BaseBusOverlays
+        <!-- <BaseBusOverlays
           v-show="isInViewport"
           class="sticky w-full h-screen z-40 bus-overlays"
           :scroll-percentage="progressPercentage"
           mode="relative"
-        />
+        /> -->
 
         <video-player
           ref="videoPlayer"
