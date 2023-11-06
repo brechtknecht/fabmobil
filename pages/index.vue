@@ -66,7 +66,7 @@ setPage(page)
     </LazyClientOnly>
     <ModulesMapTeaser />
     <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
-      <img
+      <NuxtImg
         v-for="n in page.imageslider"
         :key="n.id"
         :src="n?.image.url"
@@ -77,7 +77,7 @@ setPage(page)
     </ModulesImageSlider>
 
     <ModulesImageSlider v-else class="py-32">
-      <img
+      <NuxtImg
         v-for="n in page.imageslider"
         :key="n"
         :src="n?.image.url"
