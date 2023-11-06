@@ -65,11 +65,13 @@
           <div
             class="flex flex-col sm:flex-row items-baseline gap-0 pb-2 sm:pb-0 sm:gap-8"
           >
-            <p class="font-headline text-title-3 text-primary leading-normal">
+            <p
+              class="font-body text-title-3 weight-normal text-primary leading-normal ordinal slashed-zero tabular-nums"
+            >
               {{ formatDate(tourDate.startdate) }} –
               {{ formatDate(tourDate.enddate) }}
             </p>
-            <p class="font-paragraph text-white text-title-3 leading-normal">
+            <p class="font-headline text-white text-title-3 leading-normal">
               {{ tourDate.venuename }}
             </p>
           </div>
