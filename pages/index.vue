@@ -17,14 +17,22 @@ const { data } = await useKql({
         },
       },
     },
-    images: {
-      query: 'page.images',
-      select: ['id', 'uuid', 'url', 'alt'],
+
+    imageslider: {
+      query: 'page.imageslider.toStructure',
+      select: {
+        image: {
+          query: 'structureItem.image.toFile', // Followed the pattern in technology.yml
+          select: {
+            url: true,
+          },
+        },
+      },
     },
   },
 })
 
-console.log('DATAH:', data.value?.result.images)
+console.log('DATAH:', data.value?.result.imageslider)
 
 const isFirefoxUser = ref(false)
 
@@ -59,9 +67,9 @@ setPage(page)
     <ModulesMapTeaser />
     <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
       <img
-        v-for="n in page.images"
+        v-for="n in page.imageslider"
         :key="n.id"
-        :src="n?.url"
+        :src="n?.image.url"
         alt="Repeated Image"
         style="width: 500px"
         class="h-full max-h-[60vh] px-16 object-cover"
@@ -70,15 +78,19 @@ setPage(page)
 
     <ModulesImageSlider v-else class="py-32">
       <img
-        v-for="n in page.images"
+        v-for="n in page.imageslider"
         :key="n"
-        :src="n?.url"
+        :src="n?.image.url"
         alt="Repeated Image"
         class="h-full max-h-[60vh] px-4 md:px-16 object-cover"
       />
     </ModulesImageSlider>
-    <ModulesSponsors v-if="page.sponsors" :sponsors="page.sponsors" />
     <ModulesLokallaboreTeaser />
+    <ModulesSponsors
+      v-if="page.sponsors"
+      class="bg-white"
+      :sponsors="page.sponsors"
+    />
     <ModulesFAQ />
   </div>
 </template>

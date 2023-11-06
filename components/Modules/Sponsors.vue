@@ -1,7 +1,7 @@
 <template>
   <div class="grid-content bg-black">
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 mx-auto justify-center max-w-[1720px]"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 mx-auto justify-center max-w-[1720px] space-x-16"
     >
       <a
         v-for="(sponsor, index) in sponsors"
@@ -13,7 +13,7 @@
         <img
           :src="sponsor.image.url"
           alt="Sponsor logo"
-          class="max-w-full h-auto"
+          class="py-4 w-full h-full"
         />
       </a>
     </div>
