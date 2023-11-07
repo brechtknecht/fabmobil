@@ -44,7 +44,11 @@
         </div>
       </div>
       <p class="font-body text-body font-bold text-center pt-4">
-        {{ member.name }} <span> {{ member.pronoun }}</span>
+        {{ member.name }}
+        <span>
+          <br />
+          {{ member.pronoun }}</span
+        >
         <!-- <span><br />{{ member.category }}</span> -->
       </p>
     </div>

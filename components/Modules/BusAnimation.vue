@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
           class="sticky top-32 right-0 text-white font-headline hover:text-green z-50"
           @click="skipComponent()"
         >
-          Überspringen
+          Skip
         </button>
         <!-- <pre class="sticky top-32 text-white">{{ scrollPercentage }}</pre>
         <pre class="sticky top-36 text-white">{{ hasLoaded }}</pre> -->
