@@ -54,7 +54,7 @@ export default {
       screenHeight: 0,
       componentWidth: 0,
       componentHeight: 0,
-      trottle: false,
+      trottle: true,
       animationFrameId: null,
       timeoutId: null,
       lastMoveTime: 0,

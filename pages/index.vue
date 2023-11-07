@@ -65,25 +65,24 @@ setPage(page)
       <ModulesBusNoWebCodecs />
     </LazyClientOnly>
     <ModulesMapTeaser />
+
     <ModulesImageSlider v-if="isFirefoxUser" class="py-32">
-      <NuxtImg
+      <img
         v-for="n in page.imageslider"
         :key="n.id"
         :src="n?.image.url"
         alt="Repeated Image"
         style="width: 500px"
-        loading="lazy"
         class="h-full max-h-[60vh] px-16 object-cover"
       />
     </ModulesImageSlider>
 
     <ModulesImageSlider v-else class="py-32">
-      <NuxtImg
+      <img
         v-for="n in page.imageslider"
         :key="n"
         :src="n?.image.url"
         alt="Repeated Image"
-        loading="lazy"
         class="h-full max-h-[60vh] px-4 md:px-16 object-cover"
       />
     </ModulesImageSlider>
