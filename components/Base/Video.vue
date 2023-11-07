@@ -5,10 +5,10 @@
   >
     <iframe
       v-if="videoVisible"
-      id="vimeo-video"
+      id="video-iframe"
       class="rounded-none 3xl:rounded-xl overflow-hidden 3xl:border border-gray bg-black absolute top-0 left-0 w-full h-full"
-      title="vimeo-player"
-      :src="vimeoUrl"
+      title="video-player"
+      :src="videoUrl"
       frameborder="0"
       allowfullscreen
       allow="autoplay; fullscreen"
@@ -24,11 +24,21 @@ const props = defineProps<{ url?: string }>()
 const videoContainer = ref(null)
 const videoVisible = ref(false)
 
-const vimeoUrl = computed(() => {
-  if (props.url && props.url.includes('vimeo.com/')) {
-    return `https://player.vimeo.com/video/${props.url.split('/').pop()}`
+const videoUrl = computed(() => {
+  const url = props.url || ''
+  if (url.includes('vimeo.com/')) {
+    // Vimeo URL processing
+    return `https://player.vimeo.com/video/${url.split('/').pop()}`
+  } else if (url.includes('youtube.com/watch?v=')) {
+    // YouTube URL processing
+    const videoId = url.split('watch?v=')[1].split('&')[0] // Assumes no other URL params are present
+    return `https://www.youtube.com/embed/${videoId}`
+  } else if (url.includes('youtu.be/')) {
+    // Shortened YouTube URL processing
+    const videoId = url.split('youtu.be/')[1]
+    return `https://www.youtube.com/embed/${videoId}`
   } else {
-    return ''
+    return '' // No valid URL provided
   }
 })
 
