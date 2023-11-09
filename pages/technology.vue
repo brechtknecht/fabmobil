@@ -5,7 +5,7 @@
         <div class="flex flex-row pb-32">
           <div class="category-list sticky top-0 max-w-sm hidden md:block">
             <h1
-              class="font-headline text-primary text-large-title leading-tight py-4"
+              class="font-headline text-primary text-large-title leading-tight py-4 break-normal"
             >
               {{ page.title }}
             </h1>
@@ -112,7 +112,8 @@
                     class="left-side w-full md:w-1/2 flex flex-col justify-center items-start"
                   >
                     <h2
-                      class="font-headline text-primary text-large-title px-4 md:px-12"
+                      class="font-headline text-primary text-large-title px-4 leading-tight md:px-12 break-normal w-full overflow-hidden"
+                      style="word-wrap: break-word; hyphens: auto"
                     >
                       {{ tech.name }}
                     </h2>
@@ -141,7 +142,8 @@
                         v-if="link.url"
                         :href="link.url"
                         target="_blank"
-                        class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
+                        class="text-white border border-white rounded p-2 w-fit mx-auto my-4 break-normal w-full overflow-hidden"
+                        style="word-wrap: break-word; hyphens: auto"
                       >
                         {{ link.linkname || 'Link zum Produkt' }} →
                       </a>

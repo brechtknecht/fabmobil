@@ -1,11 +1,15 @@
 import { siteQuery } from './queries'
 
 export default defineNuxtConfig({
-  modules: ['@vueuse/nuxt', 'nuxt-kql', 'nuxt-lodash', "@nuxt/image"],
+  modules: ['@vueuse/nuxt', 'nuxt-kql', 'nuxt-lodash', '@nuxt/image'],
   css: ['@/assets/css/main.css'],
 
   publicRuntimeConfig: {
     ENV: process.env.ENV,
+  },
+
+  app: {
+    baseURL: '/preview/',
   },
 
   plugins: [{ src: '~/plugins/vue-video-player.ts', ssr: false }],
