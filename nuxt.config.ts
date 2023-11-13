@@ -8,9 +8,9 @@ export default defineNuxtConfig({
     ENV: process.env.ENV,
   },
 
-  app: {
-    baseURL: '/preview/',
-  },
+  // app: {
+  //   baseURL: '/preview/',
+  // },
 
   plugins: [{ src: '~/plugins/vue-video-player.ts', ssr: false }],
   postcss: {

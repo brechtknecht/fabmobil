@@ -23,7 +23,7 @@
     </div>
     <div class="flex gap-8">
       <div class="hidden sm:ml-8 sm:flex sm:items-center sm:space-x-12">
-        <BaseAnimatedNuxtLink
+        <!-- <BaseAnimatedNuxtLink
           to="#"
           :title-a="'Anfragen'.replace(/ /g, '\u00A0')"
           :title-b="'Anfragen'.replace(/ /g, '\u00A0')"
@@ -33,7 +33,7 @@
           @click="openModal"
         >
           Anfragen
-        </BaseAnimatedNuxtLink>
+        </BaseAnimatedNuxtLink> -->
         <NuxtLink
           to="https://www.instagram.com/fabmobil/"
           class="logo flex-shrink-0 flex items-center"
@@ -136,13 +136,13 @@
             {{ item.title }}
           </NuxtLink>
 
-          <Button
+          <!-- <Button
             to="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-accent"
             @click="openModal"
           >
             Anfragen
-          </Button>
+          </Button> -->
         </div>
       </div>
     </div>
