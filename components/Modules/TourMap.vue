@@ -193,7 +193,7 @@ const setupMap = () => {
 
   const viewportWidth =
     window.innerWidth || document.documentElement.clientWidth
-  let zoom = 8
+  let zoom
   if (viewportWidth <= 600) {
     // This is typically the width of a mobile device
     zoom = 6.6 // Adjust this to your preferred zoom level on mobile devices
@@ -248,7 +248,7 @@ const setupMap = () => {
     const pointsToAddPerInterval = 5 // Adjust this value to add more points per interval
     // Calculate the interval duration based on the number of points
     const numPoints = tourPath.geometry.coordinates.length
-    const totalAnimationDuration = 3000 // Total duration of the animation in milliseconds
+    const totalAnimationDuration = 1000 // Total duration of the animation in milliseconds
     const intervalDuration = totalAnimationDuration / numPoints // Interval duration
 
     // Clear the previous interval if it exists
@@ -284,7 +284,6 @@ const setupMap = () => {
   const modelAltitude = 0
   const modelRotate = [Math.PI / 2, 45, 0]
   const scale = 20000
-  const totalAnimationDuration = 30000 // Total duration of all animations
 
   const modelLoadPromises = modelOrigins.map((modelOrigin, index) => {
     const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(

@@ -48,7 +48,6 @@
     }
   },
   "dependencies": {
-    "@nuxt/image": "^1.0.0",
     "@nuxtjs/sentry": "^7.5.0",
     "@sentry/browser": "^7.66.0",
     "@sentry/tracing": "^7.66.0",
