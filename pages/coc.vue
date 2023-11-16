@@ -7,6 +7,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {},
+}
+</script>
+
 <script setup>
 const { data } = await useKql({
   query: `page("${useRoute().path}")`,

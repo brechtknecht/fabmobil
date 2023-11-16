@@ -3,8 +3,19 @@
     class="bg-[#DDBBFC] fixed top-0 w-full z-50 h-20 flex items-center justify-between px-4 py-0 md:py-12 sm:px-6 lg:px-8"
     :class="{ 'scrolled-up': isScrolledUp, 'scrolled-down': isScrolledDown }"
   >
-    <NuxtLink to="/" class="logo flex-shrink-0 flex items-center">
-      <img class="h-8 xl:h-12" src="/assets/img/logo.svg" :alt="site.title" />
+    <NuxtLink to="/" class="flex-shrink-0 items-center sm:inline-block hidden">
+      <img
+        class="h-8 xl:h-12 sm:inline-block hidden"
+        src="/assets/img/logo.svg"
+        :alt="site.title"
+      />
+    </NuxtLink>
+    <NuxtLink to="/" class="flex-shrink-0 items-center sm:hidden inline-block">
+      <img
+        class="h-8 xl:h-12"
+        src="/assets/img/shortlogo.svg"
+        :alt="site.title"
+      />
     </NuxtLink>
 
     <div
