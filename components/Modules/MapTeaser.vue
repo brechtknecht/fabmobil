@@ -16,7 +16,7 @@
 
       <div
         ref="container"
-        class="flex flex-col justify-center items-center space-x-4 w-full md:w-auto self-end"
+        class="relative flex flex-col justify-center items-center space-x-4 w-full md:w-auto self-end"
       >
         <svg
           width="1000"
@@ -54,7 +54,11 @@
           </defs>
         </svg>
 
-        <BaseButton to="/tour" label="Tourplan" />
+        <BaseButton
+          class="block md:absolute md:right-16 bottom-16"
+          to="/tour"
+          label="Tourplan"
+        />
       </div>
     </div>
   </div>

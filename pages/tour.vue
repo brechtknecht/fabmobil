@@ -33,7 +33,7 @@
             v-for="(category, index) in categories"
             :key="index"
             :class="[
-              ' hover:bg-gray-100 hover:text-black text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow',
+              ' hover:bg-gray-100 hover:text-black text-white font-semibold py-2 px-4 border border-gray-400 bg-slate-700 rounded shadow',
               {
                 'bg-white text-black selected-category':
                   selectedCategory === category,
