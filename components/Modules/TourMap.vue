@@ -196,7 +196,7 @@ const setupMap = () => {
   let zoom
   if (viewportWidth <= 600) {
     // This is typically the width of a mobile device
-    zoom = 6.6 // Adjust this to your preferred zoom level on mobile devices
+    zoom = 0.5 // Adjust this to your preferred zoom level on mobile devices
   } else {
     zoom = 8 // Adjust this to your preferred zoom level on larger devices
   }

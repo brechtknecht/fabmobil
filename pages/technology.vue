@@ -138,15 +138,15 @@
                       :key="linkIndex"
                       class="py-4"
                     >
-                      <a
+                      <NuxtLink
                         v-if="link.url"
-                        :href="link.url"
+                        :to="link.url"
                         target="_blank"
                         class="text-white border border-white rounded p-2 w-fit mx-auto my-4 break-normal w-full overflow-hidden"
                         style="word-wrap: break-word; hyphens: auto"
                       >
                         {{ link.linkname || 'Link zum Produkt' }} →
-                      </a>
+                      </NuxtLink>
                     </div>
 
                     <button
@@ -205,14 +205,14 @@
                         :key="linkIndex"
                         class="mx-auto py-4"
                       >
-                        <a
+                        <NuxtLink
                           v-if="link.url"
-                          :href="link.url"
+                          :to="link.url"
                           target="_blank"
                           class="text-white border border-white rounded p-2 w-fit mx-auto my-4"
                         >
                           {{ link.linkname || 'Link zum Produkt' }} →
-                        </a>
+                        </NuxtLink>
                       </div>
                     </div>
                   </div>

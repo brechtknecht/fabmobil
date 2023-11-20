@@ -8,10 +8,6 @@ export default defineNuxtConfig({
     ENV: process.env.ENV,
   },
 
-  // app: {
-  //   baseURL: '/preview/',
-  // },
-
   plugins: [{ src: '~/plugins/vue-video-player.ts', ssr: false }],
   postcss: {
     plugins: {
@@ -36,13 +32,6 @@ export default defineNuxtConfig({
     server: {
       // cache: true,
       // maxAge: 60 * 60,
-    },
-  },
-
-  nitro: {
-    prerender: {
-      // Prerender the index page
-      routes: ['/'],
     },
   },
 

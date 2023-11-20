@@ -10,11 +10,7 @@
         target="_blank"
         class="sponsor flex justify-center items-center"
       >
-        <img
-          :src="sponsor.image.url"
-          alt="Sponsor logo"
-          class="py-4 w-full h-full"
-        />
+        <img :src="sponsor.image.url" alt="Sponsor logo" class="py-4 w-full" />
       </a>
     </div>
   </div>
