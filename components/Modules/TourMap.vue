@@ -194,25 +194,27 @@ const setupMap = () => {
   const viewportWidth =
     window.innerWidth || document.documentElement.clientWidth
   let zoom
-  if (viewportWidth <= 600) {
+  if (viewportWidth <= 780) {
     // This is typically the width of a mobile device
-    zoom = 0.5 // Adjust this to your preferred zoom level on mobile devices
+    zoom = 6 // Adjust this to your preferred zoom level on mobile devices
   } else {
     zoom = 8 // Adjust this to your preferred zoom level on larger devices
   }
 
   const bounds = [
-    [11.5, 50], // Southwest coordinates
-    [16, 53], // Northeast coordinates
+    [6.5, 49.0], // Southwest coordinates (near Saarbrücken)
+    [17, 54.8], // Adjusted Northeast coordinates (more to the east
   ]
+
+  const centerOfSaxony = [13.5, 51.0]
 
   map.value = new mapboxgl.Map({
     container: 'map',
     // style: 'mapbox://styles/brechtknecht/clhht1rwd01h701pg3wx56t1f',
     style: 'mapbox://styles/brechtknecht/clk34rcwj003701nwf90f672o/draft',
     zoom: zoom,
-    center: [14, 51.1],
-    maxBounds: bounds, // Set the map's geographical boundaries.
+    center: centerOfSaxony, // Coordinates for Dresden
+    //  maxBounds: bounds, // Set the map's geographical boundaries.
     // pitch: 33,
     antialias: true,
     cooperativeGestures: true,
