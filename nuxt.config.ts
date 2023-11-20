@@ -40,4 +40,38 @@ export default defineNuxtConfig({
     // typeCheck: true,
     shim: false,
   },
+
+  head: {
+    title: 'Fabmobil', // You can have your site title here
+    meta: [
+      // Existing meta tags...
+
+      // Add your new meta tags here
+      { name: 'msapplication-TileColor', content: '#da532c' },
+      { name: 'theme-color', content: '#ffffff' },
+    ],
+    link: [
+      // Existing link tags...
+
+      // Add your new link tags here
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      { rel: 'manifest', href: '/site.webmanifest' },
+    ],
+  },
 })
