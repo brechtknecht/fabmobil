@@ -217,6 +217,7 @@ const setupMap = () => {
     //  maxBounds: bounds, // Set the map's geographical boundaries.
     // pitch: 33,
     antialias: true,
+    maxZoom: 9,
     cooperativeGestures: true,
   })
 

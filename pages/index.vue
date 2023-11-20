@@ -72,7 +72,7 @@ setPage(page)
         :key="n.id"
         :src="n?.image.url"
         alt="Repeated Image"
-        style="width: 500px"
+        style="width: 50vw"
         class="h-full max-h-[60vh] px-16 object-cover"
       />
     </ModulesImageSlider>
