@@ -171,7 +171,7 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post('/.netlify/functions/sendEmail', {
+        .post('/.netlify/functions/sendmail', {
           name: this.name,
           contactperson: this.contactperson,
           request: this.request,

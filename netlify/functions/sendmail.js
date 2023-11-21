@@ -17,7 +17,7 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: 'your_gmail_address@gmail.com',
-    to: 'receiver_email@example.com',
+    to: 'felix.tesche@gmail.com',
     subject: 'New Contact Form Submission',
     text: `Name: ${name}\nContact Person: ${contactperson}\nRequest: ${request}`,
   }
