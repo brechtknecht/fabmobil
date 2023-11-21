@@ -171,13 +171,14 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post('https://fiete.uber.space/scripts/sendMail.php', {
+        .post('/.netlify/functions/sendEmail', {
           name: this.name,
           contactperson: this.contactperson,
           request: this.request,
         })
         .then((response) => {
           this.isSubmitted = true
+          // Reset form fields or handle the success state
         })
         .catch((error) => {
           this.error =
