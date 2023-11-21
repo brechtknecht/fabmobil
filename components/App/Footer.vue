@@ -43,7 +43,7 @@
               class="text-center text-lg font-sans font-bold text-secondary relative w-full h-full min-h-10"
               @click="subscribe"
             >
-              Abonieren!
+              Abonnieren!
             </button>
           </div>
           <img
