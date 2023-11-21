@@ -11,7 +11,7 @@ exports.handler = async (event) => {
     service: 'gmail',
     auth: {
       user: 'fabmobiltest@gmail.com',
-      pass: 'xn4xmhuaFK9uom9dcp343qU_',
+      pass: 'kxpm zbnm nadx uxqq',
     },
   })
 
