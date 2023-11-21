@@ -1,4 +1,27 @@
 <script setup lang="ts">
+const homeData = await useKql({
+  query: 'page("home")',
+  select: {
+    id: true,
+    title: true,
+    sponsors: {
+      query: 'page.sponsors.toStructure',
+      select: {
+        linkName: true,
+        url: true,
+        image: {
+          query: 'structureItem.image.toFile', // Followed the pattern in technology.yml
+          select: {
+            url: true,
+          },
+        },
+      },
+    },
+  },
+})
+
+console.log('HOMEDATA:', homeData.data.value?.result)
+
 const { data } = await useKql({
   query: `page("${useRoute().path}")`,
   select: {
@@ -40,10 +63,15 @@ const { data } = await useKql({
   },
 })
 
-console.log(data)
+// Combine the data from both calls
+const page = {
+  ...data.value?.result, // assuming this is the format of your data
+  home: homeData.data.value?.result, // add the home data
+}
+
+console.log(page)
 
 // Set the current page data for the global page context
-const page = data.value?.result
 setPage(page)
 </script>
 
@@ -72,6 +100,11 @@ setPage(page)
       </div>
       <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
     </BaseFloatingImages>
+    <ModulesSponsors
+      v-if="page.home.sponsors"
+      class="bg-white"
+      :sponsors="page.home.sponsors"
+    />
     <ModulesLokallaboreTeaser />
     <!-- Debug text -->
     <!-- <pre>{{ page }}</pre> -->

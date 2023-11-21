@@ -5,22 +5,43 @@
         Gefördert durch
       </h1>
     </div>
+
+    <!-- First Grid for the first two logos -->
     <div
-      class="flex flex-wrap justify-center gap-32 mx-auto max-w-[1720px] py-20"
+      class="grid grid-cols-2 gap-32 mx-auto max-w-[1720px] py-20 grid-override px-32"
     >
-      <a
-        v-for="(sponsor, index) in sponsors"
+      <div
+        v-for="(sponsor, index) in firstRowSponsors"
         :key="index"
-        :href="sponsor.url"
-        target="_blank"
-        class="flex-none w-full sm:w-full md:w-1/2 lg:w-1/3 flex justify-center items-center"
+        class="flex justify-center items-center"
       >
-        <img
-          :src="sponsor.image.url"
-          alt="Sponsor logo"
-          class="h-64 object-contain mx-auto py-4"
-        />
-      </a>
+        <a :href="sponsor.url" target="_blank">
+          <img
+            :src="sponsor.image.url"
+            alt="Sponsor logo"
+            class="h-64 object-contain mx-auto py-4"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Second Grid for the remaining logos -->
+    <div
+      class="grid grid-cols-4 md:grid-cols-4 gap-32 mx-auto max-w-[1720px] py-20 px-16"
+    >
+      <div
+        v-for="(sponsor, index) in secondRowSponsors"
+        :key="index"
+        class="flex justify-center items-center"
+      >
+        <a :href="sponsor.url" target="_blank">
+          <img
+            :src="sponsor.image.url"
+            alt="Sponsor logo"
+            class="h-64 object-contain mx-auto py-4"
+          />
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -33,5 +54,24 @@ export default {
       required: true,
     },
   },
+  computed: {
+    firstRowSponsors() {
+      return this.sponsors.slice(0, 2)
+    },
+    secondRowSponsors() {
+      return this.sponsors.slice(2)
+    },
+  },
 }
 </script>
+
+<style lang="scss">
+.grid-override {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+@media (min-width: 640px) {
+  .grid-override {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+</style>
