@@ -30,7 +30,7 @@
                 id="modal-title"
                 class="text-large-title font-headline leading-6 font-medium text-primary leading-tight"
               >
-                An error occurred
+                Upsi — Leider funktioniert hier was nicht.
               </h1>
               <div class="mt-2 flex gap-8 flex-col pr-8">
                 <p class="text-lg text-red mt-4">
@@ -39,7 +39,7 @@
               </div>
               <div class="mt-2 flex gap-8 flex-col pr-8">
                 <p class="text-lg text-red mt-4">
-                  Instead submit your application via our
+                  Schreibe uns direkt eine Mail hier:
                   <a class="text-green" href="mailto:mail@fabmobil.org"
                     >E-Mail</a
                   >
@@ -56,11 +56,11 @@
                 id="modal-title"
                 class="text-large-title font-headline leading-6 font-medium text-primary leading-tight"
               >
-                Thank you for your submission!
+                Danke für deine Mail
               </h1>
               <div class="mt-2 flex gap-8 flex-col pr-8">
                 <p class="text-lg text-green mt-4">
-                  We have received your request and will get back to you soon.
+                  Wir werden uns zeitnah bei dir melden.
                 </p>
               </div>
               <button
@@ -74,7 +74,10 @@
           </div>
         </div>
         <!-- Form -->
-        <div v-if="error === ''" class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div
+          v-if="error === '' && !isSubmitted"
+          class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4"
+        >
           <div class="sm:flex sm:items-start">
             <div class="mt-3 text-center sm:mt-0 sm:text-left sm:w-1/2 p-4">
               <h1
@@ -178,7 +181,6 @@ export default {
         })
         .then((response) => {
           this.isSubmitted = true
-          // Reset form fields or handle the success state
         })
         .catch((error) => {
           this.error =
