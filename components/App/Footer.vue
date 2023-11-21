@@ -99,7 +99,9 @@
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        <NuxtLink to="/codeofconduct" class="footer-link-dark">COC</NuxtLink>
+        <NuxtLink to="/codeofconduct" class="footer-link-dark"
+          >Code of Conduct</NuxtLink
+        >
       </div>
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
