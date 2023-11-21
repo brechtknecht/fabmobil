@@ -136,13 +136,13 @@
                     <div
                       v-for="(link, linkIndex) in tech.links"
                       :key="linkIndex"
-                      class="py-4"
+                      class="px-4 md:py-4 md:px-0"
                     >
                       <NuxtLink
                         v-if="link.url"
                         :to="link.url"
                         target="_blank"
-                        class="text-white border border-white rounded p-2 w-fit mx-auto my-4 break-normal w-full overflow-hidden"
+                        class="text-white border border-white rounded p-2 mx-auto my-4 break-normal w-full overflow-hidden"
                         style="word-wrap: break-word; hyphens: auto"
                       >
                         {{ link.linkname || 'Link zum Produkt' }} →
@@ -151,7 +151,7 @@
 
                     <button
                       v-if="tech.devices.length > 0"
-                      class="text-accent rounded-md flex flex-row mt-4 mb-8 px-8 md:px-0"
+                      class="text-accent rounded-md flex flex-row mt-8 md:mt-4 mb-8 px-4 md:px-0"
                       @click="tech.showDevices = !tech.showDevices"
                     >
                       Unsere Empfehlungen
