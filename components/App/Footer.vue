@@ -157,18 +157,22 @@ export default {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     },
     async subscribe() {
+      if (!this.email) {
+        alert('Please enter an email address.')
+        return
+      }
+
       try {
-        const response = await axios.post(
-          'https://<YOUR-MAILCHIMP-API-ENDPOINT>',
-          {
-            email: this.email,
-          }
-        )
-        if (response.data.status === 'subscribed') {
+        const response = await axios.post('/.netlify/functions/subscribe', {
+          email: this.email,
+        })
+        if (response.data.message === 'Subscribed successfully') {
           alert('Subscribed successfully')
+          this.email = '' // Reset email after successful subscription
         }
       } catch (error) {
         console.error(error)
+        alert('Subscription failed. Please try again.')
       }
     },
   },
