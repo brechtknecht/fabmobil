@@ -7,13 +7,13 @@
             <h1
               class="font-headline text-primary text-large-title leading-tight py-4 break-normal"
             >
-              {{ page.title }}
+              Software
             </h1>
             <ul class="pr-8 w-full">
               <h2
                 class="text-lg text-white border border-white rounded-md px-4 my-2"
               >
-                Hardware
+                Kategorien
               </h2>
               <BaseAnimatedNuxtLink
                 v-for="(
@@ -31,7 +31,7 @@
                 @mouseover="hoveredIndex = index"
                 @mouseleave="hoveredIndex = null"
               >
-                Kategorien
+                {{ category.name }}
                 <svg
                   v-if="hoveredIndex === index"
                   xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +202,7 @@ const { data } = await useKql({
 const page = data.value?.result
 
 const { data: technologyData } = await useKql({
-  query: 'page("technology")',
+  query: 'page("software")',
   select: {
     name: true,
     category: true,
@@ -240,7 +240,7 @@ const { data: technologyData } = await useKql({
 })
 
 const { data: categoryData } = await useKql({
-  query: 'page("technology")',
+  query: 'page("software")',
   select: {
     categories: {
       query: 'page.categories.toStructure',
