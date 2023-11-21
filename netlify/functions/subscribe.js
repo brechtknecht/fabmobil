@@ -8,7 +8,7 @@ exports.handler = async (event) => {
   try {
     const { email } = JSON.parse(event.body)
     const response = await axios.post(
-      'https://us17.api.mailchimp.com/3.0/lists/fabmobil/members/',
+      'https://us17.api.mailchimp.com/3.0/lists/b07f77a242/members/',
       {
         email_address: email,
         status: 'subscribed',
