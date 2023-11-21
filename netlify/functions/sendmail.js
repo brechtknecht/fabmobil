@@ -15,11 +15,32 @@ exports.handler = async (event) => {
     },
   })
 
+  const emailHtml = `
+    <html>
+    <head>
+      <style>
+        body { font-family: 'Roboto', sans-serif; }
+        .email-container { max-width: 65ch; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        h1 { color: #333; }
+        p { color: #555; }
+      </style>
+    </head>
+    <body>
+      <div class="email-container">
+        <h1>Neue Anfrage für das Fabmobil</h1>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Kontaktperson:</strong> ${contactperson}</p>
+        <p><strong>Anfrage:</strong> ${request}</p>
+      </div>
+    </body>
+    </html>
+  `
+
   const mailOptions = {
-    from: 'your_gmail_address@gmail.com',
+    from: 'fabmobiltest@gmail.com',
     to: 'felix.tesche@gmail.com',
-    subject: 'New Contact Form Submission',
-    text: `Name: ${name}\nContact Person: ${contactperson}\nRequest: ${request}`,
+    subject: 'Neue Anfrage für das Fabmobil',
+    html: emailHtml, // use 'html' instead of 'text'
   }
 
   try {
