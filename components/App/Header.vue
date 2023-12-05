@@ -12,7 +12,7 @@
     </NuxtLink>
     <NuxtLink to="/" class="flex-shrink-0 items-center sm:hidden inline-block">
       <img
-        class="h-8 xl:h-12"
+        class="h-8 w-8 xl:h-12 xl:w-8"
         src="/assets/img/shortlogo.svg"
         :alt="site.title"
       />
