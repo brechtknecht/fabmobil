@@ -95,7 +95,7 @@
                     <div
                       v-for="(link, linkIndex) in tech.links"
                       :key="linkIndex"
-                      class="px-4 md:py-4 md:px-0"
+                      class="px-4 md:py-4 md:px-0 h-14"
                     >
                       <NuxtLink
                         v-if="link.url"
