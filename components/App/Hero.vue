@@ -1,7 +1,7 @@
 <template>
   <section
     :style="{ backgroundColor: backgroundColor }"
-    class="hero relative text-white py-8 md:py-16 lg:py-32 overflow-hidden"
+    class="hero relative text-white py-8 md:py-16 lg:py-16 overflow-hidden"
   >
     <img
       v-if="image"

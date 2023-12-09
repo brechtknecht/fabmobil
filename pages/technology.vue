@@ -13,7 +13,7 @@
               <h2
                 class="text-lg text-white border border-white rounded-md px-4 my-2"
               >
-                Hardware
+                Kategorien
               </h2>
               <BaseAnimatedNuxtLink
                 v-for="(

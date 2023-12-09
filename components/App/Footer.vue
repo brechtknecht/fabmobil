@@ -73,9 +73,7 @@
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
       >
-        <NuxtLink to="/tutorials" class="footer-link-dark"
-          >LEHREN & LERNEN</NuxtLink
-        >
+        <NuxtLink to="/tutorials" class="footer-link-dark">TUTORIALS</NuxtLink>
       </div>
       <div
         class="text-center text-xl font-body text-primary relative w-full h-full"
@@ -94,13 +92,13 @@
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
-        <NuxtLink to="/faq" class="footer-link-dark">FAQs</NuxtLink>
+        <NuxtLink to="/faq" class="footer-link-dark">FAQS</NuxtLink>
       </div>
       <div
         class="text-center text-xl font-body text-slate-500 relative w-full h-full hover:text-white"
       >
         <NuxtLink to="/codeofconduct" class="footer-link-dark"
-          >Code of Conduct</NuxtLink
+          >CODE OF CONDUCT</NuxtLink
         >
       </div>
       <div
