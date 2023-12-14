@@ -100,6 +100,11 @@ setPage(page)
       </div>
       <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
     </BaseFloatingImages>
+    <ModulesSponsors
+      v-if="page.home.sponsors"
+      class="bg-white"
+      :sponsors="page.home.sponsors"
+    />
     <ModulesLokallaboreTeaser />
     <!-- Debug text -->
     <!-- <pre>{{ page }}</pre> -->
