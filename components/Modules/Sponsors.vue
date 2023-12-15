@@ -8,7 +8,7 @@
 
     <!-- First Grid for the first two logos -->
     <div
-      class="grid grid-cols-2 gap-32 mx-auto max-w-[1720px] py-20 grid-override px-32"
+      class="grid grid-cols-4 gap-32 mx-auto max-w-[1720px] py-2 grid-override md:px-[100px] lg:px-[10%] xl:px-[25%] 2xl:px-[400px]"
     >
       <div
         v-for="(sponsor, index) in firstRowSponsors"
@@ -19,7 +19,7 @@
           <img
             :src="sponsor.image.url"
             alt="Sponsor logo"
-            class="h-64 object-contain mx-auto py-4"
+            class="h-64 object-contain mx-auto"
           />
         </a>
       </div>
@@ -27,7 +27,7 @@
 
     <!-- Second Grid for the remaining logos -->
     <div
-      class="grid grid-cols-4 md:grid-cols-4 gap-32 mx-auto max-w-[1720px] py-20 px-16"
+      class="grid grid-cols-4 md:grid-cols-4 gap-32 mx-auto max-w-[1720px] py-2 px-16 pb-12"
     >
       <div
         v-for="(sponsor, index) in secondRowSponsors"
@@ -38,7 +38,7 @@
           <img
             :src="sponsor.image.url"
             alt="Sponsor logo"
-            class="h-64 object-contain mx-auto py-4"
+            class="h-64 object-contain mx-auto"
           />
         </a>
       </div>
@@ -67,9 +67,12 @@ export default {
 
 <style lang="scss">
 .grid-override {
-  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  & > div {
+    padding: 0 2rem;
+  }
 }
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .grid-override {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
