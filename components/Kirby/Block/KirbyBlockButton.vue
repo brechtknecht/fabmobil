@@ -18,7 +18,7 @@ import { computed } from 'vue'
 import type { KirbyBlock } from '#nuxt-kql'
 
 const props = defineProps<{
-  block: KirbyBlock<'video'>
+  block: KirbyBlock<'button'>
 }>()
 
 const isLargeButton = computed(() => props.block.content.size === 'large')

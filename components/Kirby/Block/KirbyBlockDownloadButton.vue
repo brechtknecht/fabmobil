@@ -1,29 +1,27 @@
 <template>
+  {{ props }}
   <div class="flex flex-row gap-4">
     <a
-      v-for="button in props.block.content.buttons"
-      :key="button.text"
-      :href="button.link"
       target="_blank"
       class="button transform rounded-md h-fit flexitems-start justify-items-start flex-col md:flex-row w-64 py-1.5 px-4 cursor-pointe"
       :class="{
-        'bg-black': button.dark == 'true',
-        'bg-white': button.dark !== 'true',
+        'bg-black': props.block.content.dark == 'true',
+        'bg-white': props.block.content.dark !== 'true',
       }"
     >
       <span
-        v-if="button.dark == 'true'"
+        v-if="props.block.content.dark == 'true'"
         class="text-paragraph text-large-title text-white leading-tight"
-        >{{ button.text }}</span
+        >{{ props.block.content.text }}</span
       >
       <span
         v-else
         class="text-paragraph text-large-title text-black leading-tight"
-        >{{ button.text }}</span
+        >{{ props.block.content.text }}</span
       >
 
       <img
-        v-if="button.dark == 'true'"
+        v-if="props.block.content.dark == 'true'"
         class="w-20 pb-4 mt-24"
         src="/assets/img/components/arrow-right.svg"
       />
@@ -41,7 +39,7 @@ import { computed } from 'vue'
 import type { KirbyBlock } from '#nuxt-kql'
 
 const props = defineProps<{
-  block: KirbyBlock<'video'>
+  block: KirbyBlock<'downloadbutton'>
 }>()
 </script>
 
