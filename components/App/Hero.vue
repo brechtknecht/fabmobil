@@ -3,7 +3,7 @@
     :style="{ backgroundColor: backgroundColor }"
     class="hero relative text-white py-8 md:py-16 lg:py-16 overflow-hidden"
   >
-    <div class="container mx-auto">
+    <div class="container mx-auto" style="max-width: 1200px">
       <img
         v-if="image"
         :src="image?.url"
@@ -14,9 +14,7 @@
         class="hero-content container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center z-20 relative"
         :style="{ color: foregroundColor }"
       >
-        <h1
-          class="font-headline text-large-title font-bold hero-title md:text-title-1 lg:text-title-2 xl:text-title-3 2xl:text-large-title"
-        >
+        <h1 class="font-headline text-title-1 leading-normal mb-8">
           {{ title }}
         </h1>
         <span class="hero-description text-headline" v-html="description">
