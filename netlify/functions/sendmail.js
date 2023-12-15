@@ -38,7 +38,7 @@ exports.handler = async (event) => {
 
   const mailOptions = {
     from: 'fabmobiltest@gmail.com',
-    to: 'felix.tesche@gmail.com',
+    to: 'juliane@fabmobil.org',
     subject: 'Neue Anfrage für das Fabmobil',
     html: emailHtml, // use 'html' instead of 'text'
   }
