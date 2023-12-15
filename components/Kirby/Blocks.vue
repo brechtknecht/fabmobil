@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {
   LazyKirbyBlockButton,
+  LazyKirbyBlockDownloadButton,
   LazyKirbyBlockGallery,
   LazyKirbyBlockHeading,
   LazyKirbyBlockImage,
-  LazyKirbyBlockLargeButton,
   LazyKirbyBlockLine,
   LazyKirbyBlockList,
   LazyKirbyBlockQuote,
@@ -30,7 +30,7 @@ const blockComponents: Partial<Record<string, Component>> = {
   text: LazyKirbyBlockText,
   video: LazyKirbyBlockVideo,
   button: LazyKirbyBlockButton,
-  largebutton: LazyKirbyBlockLargeButton,
+  downloadbutton: LazyKirbyBlockDownloadButton,
   gallery: LazyKirbyBlockGallery,
 }
 </script>
