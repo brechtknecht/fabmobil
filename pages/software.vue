@@ -71,7 +71,7 @@
                     class="left-side w-full md:w-1/2 flex flex-col justify-center items-start"
                   >
                     <h2
-                      class="font-headline text-primary text-large-title px-4 leading-tight md:px-12 break-normal w-full overflow-hidden"
+                      class="font-headline text-primary text-large-title px-4 leading-tight md:px-12 break-normal w-full"
                       style="word-wrap: break-word; hyphens: auto"
                     >
                       {{ tech.name }}
