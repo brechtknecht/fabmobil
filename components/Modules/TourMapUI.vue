@@ -10,7 +10,7 @@
       <h2 class="text-lg font-semibold text-white mb-1">
         {{ cityData.location.city }}
       </h2>
-      <p class="text-white">
+      <p v-if="cityData.date" class="text-white">
         {{ cityData.date }}
         <!-- {{ cityData.location.lon }},
         {{ cityData.location.lat }} -->

@@ -545,6 +545,16 @@ const setupMap = () => {
           const school = e.features[0].properties.school
           const category = e.features[0].properties.category
 
+          let dateHTML = ''
+
+          if (startDate == 'Invalid Date') {
+            dateHTML = ''
+          } else {
+            dateHTML = `<p class="font-body text-xl text-black">${startDate}${
+              endDate ? ' — ' + endDate : ''
+            }</p>`
+          }
+
           popup = new mapboxgl.Popup({
             closeOnClick: false,
             closeButton: false,
@@ -553,9 +563,8 @@ const setupMap = () => {
             .setHTML(
               `<h1 class="font-headline text-xl text-black">${category}</h1>
               <p class="font-body text-xl text-black">${school}</p>
-              <p class="font-body text-xl text-black">${startDate}${
-                endDate ? ' — ' + endDate : ''
-              }</p>`
+              ${dateHTML}
+              `
             )
             .addTo(map.value)
         }
