@@ -17,9 +17,6 @@ dependencies:
   '@sentry/tracing':
     specifier: ^7.66.0
     version: 7.66.0
-  '@sentry/vue':
-    specifier: ^7.66.0
-    version: 7.66.0
   '@studio-freight/lenis':
     specifier: ^1.0.25
     version: 1.0.25
