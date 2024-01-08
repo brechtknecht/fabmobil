@@ -26,8 +26,14 @@
     </div>
 
     <!-- Second Grid for the remaining logos -->
+
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-headline mb-6 mt-0 px-32 pt-12 max-w-xl">
+        Unterstützt durch
+      </h1>
+    </div>
     <div
-      class="grid grid-cols-4 md:grid-cols-4 gap-32 mx-auto max-w-[1720px] py-2 px-16 pb-12"
+      class="grid grid-cols-4 md:grid-cols-4 gap-32 mx-auto max-w-[1720px] py-2 px-16 pb-20"
     >
       <div
         v-for="(sponsor, index) in secondRowSponsors"
