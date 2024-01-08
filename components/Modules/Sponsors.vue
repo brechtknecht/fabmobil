@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black p-4">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 max-w-[1280px]">
       <h1 class="text-4xl font-headline mb-6 px-32 pt-32 max-w-xl">
         Gefördert durch
       </h1>
@@ -26,8 +26,7 @@
     </div>
 
     <!-- Second Grid for the remaining logos -->
-
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 max-w-[1280px]">
       <h1 class="text-4xl font-headline mb-6 mt-0 px-32 pt-12 max-w-xl">
         Unterstützt durch
       </h1>
