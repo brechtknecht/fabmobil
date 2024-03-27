@@ -22,6 +22,10 @@ const { data } = await useKql({
           query: 'layout.attrs.image.toFile',
         },
       },
+      images: {
+        query: 'page.images',
+        select: ['id', 'uuid', 'url', 'alt'],
+      },
     },
   },
 })
