@@ -48,7 +48,7 @@ const { width } = useElementSize(figure)
         :alt="block.content.alt"
         :class="`${props.offset}`"
       />
-      <KirbyUuidResolver
+      <!-- <KirbyUuidResolver
         v-else
         v-slot="{ item: image }"
         :uuid="props.block.content.image?.[0]"
@@ -60,7 +60,7 @@ const { width } = useElementSize(figure)
           :alt="image.alt"
           :class="`${props.offset}`"
         />
-      </KirbyUuidResolver>
+      </KirbyUuidResolver> -->
     </component>
 
     <figcaption
