@@ -1,6 +1,6 @@
 <template>
-  <div class="section section-faq bg-white text-black">
-    <div class="container mx-auto">
+  <div class="text-black">
+    <div class="">
       <KirbyLayouts :layouts="page.layouts ?? []" class="px-12" />
       <!-- <pre class="text-white">{{ page }}</pre> -->
     </div>
