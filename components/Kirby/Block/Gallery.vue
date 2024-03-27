@@ -9,29 +9,25 @@ const props = defineProps<{
 const page = usePage()
 
 // Initialize images as a reactive reference
-const images = ref([])
+const images = ref([]);
 
 // Watch for changes in page.value.images and update images accordingly
 watch(
   () => page.value.images,
   (newImages) => {
-    // Ensure `newImages` is an array before proceeding.
-    if (!Array.isArray(newImages)) {
+    if (typeof newImages === 'undefined' || !Array.isArray(newImages)) {
+      // Handle both undefined and non-array newImages
       images.value = [];
       return;
     }
 
     // Ensure `props.block.content.images` is an array before mapping.
-    // This prevents runtime errors if `props.block.content.images` is undefined/null.
     const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
 
     // Map `imageUuids` to corresponding objects found in `newImages`.
-    // The check for `imageUuid` ensures that we're only trying to find images for valid UUIDs.
-    images.value = imageUuids.map((imageUuid) => {
-      return newImages.find((img) => img.uuid === imageUuid);
-    }).filter(image => image !== undefined); // Filter out any undefined entries if an image UUID wasn't found.
-
-    // Alternatively, if you want to keep `undefined` entries (for some reason), you can omit the `.filter` part.
+    images.value = imageUuids.map(imageUuid => 
+      newImages.find(img => img.uuid === imageUuid)
+    ).filter(image => image !== undefined); // Filter out undefined entries
   },
   { immediate: true }
 );
