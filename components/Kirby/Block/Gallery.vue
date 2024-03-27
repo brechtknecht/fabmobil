@@ -17,7 +17,7 @@ watch(
   (newImages) => {
     images.value =
       props.block.content.images?.map((imageUuid) =>
-        newImages.find((img) => img.uuid === imageUuid)
+        newImages?.find((img) => img.uuid === imageUuid)
       ) || []
   },
   { immediate: true }
