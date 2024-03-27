@@ -11,22 +11,22 @@ const page = usePage()
 // Initialize images as a reactive reference
 const images = ref([]);
 
-// Watch for changes in page.value.images and update images accordingly
-watch(
-  () => page.value.images,
-  (newImages) => {
-    // Check if newImages is defined and is an array
-    if (typeof newImages !== 'undefined' && Array.isArray(newImages)) {
-      // Proceed with your logic as newImages is in the expected state
-      const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
-      images.value = imageUuids.map(imageUuid => newImages.find(img => img.uuid === imageUuid)).filter(image => image !== undefined);
-    } else {
-      // Handle the case where newImages is not in the expected state (e.g., undefined or not an array)
-      images.value = [];
-    }
-  },
-  { immediate: true }
-);
+// Define a function to update images based on current page.value.images
+function updateImages(newImages) {
+  if (!Array.isArray(newImages)) {
+    images.value = [];
+    return;
+  }
+
+  const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
+  images.value = imageUuids.map(imageUuid => newImages.find(img => img.uuid === imageUuid)).filter(image => image !== undefined);
+}
+
+// Watch for changes in page.value.images and update images accordingly, without immediate: true
+watch(() => page.value.images, updateImages);
+
+// Manually call updateImages with the current value to initialize
+updateImages(page.value.images);
 
 
 
