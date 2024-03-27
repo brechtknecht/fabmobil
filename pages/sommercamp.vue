@@ -23,6 +23,10 @@ const { data } = await useKql({
         },
       },
     },
+    images: {
+      query: 'page.images',
+      select: ['id', 'uuid', 'url', 'alt'],
+    },
   },
 })
 
