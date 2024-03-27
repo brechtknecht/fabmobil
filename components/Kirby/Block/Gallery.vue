@@ -46,7 +46,7 @@ const { width } = useElementSize(figure)
         class="flex-none w-full sm:w-full md:w-1/2 lg:w-1/3"
       >
         <img
-          :src="image.url"
+          :src="image?.url"
           :alt="image.alt || 'Gallery Image ' + (index + 1)"
           class="h-64 object-contain mx-auto"
         />
