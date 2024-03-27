@@ -18,7 +18,7 @@ const props = defineProps<{
 const page = usePage()
 
 // Use static data to avoid reactivity when redirecting to another page
-const images = page.value.images
+const images = page.value.images ?? [];
 
 const ratio = props.block.content.ratio || 'auto'
 let size: { w?: string; h?: string } = {}
@@ -48,10 +48,10 @@ const { width } = useElementSize(figure)
         :alt="block.content.alt"
         :class="`${props.offset}`"
       />
-      <!-- <KirbyUuidResolver
+      <KirbyUuidResolver
         v-else
         v-slot="{ item: image }"
-        :uuid="props.block.content.image?.[0]"
+        :uuid="props.block.content.image?.[0] ?? []"
         :collection="images"
       >
         <img
@@ -60,7 +60,7 @@ const { width } = useElementSize(figure)
           :alt="image.alt"
           :class="`${props.offset}`"
         />
-      </KirbyUuidResolver> -->
+      </KirbyUuidResolver>
     </component>
 
     <figcaption
