@@ -15,13 +15,27 @@ const images = ref([])
 watch(
   () => page.value.images,
   (newImages) => {
-    images.value =
-      props.block.content.images?.map((imageUuid) =>
-        newImages?.find((img) => img.uuid === imageUuid)
-      ) || []
+    // Ensure `newImages` is an array before proceeding.
+    if (!Array.isArray(newImages)) {
+      images.value = [];
+      return;
+    }
+
+    // Ensure `props.block.content.images` is an array before mapping.
+    // This prevents runtime errors if `props.block.content.images` is undefined/null.
+    const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
+
+    // Map `imageUuids` to corresponding objects found in `newImages`.
+    // The check for `imageUuid` ensures that we're only trying to find images for valid UUIDs.
+    images.value = imageUuids.map((imageUuid) => {
+      return newImages.find((img) => img.uuid === imageUuid);
+    }).filter(image => image !== undefined); // Filter out any undefined entries if an image UUID wasn't found.
+
+    // Alternatively, if you want to keep `undefined` entries (for some reason), you can omit the `.filter` part.
   },
   { immediate: true }
-)
+);
+
 
 const ratio = props.block.content.ratio || 'auto'
 let size: { w?: string; h?: string } = {}
