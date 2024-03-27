@@ -184,7 +184,7 @@ const isModalOpen = ref(false)
 const listedChildren = computed(() =>
   (site.value?.children ?? []).filter(
     (i) =>
-      i.isListed && !['faq', 'impress', 'coc', 'codeofconduct'].includes(i.id)
+      i.isListed && !['faq', 'impress', 'coc', 'codeofconduct', 'sommercamp'].includes(i.id)
   )
 )
 
