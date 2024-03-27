@@ -42,12 +42,10 @@ const { width } = useElementSize(figure)
       :class="[ratio === 'auto' ? 'auto' : 'img']"
       :style="`--w: ${block}; --h: ${size.h}; `"
     >
-
-    {{  props.block.content }}
-      <!-- <img
+      <img
         v-if="block.content.location === 'web'"
-        :src="block.content.src"
-        :alt="block.content.alt"
+        :src="block.content.src ?? ''"
+        :alt="block.content.alt ?? ''"
         :class="`${props.offset}`"
       />
       <KirbyUuidResolver
@@ -59,10 +57,10 @@ const { width } = useElementSize(figure)
         <img
           :src="image?.url"
           :sizes="`${width}px`"
-          :alt="image.alt"
+          :alt="image?.alt"
           :class="`${props.offset}`"
         />
-      </KirbyUuidResolver> -->
+      </KirbyUuidResolver>
     </component>
 
     <figcaption
