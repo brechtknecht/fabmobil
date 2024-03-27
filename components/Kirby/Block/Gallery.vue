@@ -15,22 +15,19 @@ const images = ref([]);
 watch(
   () => page.value.images,
   (newImages) => {
-    if (typeof newImages === 'undefined' || !Array.isArray(newImages)) {
-      // Handle both undefined and non-array newImages
+    // Check if newImages is defined and is an array
+    if (typeof newImages !== 'undefined' && Array.isArray(newImages)) {
+      // Proceed with your logic as newImages is in the expected state
+      const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
+      images.value = imageUuids.map(imageUuid => newImages.find(img => img.uuid === imageUuid)).filter(image => image !== undefined);
+    } else {
+      // Handle the case where newImages is not in the expected state (e.g., undefined or not an array)
       images.value = [];
-      return;
     }
-
-    // Ensure `props.block.content.images` is an array before mapping.
-    const imageUuids = Array.isArray(props.block.content.images) ? props.block.content.images : [];
-
-    // Map `imageUuids` to corresponding objects found in `newImages`.
-    images.value = imageUuids.map(imageUuid => 
-      newImages.find(img => img.uuid === imageUuid)
-    ).filter(image => image !== undefined); // Filter out undefined entries
   },
   { immediate: true }
 );
+
 
 
 const ratio = props.block.content.ratio || 'auto'
