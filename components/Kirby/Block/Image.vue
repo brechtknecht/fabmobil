@@ -55,7 +55,7 @@ const { width } = useElementSize(figure)
         :collection="images"
       >
         <img
-          :src="image.url"
+          :src="image?.url"
           :sizes="`${width}px`"
           :alt="image.alt"
           :class="`${props.offset}`"
